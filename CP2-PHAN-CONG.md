@@ -39,9 +39,9 @@
   - "Mất bao lâu? Có lần nào đoán sai chỗ lớp kẹt không?"
   - "Bạn có xem kết quả bài ôn pre-class không? Xem ở đâu?"
 - [ ] Ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md` (không ghi tên); ghi chép vào `evidence/interviews/P1.md`…
-- [ ] `evidence/data-mining.md`: chép quy tắc đếm từ `data/build_class_stats.py` vào mục 1, số vào mục 3
+- [x] `evidence/data-mining.md`: chép quy tắc đếm từ `data/build_class_stats.py` vào mục 1, số vào mục 3
 - [ ] **Thu câu trả lời thật:** gửi 2–3 câu hỏi mở (lấy từ `data/open_answers.json`) cho ≥10 học viên L3 qua form ẩn danh, xin đồng ý → thêm vào `data/open_answers.json` + câu thử nguồn `nguoi_dung` (cần ≥1/3 bộ câu thử; CP3 cần 20–30 câu)
-- [ ] Duyệt 14 câu trong `eval/benchmark.csv`, kiểm lại nhãn tay
+- [x] Duyệt 14 câu trong `eval/benchmark.csv`, kiểm lại nhãn tay (đã kiểm khớp 14/14 câu & 63/63 nhãn tay trong `data/open_answers.json`)
 - [ ] Làm người thứ hai chấm thử 5 output
 
 ## Nguyễn Đức Trọng · bản chạy thử
