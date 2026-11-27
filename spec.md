@@ -4,7 +4,7 @@
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
 
 Track: [x] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: A1 · Học viên L3 xem video pre-class, gặp chỗ chưa hiểu thì gõ câu hỏi rất ngắn cho trợ giảng dưới video; câu trả lời không trỏ được về đoạn nào trong bài, nên học viên phải tua lại tự tìm hoặc mang chỗ kẹt vào lớp.
-Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
+Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/preclass/` của repo đề — `chat.csv` (câu hỏi học viên; lọc `channel = video_question`, dùng `do_dai_cau_hoi` để đếm câu ngắn) · `answers.csv` (cột `rubric_bam_bai` để so mức bám bài giữa câu ngắn và câu dài). Chỉ commit script đếm `evidence/count.py` và số đã tổng hợp; câu thử `data_that` viết lại câu chữ, ghi mã dòng gốc ở cột `source`.
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
 - Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
