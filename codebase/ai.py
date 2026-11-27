@@ -106,8 +106,18 @@ def call_gemini(system, user):
         if not p.get("thought")
     )
     u = data.get("usageMetadata", {})
+    # token ra gồm cả token suy nghĩ (Gemini tính riêng ở thoughtsTokenCount)
     return {"text": text, "tokens_in": u.get("promptTokenCount", 0),
             "tokens_out": u.get("candidatesTokenCount", 0) + u.get("thoughtsTokenCount", 0)}
+
+
+def call_openai(system, user):
+    messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
+    data = post_json(URL_OPENAI, {"Authorization": "Bearer " + API_KEY},
+                     {"model": MODEL_NAME, "messages": messages})
+    u = data["usage"]
+    return {"text": data["choices"][0]["message"]["content"],
+            "tokens_in": u["prompt_tokens"], "tokens_out": u["completion_tokens"]}
 
 
 def call_claude(system, user):
@@ -125,21 +135,6 @@ def call_ollama(system, user):
     data = post_json(URL_OLLAMA, {}, {"model": MODEL_NAME, "messages": messages, "stream": False}, timeout=300)
     return {"text": data["message"]["content"],
             "tokens_in": data.get("prompt_eval_count", 0), "tokens_out": data.get("eval_count", 0)}
-
-
-def call_gemini(system, user):
-    body = {"contents": [{"role": "user", "parts": [{"text": user}]}]}
-    if system:
-        body["system_instruction"] = {"parts": [{"text": system}]}
-    data = post_json(URL_GEMINI % MODEL_NAME, {"x-goog-api-key": API_KEY}, body)
-    cands = data.get("candidates") or []
-    if not cands or "content" not in cands[0]:
-        raise RuntimeError("Gemini không trả nội dung (bị chặn hoặc rỗng): %s" % json.dumps(data, ensure_ascii=False)[:300])
-    text = "".join(p.get("text", "") for p in cands[0]["content"].get("parts", []))
-    u = data.get("usageMetadata", {})
-    # token ra gồm cả token suy nghĩ (Gemini tính riêng ở thoughtsTokenCount)
-    return {"text": text, "tokens_in": u.get("promptTokenCount", 0),
-            "tokens_out": u.get("candidatesTokenCount", 0) + u.get("thoughtsTokenCount", 0)}
 
 
 def call_provider(system, user):

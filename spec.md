@@ -147,6 +147,7 @@ flowchart LR
 | 00:45 Thứ Bảy 28/11 | Thêm `CP3-PHAN-CONG.md` (thay `CP2-PHAN-CONG.md` đã hết hạn) | Chia việc CP3 theo tình trạng thật: chưa nối model, 0/14 câu thử từ nguồn thật, phỏng vấn 1/3 |
 | 00:48 Thứ Bảy 28/11 | `data/DATA_CARD.md`: cập nhật tên người kiểm nhãn (`Phạm Quỳnh Anh`) | Khớp việc Quỳnh Anh đã rà 63/63 nhãn tay lúc 19:15 27/11 (đã tick ở `CP2-PHAN-CONG.md`) |
 | 01:05 Thứ Bảy 28/11 | Thêm `evidence/interviews/P2.md`, `P3.md`; bổ sung câu 2, câu 4 vào `P1.md`; cập nhật `summary.md` mục 1–2, 4–5 và canvas dòng 4 | Ghi kết quả phỏng vấn 3 lab coach (chiều 27/11): 3/3 không biết trước lớp hiểu sai chỗ nào; 2/3 đọc hết câu tự viết nhanh → giả thuyết 3 "phải đổi" |
+| 28/11 | `codebase/ai.py`: xoá bản `call_gemini` cũ bị định nghĩa lặp (đè mất bản mới có `responseMimeType: application/json`, bỏ phần suy nghĩ); khôi phục `call_openai` bị xoá nhầm | Bản Gemini ép JSON không được dùng → model dễ trả sai định dạng (agent dừng ở "không trả đúng định dạng"); `MODEL_PROVIDER=openai` báo NameError |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
