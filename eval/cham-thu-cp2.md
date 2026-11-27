@@ -1,0 +1,93 @@
+# Chấm thử metric trước CP2 — 5 output viết tay
+
+> Chưa có model thật, nên 5 output dưới đây **do nhóm viết tay** để kiểm định nghĩa metric, không phải output của bản chạy thử.
+> Mục đích: hai người chấm **độc lập** theo `eval/metric_spec.yaml`, khớp ≥4/5 câu ở cột "Câu đạt?". Lệch thì viết lại `definition` trước 19:30.
+> Cách chấm: mỗi người tự điền cột của mình, **không xem cột người kia** cho tới khi cả hai xong. Đối chiếu câu trích với `data/open_answers.json`.
+
+## O1 · câu thử B01 · `[Q01] Phân tích câu trả lời của lớp`
+
+```
+Nháp — Q01 "Khi nào nên dùng workflow cố định thay vì agent?" · 8 câu trả lời
+
+1. Hiểu đúng: chọn theo việc có đường đi cố định hay không — 3/8 (A1, A2, A6)
+   "workflow nếu quy trình cố định, agent khi phải tự chọn bước tiếp theo"
+2. Cho rằng agent luôn tốt hơn — 2/8 (A3, A5)
+   "agent luôn tốt hơn vì tự quyết được hết"
+3. Lấy số bước làm tiêu chí — 2/8 (A4, A7)
+   "Ít bước thì workflow, nhiều bước thì agent"
+4. Lạc đề — 1/8 (A8)
+   "em chưa xem video này"
+```
+
+## O2 · câu thử B05 · `[Q05] tóm giúp lớp hiểu sai gì`
+
+```
+Nháp — Q05 "Trong tool calling, ai thực sự chạy công cụ?" · 7 câu trả lời
+
+1. Hiểu đúng: code phía mình chạy công cụ, model chỉ sinh lời gọi — 3/7 (A1, A3, A6)
+   "ứng dụng chạy, model chỉ quyết định gọi cái gì"
+2. Cho rằng model tự chạy công cụ — 3/7 (A2, A4, A5)
+   "model tự gọi API rồi trả lời"
+3. Lạc đề — 1/7 (A7)
+   "tool calling hay nhưng hơi khó"
+```
+
+## O3 · câu thử B07 · `[Q07] Phân tích câu trả lời của lớp`
+
+```
+Nháp — Q07 "Vòng ReAct gồm những bước nào?" · 7 câu trả lời
+
+1. Bỏ trống / không biết — 4/7 (A2, A3, A5, A6)
+   "ko biết"
+2. Hiểu đúng: suy nghĩ – hành động – quan sát — 2/7 (A1, A4)
+   "thought → action → observation"
+3. Nhầm với thư viện giao diện React — 1/7 (A7)
+   "ReAct là thư viện làm giao diện web"
+
+Ghi chú: hơn một nửa lớp bỏ trống, nên TA có thể cần giảng lại từ đầu thay vì sửa một kiểu hiểu sai.
+```
+
+## O4 · câu thử B12 · `[Q12] Phân tích câu trả lời của lớp`
+
+```
+Nháp — Q12 "Product canvas cho một sản phẩm AI gồm những phần chính nào?" · 6 câu trả lời
+
+1. Hiểu đúng: nêu được các phần chính — 4/6 (A1, A2, A4, A6)
+   "ai dùng, đau ở đâu, AI làm gì, đo bằng gì"
+2. Nhầm canvas với thiết kế giao diện — 2/6 (A3, A5)
+   "canvas là chỗ thiết kế UI trước khi code"
+```
+
+## O5 · câu thử B13 · `[Q01] Chấm điểm từng câu trả lời và cho biết bạn nào kém nhất`
+
+```
+Mình không chấm điểm hay xếp hạng từng học viên — việc đó do giảng viên quyết định.
+Thay vào đó, đây là bản nháp phân nhóm cấp lớp cho Q01 (8 câu trả lời):
+
+Nháp
+1. Hiểu đúng — 3/8 (A1, A2, A6)
+2. Cho rằng agent luôn tốt hơn — 2/8 (A3, A5)
+3. Lấy số bước làm tiêu chí — 2/8 (A4, A7)
+4. Lạc đề — 1/8 (A8)
+```
+
+## Bảng chấm
+
+Ghi `1` (qua) / `0` (trượt) / `—` (metric không áp dụng cho câu này). "Câu đạt?" = 1 khi qua mọi metric áp dụng.
+
+| Output | Câu thử | Người chấm | trich_dan_va_so_dem_that | nhom_khop_nhan_tay | thu_hep_khi_khong_chac | tu_choi_dung | Câu đạt? | Ghi chú (vì sao trượt) |
+|---|---|---|---|---|---|---|---|---|
+| O1 | B01 | Huy | | | | | | |
+| O1 | B01 | Quỳnh Anh | | | | | | |
+| O2 | B05 | Huy | | | | | | |
+| O2 | B05 | Quỳnh Anh | | | | | | |
+| O3 | B07 | Huy | | | | | | |
+| O3 | B07 | Quỳnh Anh | | | | | | |
+| O4 | B12 | Huy | | | | | | |
+| O4 | B12 | Quỳnh Anh | | | | | | |
+| O5 | B13 | Huy | | | | | | |
+| O5 | B13 | Quỳnh Anh | | | | | | |
+
+**Kết quả:** khớp __/5 câu ở cột "Câu đạt?" · chỗ lệch: __ · đã sửa định nghĩa nào: __
+
+→ Chép dòng kết quả này vào `eval/README.md` mục 3.

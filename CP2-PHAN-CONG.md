@@ -55,8 +55,8 @@
 
 - [ ] Duyệt 3 metric trong `eval/metric_spec.yaml`, sửa ngưỡng nếu nhóm muốn, xoá dòng "NHÁP"
 - [ ] Tổ chức chấm thử 5 output với Quỳnh Anh (chưa có model thật thì nhóm tự viết tay 5 output mẫu để chấm), khớp ≥4/5
-- [ ] `eval/README.md` mục 1–4
-- [ ] Chạy `python run.py check`, báo Đăng
+- [x] `eval/README.md` mục 1–4 (còn trống số khớp chấm thử ở mục 3)
+- [x] Chạy `python run.py check`, báo Đăng: còn 0/14 câu từ người dùng / data thật (CP2 cần ≥1/3) · CP3 cần 20–30 câu
 
 ## Để sau CP2 (không làm tối nay)
 
