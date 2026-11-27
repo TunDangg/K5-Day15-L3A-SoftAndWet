@@ -1,4 +1,4 @@
-# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng [XXX] · Zone [X]
+# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng H210 · Zone 5
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
@@ -115,7 +115,7 @@ flowchart LR
 - Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3) · metric: `eval/metric_spec.yaml` (3 metric)
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3) · metric: `eval/metric_spec.yaml` (4 metric)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu `tu_choi` qua, và 0 câu có câu trích không có thật trong dữ liệu" *(ĐỀ XUẤT — cả nhóm chốt trước 19:30 rồi xoá ghi chú này; sau 19:30 không sửa)*
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
