@@ -58,7 +58,7 @@ URL_GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/%s:generat
 RETRY_CODES = {429, 500, 502, 503, 504}
 
 
-def post_json(url, headers, body, timeout=120, max_retries=4):
+def post_json(url, headers, body, timeout=45, max_retries=3):
     """Gửi POST JSON, tự thử lại khi gặp 503/429/timeout. Chỉ dùng thư viện chuẩn (urllib)."""
     payload = json.dumps(body).encode("utf-8")
     hdrs = dict({"Content-Type": "application/json"}, **headers)
@@ -83,19 +83,31 @@ def post_json(url, headers, body, timeout=120, max_retries=4):
                 raise
 
         wait = 5 * (2 ** attempt)
-        print(f"  [Thử lại {attempt + 1}/{max_retries}] API bận/timeout, đợi {wait}s...")
+        print(f"  [Thử lại {attempt + 1}/{max_retries}] {type(last_err).__name__}: {str(last_err)[:120]} -> đợi {wait}s...")
         time.sleep(wait)
 
     raise last_err
 
 
-def call_openai(system, user):
-    messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
-    data = post_json(URL_OPENAI, {"Authorization": "Bearer " + API_KEY},
-                     {"model": MODEL_NAME, "messages": messages})
-    u = data["usage"]
-    return {"text": data["choices"][0]["message"]["content"],
-            "tokens_in": u["prompt_tokens"], "tokens_out": u["completion_tokens"]}
+def call_gemini(system, user):
+    body = {
+        "contents": [{"role": "user", "parts": [{"text": user}]}],
+        "generationConfig": {"responseMimeType": "application/json"},
+    }
+    if system:
+        body["system_instruction"] = {"parts": [{"text": system}]}
+    data = post_json(URL_GEMINI % MODEL_NAME, {"x-goog-api-key": API_KEY}, body)
+    cands = data.get("candidates") or []
+    if not cands or "content" not in cands[0]:
+        raise RuntimeError("Gemini không trả nội dung (bị chặn hoặc rỗng): %s" % json.dumps(data, ensure_ascii=False)[:300])
+    text = "".join(
+        p.get("text", "")
+        for p in cands[0]["content"].get("parts", [])
+        if not p.get("thought")
+    )
+    u = data.get("usageMetadata", {})
+    return {"text": text, "tokens_in": u.get("promptTokenCount", 0),
+            "tokens_out": u.get("candidatesTokenCount", 0) + u.get("thoughtsTokenCount", 0)}
 
 
 def call_claude(system, user):
