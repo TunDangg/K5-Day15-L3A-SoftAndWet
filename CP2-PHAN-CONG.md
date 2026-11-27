@@ -26,7 +26,7 @@
 
 ## Phạm Quỳnh Anh · bằng chứng, bộ câu thử
 
-- [ ] `evidence/data-mining.md`: viết **cách đếm TRƯỚC khi chạy** (data, đếm gì, mẫu số, lọc gì)
+- [x] `evidence/data-mining.md`: viết **cách đếm TRƯỚC khi chạy** (data, đếm gì, mẫu số, lọc gì)
 - [ ] Script đếm `evidence/count.py` (chạy lại được ra cùng số), đọc từ `data/preclass/` của repo đề, **không commit file data gốc**
 - [ ] Số đầu tiên: tỉ lệ câu hỏi ngắn dưới video, và `rubric_bam_bai` của câu ngắn so với câu dài
 - [ ] Hỏi hoặc hẹn ≥3 học viên L3 ngoài nhóm → ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md` (không ghi tên)
