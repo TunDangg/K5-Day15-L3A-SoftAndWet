@@ -26,8 +26,8 @@
 
 ## Trần Tuấn Đăng · đội trưởng, `spec.md`
 
-- [ ] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
-- [ ] Dòng 1 `spec.md`: điền Phòng, Zone
+- [x] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
+- [x] Dòng 1 `spec.md`: điền Phòng, Zone
 - [ ] Duyệt `canvas.md`; dòng 4 thêm 1 trích dẫn khi Quỳnh Anh có
 - [ ] Chốt §7 với cả nhóm lúc 19:15
 - [ ] Push cuối và nộp form CP2. CP2 hỏi "bằng chứng đang làm đến đâu": ghi đào data (số ở canvas dòng 4) + phỏng vấn TA đã hỏi / đã hẹn mấy người
