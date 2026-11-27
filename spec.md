@@ -145,6 +145,7 @@ flowchart LR
 | 00:35 Thứ Bảy 28/11 | `canvas.md` dòng 4: thêm số khảo sát học viên và 1 trích dẫn (S07) | CP2 yêu cầu "số đầu + 1 trích dẫn"; lúc CP2 dòng này còn ghi "chờ phỏng vấn" |
 | 00:40 Thứ Bảy 28/11 | Thêm `evidence/interviews/P1.md` (lab coach, phỏng vấn ~18:45 27/11) + cập nhật `evidence/summary.md` | Ghi lại buổi phỏng vấn thật đầu tiên; ghi chép nhớ lại sau 6 giờ, chỉ gồm ý người hỏi chắc chắn, không có trích nguyên văn |
 | 00:45 Thứ Bảy 28/11 | Thêm `CP3-PHAN-CONG.md` (thay `CP2-PHAN-CONG.md` đã hết hạn) | Chia việc CP3 theo tình trạng thật: chưa nối model, 0/14 câu thử từ nguồn thật, phỏng vấn 1/3 |
+| 00:48 Thứ Bảy 28/11 | `data/DATA_CARD.md`: cập nhật tên người kiểm nhãn (`Phạm Quỳnh Anh`) | Khớp việc Quỳnh Anh đã rà 63/63 nhãn tay lúc 19:15 27/11 (đã tick ở `CP2-PHAN-CONG.md`) |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
