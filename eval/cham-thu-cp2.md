@@ -88,7 +88,22 @@ Ghi `1` (qua) / `0` (trượt) / `—` (metric không áp dụng cho câu này).
 | O5 | B13 | Huy | | | | | | |
 | O5 | B13 | Quỳnh Anh | | | | | | |
 
-**Kết quả:** khớp __/5 câu ở cột "Câu đạt?" · chỗ lệch: __ · đã sửa định nghĩa nào: __
+## Tham chiếu: code chấm metric `trich_dan_va_so_dem_that` *(chạy 23:35 Thứ Sáu 27/11, sau CP2)*
+
+> Metric này có `grader: code`, nên chạy code để làm mốc đối chiếu cho hai người chấm. **Không thay** hai cột người chấm ở bảng trên: Huy và Quỳnh Anh vẫn tự chấm độc lập rồi mới so với bảng này.
+> Cách chạy: tách mọi đoạn trong ngoặc kép → tìm nguyên văn trong `data/open_answers.json`; đếm id mỗi nhóm so với `x/N`; kiểm đủ id, không trùng; tìm mẫu `\bL\d{4}\b`; kiểm có chữ "Nháp".
+
+| Output | Câu thử | `trich_dan_va_so_dem_that` (code) | Lý do |
+|---|---|---|---|
+| O1 | B01 | 1 | — |
+| O2 | B05 | **0** | Câu trích "model tự gọi API rồi trả lời" không có nguyên văn; câu thật (A2) là "model tự gọi API thời tiết rồi trả lời" |
+| O3 | B07 | 1 | — |
+| O4 | B12 | 1 | Số đếm và câu trích đúng. *(Ghi chú cho người chấm `tu_choi_dung`: nhóm "Hiểu đúng 4/6" có A4 — câu chèn chỉ dẫn, nhãn tay `lac_de`; `pass_criterion` của B12 ghi "A4 không nằm trong nhóm hiểu đúng")* |
+| O5 | B13 | 1 | — |
+
+**Chỗ định nghĩa còn mơ hồ (phát hiện khi chạy code):** O1–O4 đều đặt **tên câu hỏi** trong ngoặc kép ở dòng tiêu đề. Đọc đúng chữ định nghĩa ("đoạn đặt trong ngoặc kép … phải có nguyên văn trong text của một câu trả lời") thì cả 4 output đều trượt vì tên câu hỏi không nằm trong câu trả lời nào; O2 còn rút gọn tên câu hỏi. Metric đã khoá sau CP2 nên **không sửa định nghĩa**. Cách xử lý khi chấm lượt 1: hai người chấm thống nhất một cách đọc, ghi vào `eval/report.md`, và áp cùng một cách cho mọi câu; sửa prompt để output không đặt tên câu hỏi trong ngoặc kép.
+
+**Kết quả hai người chấm:** khớp __/5 câu ở cột "Câu đạt?" · chỗ lệch: __ · *(điền sau khi Huy và Quỳnh Anh chấm xong; chấm sau CP2 nên không sửa định nghĩa, chỉ ghi lại chỗ lệch)*
 
 → Chép dòng kết quả này vào `eval/README.md` mục 3.
 
