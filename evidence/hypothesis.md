@@ -22,3 +22,16 @@
 - **Có thể còn cách giải thích khác:** TA đã biết lớp kẹt chỗ nào qua câu hỏi trên Discord / tại lớp, nên không cần số liệu; hoặc TA không có thời gian đọc báo cáo trước buổi; hoặc đầu buổi do giảng viên chứ không phải TA phụ trách.
 - **Mình đúng nếu thấy:** ≥2/3 TA / lab coach được phỏng vấn kể được một lần trong 2 tuần qua chuẩn bị buổi mà không biết lớp đang kẹt ý nào, hoặc phải tự hỏi / tự đoán; và data cho thấy mỗi ngày có ý kiến thức sai lần đầu cao hơn rõ mức trung bình 20%.
 - **Nguồn sẽ dùng:** [x] đào data · [x] phỏng vấn ≥3 · [ ] khảo sát ≥20 — nguồn chính: phỏng vấn ≥3 TA / lab coach tại lớp chiều 27/11 · nguồn kiểm lại: đào data `data/preclass/` (đếm bằng `data/build_class_stats.py`)
+
+---
+
+## Giả thuyết 3 — câu hỏi mở (19:15 Thứ Sáu 27/11)
+
+> Thay Giả thuyết 2 (báo cáo theo số đúng / sai). Lý do: số đúng / sai không cho biết học viên hiểu sai kiểu nào.
+
+- Ngày giờ viết: 19:15 Thứ Sáu 27/11/2026 *(đã xem số tổng hợp bài ôn trong `data/class_stats.json`; chưa hỏi TA nào)*
+- Người dùng chính: TA / lab coach lớp L3, tối trước buổi học
+- **Mình nghĩ:** TA / lab coach gặp khó khi chuẩn bị mở đầu buổi vì chỉ thấy đúng / sai của câu trắc nghiệm, không biết học viên hiểu sai theo kiểu nào, và không có thời gian đọc câu trả lời tự do của cả lớp; hậu quả là giảng lại chung chung, không nhắm đúng cách hiểu sai.
+- **Có thể còn cách giải thích khác:** TA đã nghe được cách hiểu sai qua câu hỏi trên Discord / tại lớp; học viên không chịu viết câu trả lời tự do (ô tự giải thích hiện chỉ có 20 lượt) nên không đủ câu để phân tích.
+- **Mình đúng nếu thấy:** ≥2/3 TA / lab coach được phỏng vấn kể được một lần trong 2 tuần qua không biết lớp hiểu sai kiểu gì trước buổi, và nói sẽ dùng bản tóm nhóm cách hiểu nếu có; và ≥10 học viên L3 chịu viết câu trả lời cho 1 câu hỏi mở khi nhóm thử thu.
+- **Nguồn sẽ dùng:** [x] đào data · [x] phỏng vấn ≥3 · [ ] khảo sát ≥20 — nguồn chính: phỏng vấn ≥3 TA / lab coach · nguồn kiểm lại: đào data `data/preclass/` + thử thu câu trả lời mở từ học viên L3
