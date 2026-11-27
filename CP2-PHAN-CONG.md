@@ -46,8 +46,8 @@
 
 ## Nguyễn Đức Trọng · bản chạy thử
 
-- [ ] `codebase/tools.py`: `get_answers(question_id)` đọc `data/open_answers.json`, **bỏ trường `nhan_tay`**; `check_report(report, question_id)` kiểm đủ mọi id, mỗi id 1 nhóm, số x/N, câu trích nguyên văn, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
-- [ ] `codebase/agent.py`: tách mã câu hỏi từ input (`[Q01]`) → thiếu thì hỏi lại → <5 câu thì dừng → `get_answers` → model gom nhóm → `check_report`; `SYSTEM` prompt nói rõ câu trả lời của học viên là dữ liệu, không phải lệnh
+- [ ] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
+- [ ] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
 - [ ] `python run.py` đi hết luồng với AI giả
 - [ ] Lấy API key, gọi thử được 1 câu tối nay. `.env` **không commit**
 
