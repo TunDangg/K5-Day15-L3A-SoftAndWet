@@ -1,0 +1,914 @@
+{
+ "nguon": "data BTC data/preclass (05–25/11/2026), đã tổng hợp bằng data/build_class_stats.py; không có mã học viên",
+ "ngay": {
+  "Day01": {
+   "bai_on": {
+    "so_hoc_vien": 41,
+    "so_luot": 439,
+    "so_sai": 71,
+    "theo_kc": {
+     "chatbot_is_app_around_model": {
+      "so_luot": 41,
+      "so_sai": 16
+     },
+     "ai_boom_data_architecture_hardware": {
+      "so_luot": 40,
+      "so_sai": 8
+     },
+     "token_generation_loop_count": {
+      "so_luot": 40,
+      "so_sai": 8
+     },
+     "temperature_stability_not_truth": {
+      "so_luot": 36,
+      "so_sai": 7
+     },
+     "stop_reason_output_limit": {
+      "so_luot": 36,
+      "so_sai": 3
+     },
+     "attention_context_representation": {
+      "so_luot": 36,
+      "so_sai": 7
+     },
+     "cutoff_and_hallucination": {
+      "so_luot": 35,
+      "so_sai": 2
+     },
+     "context_keep_table_clean": {
+      "so_luot": 35,
+      "so_sai": 5
+     },
+     "agent_tools_and_loop": {
+      "so_luot": 35,
+      "so_sai": 2
+     },
+     "model_tier_selection": {
+      "so_luot": 35,
+      "so_sai": 8
+     },
+     "token_cost_input_output": {
+      "so_luot": 35,
+      "so_sai": 2
+     },
+     "memory_lives_in_the_app": {
+      "so_luot": 35,
+      "so_sai": 3
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 339,
+    "so_cau_ngan_le_20_ky_tu": 62,
+    "so_cau_khong_bam_bai": 90,
+    "so_cau_da_cham": 335,
+    "theo_video": {
+     "d01-r1-v05": 68,
+     "d01-r1-v02": 115,
+     "d01-r1-v01": 92,
+     "d01-r1-v03": 41,
+     "d01-r1-v04": 23
+    }
+   }
+  },
+  "Day02": {
+   "bai_on": {
+    "so_hoc_vien": 25,
+    "so_luot": 263,
+    "so_sai": 43,
+    "theo_kc": {
+     "problem_first_discovery": {
+      "so_luot": 25,
+      "so_sai": 1
+     },
+     "double_diamond_problem_discovery": {
+      "so_luot": 25,
+      "so_sai": 4
+     },
+     "quantify_pain_baseline_target_measurement": {
+      "so_luot": 25,
+      "so_sai": 3
+     },
+     "output_input_metric_design": {
+      "so_luot": 25,
+      "so_sai": 4
+     },
+     "evaluate_ai_fit_and_alternatives": {
+      "so_luot": 25,
+      "so_sai": 4
+     },
+     "define_scope_boundary_and_hitl": {
+      "so_luot": 24,
+      "so_sai": 0
+     },
+     "select_rule_workflow_agent_level": {
+      "so_luot": 23,
+      "so_sai": 8
+     },
+     "construct_eval_plan": {
+      "so_luot": 23,
+      "so_sai": 7
+     },
+     "design_ai_failure_resilience": {
+      "so_luot": 23,
+      "so_sai": 1
+     },
+     "complete_ai_problem_statement": {
+      "so_luot": 23,
+      "so_sai": 8
+     },
+     "make_go_not_yet_no_go_decision": {
+      "so_luot": 22,
+      "so_sai": 3
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 118,
+    "so_cau_ngan_le_20_ky_tu": 17,
+    "so_cau_khong_bam_bai": 35,
+    "so_cau_da_cham": 113,
+    "theo_video": {
+     "d02-r1-v05": 1,
+     "d02-r2-v01": 57,
+     "d02-r2-v03": 17,
+     "d02-r2-v06": 15,
+     "d02-r2-v02": 14,
+     "d02-r2-v04": 9,
+     "d02-r2-v05": 5
+    }
+   }
+  },
+  "Day03": {
+   "bai_on": {
+    "so_hoc_vien": 24,
+    "so_luot": 230,
+    "so_sai": 52,
+    "theo_kc": {
+     "ai_system_spectrum_classification": {
+      "so_luot": 24,
+      "so_sai": 4
+     },
+     "agent_boundary_condition": {
+      "so_luot": 23,
+      "so_sai": 2
+     },
+     "agentic_fit_criteria": {
+      "so_luot": 21,
+      "so_sai": 4
+     },
+     "agentic_fit_scoring_decision": {
+      "so_luot": 20,
+      "so_sai": 12
+     },
+     "agent_architecture_components": {
+      "so_luot": 20,
+      "so_sai": 4
+     },
+     "well_defined_tool_specification": {
+      "so_luot": 18,
+      "so_sai": 3
+     },
+     "react_reasoning_acting_pattern": {
+      "so_luot": 18,
+      "so_sai": 9
+     },
+     "react_trace_interpretation": {
+      "so_luot": 18,
+      "so_sai": 0
+     },
+     "agent_loop_guardrails": {
+      "so_luot": 17,
+      "so_sai": 4
+     },
+     "agent_cost_accuracy_tradeoff": {
+      "so_luot": 17,
+      "so_sai": 2
+     },
+     "trace_based_agent_evaluation": {
+      "so_luot": 17,
+      "so_sai": 6
+     },
+     "hybrid_chatbot_agent_routing": {
+      "so_luot": 17,
+      "so_sai": 2
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 141,
+    "so_cau_ngan_le_20_ky_tu": 30,
+    "so_cau_khong_bam_bai": 31,
+    "so_cau_da_cham": 137,
+    "theo_video": {
+     "d03-r2-v01": 37,
+     "d03-r2-v04": 24,
+     "d03-r2-v06": 24,
+     "d03-r2-v02": 17,
+     "d03-r2-v03": 22,
+     "d03-r2-v05": 17
+    }
+   }
+  },
+  "Day04": {
+   "bai_on": {
+    "so_hoc_vien": 27,
+    "so_luot": 316,
+    "so_sai": 50,
+    "theo_kc": {
+     "prompt_quality_specificity": {
+      "so_luot": 27,
+      "so_sai": 1
+     },
+     "prompt_scope_types": {
+      "so_luot": 27,
+      "so_sai": 5
+     },
+     "zero_one_few_shot_selection": {
+      "so_luot": 27,
+      "so_sai": 6
+     },
+     "cot_task_fit": {
+      "so_luot": 27,
+      "so_sai": 11
+     },
+     "system_prompt_contract": {
+      "so_luot": 27,
+      "so_sai": 9
+     },
+     "system_prompt_antipatterns": {
+      "so_luot": 26,
+      "so_sai": 0
+     },
+     "context_window_management": {
+      "so_luot": 26,
+      "so_sai": 0
+     },
+     "memory_injection": {
+      "so_luot": 26,
+      "so_sai": 3
+     },
+     "structured_prompting": {
+      "so_luot": 26,
+      "so_sai": 2
+     },
+     "prompt_evaluation_versioning": {
+      "so_luot": 26,
+      "so_sai": 4
+     },
+     "tool_calling_flow": {
+      "so_luot": 26,
+      "so_sai": 6
+     },
+     "tool_granularity": {
+      "so_luot": 25,
+      "so_sai": 3
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 135,
+    "so_cau_ngan_le_20_ky_tu": 15,
+    "so_cau_khong_bam_bai": 23,
+    "so_cau_da_cham": 121,
+    "theo_video": {
+     "d04-r3-v01": 31,
+     "d04-r3-v02": 33,
+     "d04-r3-v03": 31,
+     "d04-r3-v04": 12,
+     "d04-r3-v05": 8,
+     "d04-r3-v06": 20
+    }
+   }
+  },
+  "Day05": {
+   "bai_on": {
+    "so_hoc_vien": 15,
+    "so_luot": 180,
+    "so_sai": 55,
+    "theo_kc": {
+     "ai_vs_rule_software_behavior": {
+      "so_luot": 15,
+      "so_sai": 4
+     },
+     "ai_uncertainty_layers": {
+      "so_luot": 15,
+      "so_sai": 7
+     },
+     "autonomy_by_confidence_and_error_cost": {
+      "so_luot": 15,
+      "so_sai": 0
+     },
+     "human_reviewer_role_design": {
+      "so_luot": 15,
+      "so_sai": 6
+     },
+     "ai_requirement_outcome_threshold_fallback": {
+      "so_luot": 15,
+      "so_sai": 1
+     },
+     "ai_four_path_behavior": {
+      "so_luot": 15,
+      "so_sai": 3
+     },
+     "trust_calibration_levers": {
+      "so_luot": 15,
+      "so_sai": 5
+     },
+     "confidence_aware_presentation": {
+      "so_luot": 15,
+      "so_sai": 1
+     },
+     "error_distribution_over_aggregate": {
+      "so_luot": 15,
+      "so_sai": 3
+     },
+     "threshold_by_error_cost": {
+      "so_luot": 15,
+      "so_sai": 5
+     },
+     "ai_product_canvas": {
+      "so_luot": 15,
+      "so_sai": 12
+     },
+     "feedback_signal_types": {
+      "so_luot": 15,
+      "so_sai": 8
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 78,
+    "so_cau_ngan_le_20_ky_tu": 13,
+    "so_cau_khong_bam_bai": 11,
+    "so_cau_da_cham": 76,
+    "theo_video": {
+     "d05-r2-v01": 25,
+     "d05-r2-v03": 13,
+     "d05-r2-v04": 9,
+     "d05-r2-v05": 5,
+     "d05-r2-v06": 14,
+     "d05-r2-v02": 12
+    }
+   }
+  },
+  "Day06": {
+   "bai_on": {
+    "so_hoc_vien": 8,
+    "so_luot": 93,
+    "so_sai": 41,
+    "theo_kc": {
+     "silent_data_failure_cascade": {
+      "so_luot": 8,
+      "so_sai": 1
+     },
+     "more_data_amplifies_stale_copies": {
+      "so_luot": 8,
+      "so_sai": 6
+     },
+     "raw_clean_serve_layers": {
+      "so_luot": 7,
+      "so_sai": 5
+     },
+     "document_identity_and_effective_date": {
+      "so_luot": 7,
+      "so_sai": 1
+     },
+     "silent_extraction_failures": {
+      "so_luot": 7,
+      "so_sai": 1
+     },
+     "fact_ledger_recall_by_doc_type": {
+      "so_luot": 7,
+      "so_sai": 1
+     },
+     "batch_rules_beyond_schema": {
+      "so_luot": 7,
+      "so_sai": 4
+     },
+     "gate_severity_and_strictness": {
+      "so_luot": 7,
+      "so_sai": 2
+     },
+     "storage_by_query_shape": {
+      "so_luot": 7,
+      "so_sai": 3
+     },
+     "hybrid_search_needs_validity_filter": {
+      "so_luot": 7,
+      "so_sai": 2
+     },
+     "lineage_trace_to_source": {
+      "so_luot": 7,
+      "so_sai": 4
+     },
+     "quasi_identifier_reidentification": {
+      "so_luot": 7,
+      "so_sai": 5
+     },
+     "label_agreement_beyond_raw_percent": {
+      "so_luot": 7,
+      "so_sai": 6
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 40,
+    "so_cau_ngan_le_20_ky_tu": 8,
+    "so_cau_khong_bam_bai": 6,
+    "so_cau_da_cham": 39,
+    "theo_video": {
+     "d06-r1-v02": 6,
+     "d06-r1-v01": 23,
+     "d06-r1-v03": 5,
+     "d06-r1-v05": 1,
+     "d06-r1-v06": 4,
+     "d06-r1-v04": 1
+    }
+   }
+  },
+  "Day07": {
+   "bai_on": {
+    "so_hoc_vien": 11,
+    "so_luot": 123,
+    "so_sai": 26,
+    "theo_kc": {
+     "context_window_contents": {
+      "so_luot": 11,
+      "so_sai": 2
+     },
+     "context_budget_allocation": {
+      "so_luot": 11,
+      "so_sai": 1
+     },
+     "chunk_size_tradeoff": {
+      "so_luot": 11,
+      "so_sai": 2
+     },
+     "chunk_context_before_indexing": {
+      "so_luot": 10,
+      "so_sai": 1
+     },
+     "retrieval_pipeline_order": {
+      "so_luot": 10,
+      "so_sai": 0
+     },
+     "recall_at_k_measurement": {
+      "so_luot": 10,
+      "so_sai": 3
+     },
+     "context_packaging_zones": {
+      "so_luot": 10,
+      "so_sai": 1
+     },
+     "rag_failure_diagnosis_from_log": {
+      "so_luot": 10,
+      "so_sai": 1
+     },
+     "tool_definition_context_cost": {
+      "so_luot": 10,
+      "so_sai": 6
+     },
+     "skill_progressive_disclosure": {
+      "so_luot": 10,
+      "so_sai": 5
+     },
+     "memory_supersession_policy": {
+      "so_luot": 10,
+      "so_sai": 3
+     },
+     "long_session_context_management": {
+      "so_luot": 10,
+      "so_sai": 1
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 77,
+    "so_cau_ngan_le_20_ky_tu": 12,
+    "so_cau_khong_bam_bai": 14,
+    "so_cau_da_cham": 76,
+    "theo_video": {
+     "d07-r2-v01": 30,
+     "d07-r2-v02": 9,
+     "d07-r2-v05": 9,
+     "d07-r2-v04": 11,
+     "d07-r2-v06": 9,
+     "d07-r2-v03": 9
+    }
+   }
+  },
+  "Day08": {
+   "bai_on": {
+    "so_hoc_vien": 14,
+    "so_luot": 137,
+    "so_sai": 20,
+    "theo_kc": {
+     "workflow_vs_agent_control": {
+      "so_luot": 14,
+      "so_sai": 3
+     },
+     "simplest_solution_first": {
+      "so_luot": 13,
+      "so_sai": 1
+     },
+     "workflow_pattern_selection": {
+      "so_luot": 12,
+      "so_sai": 3
+     },
+     "gate_before_side_effect": {
+      "so_luot": 12,
+      "so_sai": 2
+     },
+     "agent_shape_selection": {
+      "so_luot": 12,
+      "so_sai": 2
+     },
+     "multi_agent_fit_signals": {
+      "so_luot": 12,
+      "so_sai": 1
+     },
+     "task_handoff_contract": {
+      "so_luot": 11,
+      "so_sai": 0
+     },
+     "implicit_decisions_shared_context": {
+      "so_luot": 11,
+      "so_sai": 1
+     },
+     "checkpoint_resume_semantics": {
+      "so_luot": 10,
+      "so_sai": 0
+     },
+     "crash_safe_side_effects": {
+      "so_luot": 10,
+      "so_sai": 2
+     },
+     "multi_agent_task_type_evidence": {
+      "so_luot": 10,
+      "so_sai": 1
+     },
+     "multi_agent_token_cost": {
+      "so_luot": 10,
+      "so_sai": 4
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 87,
+    "so_cau_ngan_le_20_ky_tu": 5,
+    "so_cau_khong_bam_bai": 15,
+    "so_cau_da_cham": 86,
+    "theo_video": {
+     "d08-r1-v01": 29,
+     "d08-r1-v02": 15,
+     "d08-r1-v03": 8,
+     "d08-r1-v05": 16,
+     "d08-r1-v04": 15,
+     "d08-r1-v06": 4
+    }
+   }
+  },
+  "Day09": {
+   "bai_on": {
+    "so_hoc_vien": 3,
+    "so_luot": 36,
+    "so_sai": 9,
+    "theo_kc": {
+     "eval_number_evidence_checks": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "grader_needs_testing": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "failure_note_first_error": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "failure_taxonomy_process": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "behavioral_assertion_over_string": {
+      "so_luot": 3,
+      "so_sai": 1
+     },
+     "safety_vs_capability_metrics": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "grader_type_selection": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "llm_judge_calibration": {
+      "so_luot": 3,
+      "so_sai": 1
+     },
+     "final_state_grading": {
+      "so_luot": 3,
+      "so_sai": 1
+     },
+     "pass_at_k_vs_pass_hat_k": {
+      "so_luot": 3,
+      "so_sai": 2
+     },
+     "paired_bootstrap_interpretation": {
+      "so_luot": 3,
+      "so_sai": 3
+     },
+     "ci_eval_gate": {
+      "so_luot": 3,
+      "so_sai": 1
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 58,
+    "so_cau_ngan_le_20_ky_tu": 11,
+    "so_cau_khong_bam_bai": 10,
+    "so_cau_da_cham": 57,
+    "theo_video": {
+     "d09-r2-v01": 24,
+     "d09-r2-v04": 5,
+     "d09-r2-v03": 13,
+     "d09-r2-v02": 13,
+     "d09-r2-v06": 2,
+     "d09-r2-v05": 1
+    }
+   }
+  },
+  "Day10": {
+   "bai_on": {
+    "so_hoc_vien": 4,
+    "so_luot": 48,
+    "so_sai": 5,
+    "theo_kc": {
+     "demo_vs_production_gaps": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "gap_to_gate_condition": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "gate_components": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "gate_decision_evidence": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "criteria_signed_before_measuring": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "confidence_interval_threshold": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "quality_beyond_accuracy": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "red_team_prompt_injection": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "tool_write_permission": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "full_cost_accounting": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "pilot_ops_readiness": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "go_no_go_report": {
+      "so_luot": 4,
+      "so_sai": 0
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 5,
+    "so_cau_ngan_le_20_ky_tu": 2,
+    "so_cau_khong_bam_bai": 2,
+    "so_cau_da_cham": 5,
+    "theo_video": {
+     "d10-r2-v01": 2,
+     "d10-r2-v02": 1,
+     "d10-r2-v04": 1,
+     "d10-r2-v05": 1
+    }
+   }
+  },
+  "Day11": {
+   "bai_on": {
+    "so_hoc_vien": 4,
+    "so_luot": 48,
+    "so_sai": 11,
+    "theo_kc": {
+     "blast_radius_of_agent_actions": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "lethal_trifecta": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "untrusted_input_channels": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "exfiltration_channels": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "deterministic_security_boundary": {
+      "so_luot": 4,
+      "so_sai": 0
+     },
+     "capability_tags_data_flow": {
+      "so_luot": 4,
+      "so_sai": 2
+     },
+     "deterministic_decision_procedure": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "asr_utility_approval_metrics": {
+      "so_luot": 4,
+      "so_sai": 2
+     },
+     "approval_screen_from_exact_action": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "idempotent_resume_after_approval": {
+      "so_luot": 4,
+      "so_sai": 1
+     },
+     "obligation_control_evidence": {
+      "so_luot": 4,
+      "so_sai": 2
+     },
+     "falsifiable_control_evidence": {
+      "so_luot": 4,
+      "so_sai": 2
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 13,
+    "so_cau_ngan_le_20_ky_tu": 2,
+    "so_cau_khong_bam_bai": 3,
+    "so_cau_da_cham": 13,
+    "theo_video": {
+     "d11-r1-v02": 4,
+     "d11-r1-v01": 6,
+     "d11-r1-v03": 1,
+     "d11-r1-v05": 2
+    }
+   }
+  },
+  "Day12": {
+   "bai_on": {
+    "so_hoc_vien": 3,
+    "so_luot": 36,
+    "so_sai": 6,
+    "theo_kc": {
+     "ai_coding_bottleneck_shift": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "harness_around_model": {
+      "so_luot": 3,
+      "so_sai": 1
+     },
+     "instructions_vs_enforcement": {
+      "so_luot": 3,
+      "so_sai": 2
+     },
+     "hook_exit_code_fail_closed": {
+      "so_luot": 3,
+      "so_sai": 1
+     },
+     "spec_as_contract": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "requirement_traceability": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "agent_tests_need_independent_oracle": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "mutation_score_vs_coverage": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "parallel_agents_review_bottleneck": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "software_factory_ci_decides": {
+      "so_luot": 3,
+      "so_sai": 0
+     },
+     "reading_productivity_claims": {
+      "so_luot": 3,
+      "so_sai": 2
+     },
+     "coding_agent_threat_model": {
+      "so_luot": 3,
+      "so_sai": 0
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 0,
+    "so_cau_ngan_le_20_ky_tu": 0,
+    "so_cau_khong_bam_bai": 0,
+    "so_cau_da_cham": 0,
+    "theo_video": {}
+   }
+  },
+  "Day13": {
+   "bai_on": {
+    "so_hoc_vien": 2,
+    "so_luot": 19,
+    "so_sai": 10,
+    "theo_kc": {
+     "cost_per_successful_task": {
+      "so_luot": 2,
+      "so_sai": 2
+     },
+     "bounded_retry_cost": {
+      "so_luot": 2,
+      "so_sai": 1
+     },
+     "cost_lever_sensitivity": {
+      "so_luot": 2,
+      "so_sai": 1
+     },
+     "value_case_baseline_pricing": {
+      "so_luot": 2,
+      "so_sai": 0
+     },
+     "adoption_vs_outcome_metrics": {
+      "so_luot": 2,
+      "so_sai": 1
+     },
+     "event_schema_before_metrics": {
+      "so_luot": 2,
+      "so_sai": 2
+     },
+     "pair_error_taxonomy": {
+      "so_luot": 2,
+      "so_sai": 0
+     },
+     "graceful_failure_recovery": {
+      "so_luot": 1,
+      "so_sai": 0
+     },
+     "pilot_with_control_group": {
+      "so_luot": 1,
+      "so_sai": 0
+     },
+     "cluster_design_effect": {
+      "so_luot": 1,
+      "so_sai": 1
+     },
+     "launch_decision_go_conditions": {
+      "so_luot": 1,
+      "so_sai": 1
+     },
+     "economic_risk_register_rows": {
+      "so_luot": 1,
+      "so_sai": 1
+     }
+    }
+   },
+   "cau_hoi_video": {
+    "so_cau": 17,
+    "so_cau_ngan_le_20_ky_tu": 6,
+    "so_cau_khong_bam_bai": 4,
+    "so_cau_da_cham": 17,
+    "theo_video": {
+     "d13-r1-v01": 14,
+     "d13-r1-v02": 2,
+     "d13-r1-v05": 1
+    }
+   }
+  }
+ }
+}
