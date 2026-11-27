@@ -1,6 +1,6 @@
 # Phân công CP2 · nộp 19:30 Thứ Sáu 27/11
 
-> **Đã đổi lát cắt lúc 18:30:** Track A · A1 (tính năng mới), báo cáo "lớp đang kẹt gì" cho TA / lab coach trước buổi. Lý do: ghi ở `canvas.md` dòng "Đã đổi gì so với CP1".
+> **Đã đổi lát cắt lúc 19:15:** Track A · A1 (tính năng mới), câu hỏi mở cuối bài pre-class → AI gom câu trả lời của cả lớp thành nhóm cách hiểu cho TA / lab coach trước buổi. Lý do: ghi ở `canvas.md` dòng "Đã đổi gì so với CP1".
 > **`eval/metric_spec.yaml` và chuẩn "đạt" (`spec.md` §7) bị khoá lúc 19:30.** Sửa sau thì khối R4 bị 0 điểm.
 > Mỗi người xong phần nào thì tick `[x]` ở file này rồi push.
 
@@ -9,8 +9,8 @@
 - [x] `spec.md` dòng 1, dòng Track, §4 (sơ đồ, công cụ, quy tắc đếm, nguyên tắc), §5 (10 kịch bản, 2 tấn công)
 - [x] `canvas.md` dòng 1–7 + dòng "Đã đổi gì so với CP1"
 - [x] `evidence/hypothesis.md`: thêm Giả thuyết 2 (giữ Giả thuyết 1)
-- [x] `data/build_class_stats.py` → `data/class_stats.json` (số đã tổng hợp, không có mã học viên) + `data/DATA_CARD.md`
-- [x] `eval/benchmark.csv` 16 câu (thuong 6 · kho 6 · tu_choi 4 · data_that 10/16) · `eval/metric_spec.yaml` 3 metric
+- [x] `data/open_answers.json`: 10 câu hỏi mở, 63 câu trả lời mẫu có nhãn tay (`synthetic`) · `data/class_stats.json` (đào bằng chứng) · `data/DATA_CARD.md`
+- [x] `eval/benchmark.csv` 14 câu (thuong 5 · kho 6 · tu_choi 3) · `eval/metric_spec.yaml` 3 metric. **Chưa đủ ≥1/3 câu từ người dùng / data thật** → Quỳnh Anh thu câu trả lời thật
 - [x] `spec.md` §7: chuẩn "đạt" **đề xuất** · `python run.py check` chỉ còn nhắc CP3 cần 20–30 câu
 
 ## Mốc nội bộ
@@ -26,8 +26,8 @@
 
 ## Trần Tuấn Đăng · đội trưởng, `spec.md`
 
-- [ ] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
-- [ ] Dòng 1 `spec.md`: điền Phòng, Zone
+- [x] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
+- [x] Dòng 1 `spec.md`: điền Phòng, Zone
 - [ ] Duyệt `canvas.md`; dòng 4 thêm 1 trích dẫn khi Quỳnh Anh có
 - [ ] Chốt §7 với cả nhóm lúc 19:15
 - [ ] Push cuối và nộp form CP2. CP2 hỏi "bằng chứng đang làm đến đâu": ghi đào data (số ở canvas dòng 4) + phỏng vấn TA đã hỏi / đã hẹn mấy người
@@ -40,14 +40,15 @@
   - "Bạn có xem kết quả bài ôn pre-class không? Xem ở đâu?"
 - [ ] Ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md` (không ghi tên); ghi chép vào `evidence/interviews/P1.md`…
 - [ ] `evidence/data-mining.md`: chép quy tắc đếm từ `data/build_class_stats.py` vào mục 1, số vào mục 3
-- [ ] Duyệt 16 câu trong `eval/benchmark.csv`; sau phỏng vấn thêm câu nguồn `nguoi_dung` (CP3 cần 20–30 câu)
+- [ ] **Thu câu trả lời thật:** gửi 2–3 câu hỏi mở (lấy từ `data/open_answers.json`) cho ≥10 học viên L3 qua form ẩn danh, xin đồng ý → thêm vào `data/open_answers.json` + câu thử nguồn `nguoi_dung` (cần ≥1/3 bộ câu thử; CP3 cần 20–30 câu)
+- [ ] Duyệt 14 câu trong `eval/benchmark.csv`, kiểm lại nhãn tay
 - [ ] Làm người thứ hai chấm thử 5 output
 
 ## Nguyễn Đức Trọng · bản chạy thử
 
-- [x] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
-- [x] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
-- [x] `python run.py` đi hết luồng với AI giả
+- [ ] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
+- [ ] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
+- [ ] `python run.py` đi hết luồng với AI giả
 - [ ] Lấy API key, gọi thử được 1 câu tối nay. `.env` **không commit**
 
 ## Nguyễn Văn Huy · metric, eval

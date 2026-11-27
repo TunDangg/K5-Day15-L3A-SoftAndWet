@@ -3,7 +3,19 @@
 > Điền ở guide bước 2.4 (bản đầu ở CP2, đủ ở CP3). Ôn lại: ngày 6 · lab ngày 6. Chấm ở rubric R4.
 > Không commit nguyên tài liệu khoá, dữ liệu cá nhân thật hay nguyên file data BTC cấp — chỉ đoạn trích ngắn, bản viết lại, hoặc số đã tổng hợp.
 
-## Dataset 1 · Số liệu lớp đã tổng hợp theo ngày học (`data/class_stats.json`)
+## Dataset 1 · Câu trả lời mở mẫu (`data/open_answers.json`)
+
+| | |
+|---|---|
+| Dùng để làm gì | nguồn cho công cụ `get_answers` · bộ câu thử (cột `nhan_tay` dùng để chấm metric `nhom_khop_nhan_tay`) |
+| Từ đâu | **nhóm tự viết** lúc 19:10 27/11: 10 câu hỏi mở theo các ý kiến thức có thật trong khoá (`kc_code` lấy từ `answers.csv`), mỗi câu 3–8 câu trả lời mô phỏng các kiểu hiểu sai |
+| Xử lý những bước gì | viết tay, gắn nhãn nhóm cách hiểu cho từng câu (`nhan_tay`); không có mã học viên, id câu trả lời dạng `A1…` |
+| Số dòng / số đoạn | 10 câu hỏi · 63 câu trả lời |
+| Phiên bản / ngày lấy | v1, 19:10 27/11/2026 · người viết: nhóm · người kiểm nhãn: *(chưa)* |
+| Nhãn | `synthetic` — **không phải bằng chứng pain** |
+| Giới hạn | câu trả lời do nhóm viết nên gọn và sạch hơn câu thật; sẽ bổ sung câu trả lời thật thu từ học viên L3 (có đồng ý, ẩn danh) |
+
+## Dataset 2 · Số liệu lớp đã tổng hợp theo ngày học (`data/class_stats.json`) — dùng đào bằng chứng
 
 | | |
 |---|---|
