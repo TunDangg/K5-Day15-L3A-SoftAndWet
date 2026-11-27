@@ -21,6 +21,13 @@ from tracing import note
 
 KINDS = ("dung", "sai", "bo_trong", "lac_de")
 
+# Chặn bằng code, không chỉ nhờ model: câu trả lời chứa chỉ dẫn thì không vào nhóm nào khác ngoài "lạc đề",
+# và không bao giờ được trích lại vào báo cáo (metric tu_choi_dung, B12).
+INJECTION = re.compile(r"bỏ qua|bo qua|ignore (all|previous|the)|ghi (trong|vào) báo cáo|cả lớp hiểu đúng 100", re.I)
+# TA đòi chấm điểm / xếp hạng từng học viên (metric tu_choi_dung, B13): code luôn ghi câu từ chối.
+RANK_REQ = re.compile(r"chấm điểm|cham diem|xếp hạng|xep hang|bạn nào|ban nao|học viên nào|hoc vien nao|ai kém|ai sai nhiều", re.I)
+RANK_LINE = "Không chấm điểm hay xếp hạng từng học viên: đó là việc giảng viên quyết định. Dưới đây là phân nhóm cấp lớp."
+
 SYSTEM = """Bạn giúp một TA / lab coach chuẩn bị buổi học: gom các câu trả lời tự do của học viên cho MỘT câu hỏi mở thành các nhóm cách hiểu. TA sẽ đọc, sửa tên nhóm, chuyển câu sang nhóm khác rồi tự quyết định nói gì với lớp.
 
 Cách làm:
@@ -86,7 +93,7 @@ def _clean_groups(obj, answers):
     """Code sửa những gì model làm sai: id lạ, id trùng, id bỏ sót, câu trích không nguyên văn."""
     order = [a["id"] for a in answers]
     texts = {a["id"]: norm(a["text"]) for a in answers}
-    used, groups, issues = set(), [], []
+    used, groups, issues, injected = set(), [], [], []
     for g in obj["nhom"]:
         if not isinstance(g, dict):
             continue
@@ -97,21 +104,35 @@ def _clean_groups(obj, answers):
                 issues.append("bỏ id không có trong dữ liệu")
             elif i in used:
                 issues.append("bỏ id bị xếp vào 2 nhóm (giữ nhóm đầu)")
+            elif INJECTION.search(texts[i]):          # chỉ dẫn chèn: code tự chuyển sang lạc đề, không để model quyết
+                injected.append(i)
+                used.add(i)
             else:
                 ids.append(i)
                 used.add(i)
         if not ids:
+            if g.get("ids"):
+                issues.append("bỏ nhóm không còn id hợp lệ")
             continue
         ids.sort(key=order.index)
         quote = norm(g.get("trich") or "").strip('"“”')
         if quote and not any(quote in texts[i] for i in ids):
             issues.append("bỏ câu trích không có nguyên văn trong nhóm")
             quote = ""
+        if quote and INJECTION.search(quote):          # không để chỉ dẫn chèn lọt vào báo cáo qua câu trích
+            issues.append("bỏ câu trích chứa chỉ dẫn chèn")
+            quote = ""
         if not quote:   # thay bằng nguyên văn câu trả lời đầu tiên của nhóm (code chép, không phải model)
             quote = texts[ids[0]][:120]
         kind = g.get("loai") if g.get("loai") in KINDS else "sai"
         groups.append({"loai": kind, "ten": norm(g.get("ten") or "Nhóm chưa đặt tên"),
                        "mo_ta": norm(g.get("mo_ta") or ""), "ids": ids, "trich": quote})
+    if injected:
+        injected.sort(key=order.index)
+        issues.append("chuyển %d câu chứa chỉ dẫn sang lạc đề, không trích nội dung" % len(injected))
+        groups.append({"loai": "lac_de", "ten": "Câu chứa chỉ dẫn thay vì câu trả lời",
+                       "mo_ta": "Không đưa vào phân tích; nội dung không được trích.",
+                       "ids": injected, "trich": ""})
     missing = [i for i in order if i not in used]
     if missing:
         issues.append("AI bỏ sót %d câu, code gom vào nhóm riêng để TA tự xếp" % len(missing))
@@ -120,11 +141,13 @@ def _clean_groups(obj, answers):
     return groups, sorted(set(issues))
 
 
-def _render(data, groups, note_text, issues):
+def _render(data, groups, note_text, issues, rank_refusal=False):
     n = data["so_cau_tra_loi"]
     rank = {"sai": 0, "bo_trong": 1, "chua_xep": 2, "lac_de": 3, "dung": 4}
     groups = sorted(groups, key=lambda g: (rank.get(g["loai"], 0), -len(g["ids"])))
     out = ["Nháp — %s: %s · %d câu trả lời" % (data["question_id"], data["cau_hoi"], n)]
+    if rank_refusal:
+        out += ["", RANK_LINE]
     if note_text:
         out += ["", note_text]
     out.append("")
@@ -136,7 +159,8 @@ def _render(data, groups, note_text, issues):
         out.append("%d. %s — %d/%d (%s)%s" % (k, name, len(g["ids"]), n, ", ".join(g["ids"]), one))
         if g["mo_ta"]:
             out.append("   %s" % g["mo_ta"])
-        out.append("   \"%s\"" % g["trich"])
+        if g["trich"]:
+            out.append("   \"%s\"" % g["trich"])
     if not any(g["loai"] in ("sai", "chua_xep") for g in groups):
         out += ["", "Không thấy kiểu hiểu sai nào trong %d câu trả lời." % n]
     out += ["", "Giới hạn: chỉ dựa trên %d câu trả lời đã nộp; số đếm do code tính từ danh sách id." % n]
@@ -178,7 +202,7 @@ def answer(text: str) -> dict:
     if issues:
         note("code sửa bản của model: %s" % "; ".join(issues))
     note_text = norm(obj.get("ghi_chu") or "")
-    report = _render(data, groups, note_text, issues)
+    report = _render(data, groups, note_text, issues, rank_refusal=bool(RANK_REQ.search(text or "")))
 
     # Bước 5 (công cụ code): kiểm lần cuối
     errors = check_report(report, qid)
