@@ -30,11 +30,14 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/prec
 - Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-- **Trợ giảng AI dưới video trên trang pre-class của khoá** (preclass-online.com, nhóm đang dùng):
-  - Đáng học: ô hỏi đặt ngay dưới video, học viên hỏi tại chỗ đang kẹt, không phải rời trang → giữ nguyên vị trí này.
-  - Đáng né: câu trả lời không trỏ về đoạn nào trong bài, học viên không tự kiểm được và phải tua lại tự tìm (pain A1); câu hỏi ngắn / mơ hồ vẫn nhận một câu trả lời đoán ý.
-  - Mình khác gì: input kèm mốc giờ trong video · mọi câu trả lời kèm mã đoạn, mã đó được **code** kiểm có trong bài · câu mơ hồ thì hỏi lại kèm 2–3 đoạn gợi ý · không có căn cứ thì nói "không có trong bài" và chỉ kênh khác.
-  <!-- TODO nhóm: thêm 1 ví dụ thật đã hỏi thử trên trang (ảnh chụp từ tài khoản mình, đã che thông tin) -->
+- **Các chỗ học viên tự viết trên trang pre-class của khoá** (preclass-online.com, nhóm đang dùng) — số đếm từ data BTC `data/preclass/` (05–25/11):
+  - *Sổ hiểu bài*: học viên tự viết lại ý chính, AI nhận xét từng ý (`events.csv`: `so_hieu_bai_opened` 228 lượt / 51 học viên; `so_hieu_bai_reviewed` 56 lượt / 9 học viên).
+  - *Ô tự giải thích* sau câu hỏi (`answers.csv`, `nguon = giai_thich`: 20 lượt) và *giám khảo AI* chấm câu học viên nhắn theo 3 tiêu chí `rubric_bam_bai` · `rubric_y_moi` · `rubric_dung_ngu_canh`, thang 0–2 (1.223 lượt đã chấm).
+  - **Đáng học:** đã có chỗ để học viên tự viết thay vì chọn A/B/C/D; tiêu chí chấm cụ thể, có thang điểm → nhóm học cách đặt tiêu chí rõ cho từng nhóm cách hiểu.
+  - **Đáng né:** nhận xét dừng ở từng học viên, trong data không thấy bản tổng hợp cấp lớp cho người dạy *(chưa kiểm giao diện của TA / giảng viên)*; ít học viên viết (chỉ 9 người được AI nhận xét Sổ hiểu bài) → câu hỏi mở phải ngắn, 1 câu / bài, không thành bài tập thêm.
+  - **Mình khác gì:** làm cho **TA / lab coach** ở **cấp lớp**, không phải cho từng học viên · gom câu trả lời thành nhóm cách hiểu (đúng / từng kiểu hiểu sai / bỏ trống), mỗi nhóm kèm số `x/N` và câu trích **nguyên văn do code kiểm** · dưới 5 câu trả lời thì không phân nhóm · không chấm điểm, không xếp hạng ai.
+- **Bài ôn cuối ngày (trắc nghiệm) trên cùng trang:** cho số đúng / sai theo ý kiến thức (399/1.968 lượt sai lần đầu), nhưng không cho biết sai vì hiểu nhầm gì → đây là chỗ câu hỏi mở bổ sung.
+  <!-- TODO nhóm: thêm ảnh chụp Sổ hiểu bài / ô tự giải thích từ tài khoản mình (đã che thông tin), và hỏi TA xem giao diện của họ có bản tổng hợp lớp không -->
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 
@@ -135,7 +138,9 @@ flowchart LR
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 23:09 Thứ Sáu 27/11 | `codebase/ai.py`: tự thử lại khi API trả 429 / 5xx / timeout (tối đa 4 lần, đợi tăng dần), timeout 60 → 120 giây | Khi nối model thật, API bận / quá giờ làm lượt chạy dừng giữa chừng (Trọng) |
+| 23:35 Thứ Sáu 27/11 | Viết lại §3 cho khớp lát cắt câu hỏi mở (so với Sổ hiểu bài, ô tự giải thích, giám khảo AI trên trang pre-class) | §3 còn mô tả lát cắt cũ (trợ giảng câu hỏi ngắn: mã đoạn, mốc giờ), lệch với §4 |
+| 23:35 Thứ Sáu 27/11 | `eval/cham-thu-cp2.md`: thêm cột tham chiếu chạy bằng code cho metric `trich_dan_va_so_dem_that`; ghi chỗ định nghĩa còn mơ hồ. **Không sửa** `metric_spec.yaml`, §7, câu thử | Chấm thử người thứ hai chưa xong trước CP2; code cho thấy O2 trượt (câu trích không nguyên văn) và định nghĩa "câu trích" chưa nói rõ tên câu hỏi trong ngoặc kép có tính không |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
