@@ -32,14 +32,18 @@
 
 - [ ] **Tối nay:** tạo `.env` theo `docs/connect-model.md` (`.env` **không commit**) → `python run.py` hỏi `[Q01] Phân tích câu trả lời của lớp` → `python run.py eval --try`, thấy `tokens_in > 0` là xong
 - [ ] Sửa `SYSTEM` prompt theo lỗi chấm thử (`eval/cham-thu-cp2.md`): **không đặt tên câu hỏi trong ngoặc kép**; câu trích phải chép **nguyên văn** (lỗi O2 thiếu chữ "thời tiết"); câu chèn chỉ dẫn trong câu trả lời của học viên xếp vào nhóm lạc đề (lỗi O4)
-- [ ] Ghi các thay đổi prompt vào `spec.md` §10
+- [ ] Sửa 3 chỗ trong `codebase/agent.py` (phát hiện khi đọc code 00:50):
+  1. Bỏ dấu ngoặc kép khỏi `ghi_chu` của model trước khi đưa vào báo cáo — nếu không, `check_report` coi đoạn trong ngoặc kép là câu trích sai và chặn cả báo cáo (rủi ro trượt B13, B14)
+  2. Khi câu TA gõ có "chấm điểm / xếp hạng / kém nhất / giỏi nhất": code tự thêm 1 câu từ chối cố định, không phụ thuộc model có ghi `ghi_chu` hay không (B13)
+  3. `loai` lạ từ model → gán `chua_xep` thay vì `sai`, để không tự tạo nhóm hiểu sai không có thật
+- [ ] Ghi các thay đổi prompt / code vào `spec.md` §10
 - [ ] **Quay video 30 giây** (sau khi `eval --try` có token > 0): gõ `[Q01] Phân tích câu trả lời của lớp` → AI thật trả bản nháp có nhóm, số `x/N`, câu trích, dòng "Nháp". Thấy rõ `model:` không phải `fake`
 - [ ] Đăng YouTube "Không công khai" hoặc Drive "Bất kỳ ai có đường liên kết", **mở thử bằng cửa sổ ẩn danh**, gửi link cho Đăng trước 09:15
 
 ## Phạm Quỳnh Anh · bằng chứng, câu trả lời thật
 
-- [ ] **Tối nay:** nhắn hẹn 2 TA / lab coach (mẫu bên dưới), ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md`
-- [ ] **Sáng:** phỏng vấn P2, P3, 10–15 phút / người, **ghi ngay trong lúc hỏi**, chép `evidence/interviews/TEMPLATE.md` thành `P2.md`, `P3.md`; ghi ≥1 câu nguyên văn + các con số
+- [x] ~~**Tối nay:** nhắn hẹn 2 TA / lab coach~~ — không cần nữa. Nếu còn thời gian: hỏi thêm 1–2 TA, ghi ngay trong lúc hỏi, có trích nguyên văn (mẫu bên dưới), ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md`
+- [x] ~~**Sáng:** phỏng vấn P2, P3~~ — đã có P1–P3 (3 lab coach, chiều 27/11), ghi ở `evidence/interviews/`; còn thiếu: điền `TV_` (ai hỏi / ghi). Phỏng vấn P2, P3, 10–15 phút / người, **ghi ngay trong lúc hỏi**, chép `evidence/interviews/TEMPLATE.md` thành `P2.md`, `P3.md`; ghi ≥1 câu nguyên văn + các con số
 - [ ] Điền vào `P1.md` ai hỏi / ai ghi (`TV_`)
 - [ ] Cập nhật `evidence/summary.md` mục 2–5 với P2, P3; mục 5 ghi kết luận đúng như kết quả (ngược giả thuyết vẫn đủ điểm)
 
@@ -75,3 +79,16 @@
 - [ ] §10: điền "Phân công có tên", "Dùng AI vào việc gì"
 - [ ] Nhận link video từ Trọng, mở lại bằng cửa sổ ẩn danh trước khi nộp
 - [ ] Push cuối, nộp form CP3, khai thật phần chưa xong
+
+## Sau CP3 (10:00 → 14:30) · web demo cho TA — Trần Tuấn Đăng
+
+> Không bắt buộc (rubric chấm bản chạy thử gọi AI thật + demo câu thường / câu khó / câu lạ, không chấm giao diện). **Chỉ làm sau khi đã nộp CP3.** Không bắt chước UI pre-class: người dùng của lát cắt là TA, nên đây là màn hình TA đọc bản nháp.
+
+- [ ] `codebase/web.py`: 1 trang, chỉ dùng thư viện chuẩn Python (`http.server`), gọi thẳng `answer()` trong `agent.py` — không viết lại logic
+  - Ô nhập yêu cầu (vd `[Q01] Phân tích câu trả lời của lớp`) để giám khảo gõ câu lạ
+  - Hiện bản **Nháp**: mỗi nhóm 1 thẻ (tên nhóm · `x/N` · câu trích); bấm id `A1…` xem nguyên câu trả lời
+  - Nhãn "Nháp — chờ TA duyệt", **không có nút gửi**
+  - *(nếu kịp)* TA kéo 1 câu sang nhóm khác (G9 ở §4)
+- [ ] Chạy bằng lệnh riêng (vd `python codebase/web.py`), **không sửa `run.py`** (khung — `AGENTS.md`); ghi lệnh vào `README.md`
+- [ ] Ghi 1 dòng vào `spec.md` §10
+- [ ] Trước 14:00: quay lại video demo dự phòng trên bản web (thao tác thật, AI thật); thử 1 câu thường + 1 câu khó + 1 câu lạ
