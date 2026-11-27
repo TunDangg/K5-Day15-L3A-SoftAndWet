@@ -21,6 +21,7 @@ import json
 import os
 import urllib.error
 import urllib.request
+import time
 
 from tracing import model_call
 
@@ -54,19 +55,38 @@ URL_OLLAMA = "http://localhost:11434/api/chat"
 URL_GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent"
 
 
-def post_json(url, headers, body, timeout=60):
-    """Gửi POST JSON, trả về JSON phản hồi. Chỉ dùng thư viện chuẩn (urllib)."""
-    req = urllib.request.Request(
-        url, data=json.dumps(body).encode("utf-8"), method="POST",
-        headers=dict({"Content-Type": "application/json"}, **headers))
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            data = json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        raise RuntimeError("HTTP %d: %s" % (e.code, e.read().decode("utf-8", "replace")[:300]))
-    if SHOW_RAW:
-        print(json.dumps(data, ensure_ascii=False, indent=2)[:3000])
-    return data
+RETRY_CODES = {429, 500, 502, 503, 504}
+
+
+def post_json(url, headers, body, timeout=120, max_retries=4):
+    """Gửi POST JSON, tự thử lại khi gặp 503/429/timeout. Chỉ dùng thư viện chuẩn (urllib)."""
+    payload = json.dumps(body).encode("utf-8")
+    hdrs = dict({"Content-Type": "application/json"}, **headers)
+    last_err = None
+
+    for attempt in range(max_retries + 1):
+        req = urllib.request.Request(url, data=payload, method="POST", headers=hdrs)
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = json.loads(r.read().decode("utf-8"))
+            if SHOW_RAW:
+                print(json.dumps(data, ensure_ascii=False, indent=2)[:3000])
+            return data
+        except urllib.error.HTTPError as e:
+            err_body = e.read().decode("utf-8", "replace")[:300]
+            last_err = RuntimeError("HTTP %d: %s" % (e.code, err_body))
+            if e.code not in RETRY_CODES or attempt == max_retries:
+                raise last_err
+        except (TimeoutError, urllib.error.URLError) as e:
+            last_err = e
+            if attempt == max_retries:
+                raise
+
+        wait = 5 * (2 ** attempt)
+        print(f"  [Thử lại {attempt + 1}/{max_retries}] API bận/timeout, đợi {wait}s...")
+        time.sleep(wait)
+
+    raise last_err
 
 
 def call_openai(system, user):
