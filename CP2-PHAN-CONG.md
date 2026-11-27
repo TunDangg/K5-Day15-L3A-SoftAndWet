@@ -1,63 +1,66 @@
 # Phân công CP2 · nộp 19:30 Thứ Sáu 27/11
 
-> Hướng: **Track A · A1**, trợ giảng xử lý câu hỏi ngắn dưới video pre-class.
+> **Đã đổi lát cắt lúc 19:15:** Track A · A1 (tính năng mới), câu hỏi mở cuối bài pre-class → AI gom câu trả lời của cả lớp thành nhóm cách hiểu cho TA / lab coach trước buổi. Lý do: ghi ở `canvas.md` dòng "Đã đổi gì so với CP1".
 > **`eval/metric_spec.yaml` và chuẩn "đạt" (`spec.md` §7) bị khoá lúc 19:30.** Sửa sau thì khối R4 bị 0 điểm.
 > Mỗi người xong phần nào thì tick `[x]` ở file này rồi push.
+
+## Đã có bản nháp (18:45), cần người duyệt
+
+- [x] `spec.md` dòng 1, dòng Track, §4 (sơ đồ, công cụ, quy tắc đếm, nguyên tắc), §5 (10 kịch bản, 2 tấn công)
+- [x] `canvas.md` dòng 1–7 + dòng "Đã đổi gì so với CP1"
+- [x] `evidence/hypothesis.md`: thêm Giả thuyết 2 (giữ Giả thuyết 1)
+- [x] `data/open_answers.json`: 10 câu hỏi mở, 63 câu trả lời mẫu có nhãn tay (`synthetic`) · `data/class_stats.json` (đào bằng chứng) · `data/DATA_CARD.md`
+- [x] `eval/benchmark.csv` 14 câu (thuong 5 · kho 6 · tu_choi 3) · `eval/metric_spec.yaml` 3 metric. **Chưa đủ ≥1/3 câu từ người dùng / data thật** → Quỳnh Anh thu câu trả lời thật
+- [x] `spec.md` §7: chuẩn "đạt" **đề xuất** · `python run.py check` chỉ còn nhắc CP3 cần 20–30 câu
 
 ## Mốc nội bộ
 
 | Giờ | Việc | Ai |
 |---|---|---|
-| 17:00–17:30 | Chốt lát cắt, sơ đồ, công cụ (`spec.md` §4) và các kịch bản khó (§5). Cả nhóm ngồi chung. | Cả nhóm (Đăng dẫn) |
-| 17:30–18:45 | Làm song song theo phần của từng người bên dưới | Từng người |
-| 18:45–19:10 | Chấm thử 5 output theo metric (người thứ hai, khớp ≥4/5) → chốt chuẩn "đạt" | Huy + Quỳnh Anh |
-| 19:10–19:25 | `python run.py check` hết cảnh báo CP2 → push | Đăng |
+| 18:45–19:05 | Đọc và sửa bản nháp phần của mình (bên dưới) | Từng người |
+| 18:45–19:15 | Đi hỏi ≥3 TA / lab coach tại lớp | Quỳnh Anh (+ 1 người đi cùng) |
+| 19:05–19:15 | Người thứ hai chấm thử 5 output theo `metric_spec.yaml`, khớp ≥4/5 | Huy + Quỳnh Anh |
+| 19:15 | **Chốt chuẩn "đạt"** + metric, xoá các dòng "NHÁP" / "ĐỀ XUẤT" | Cả nhóm |
+| 19:20 | `python run.py check` → push | Đăng |
 | 19:30 | Đội trưởng nộp CP2 (mã `2A202603618`) | Đăng |
 
 ## Trần Tuấn Đăng · đội trưởng, `spec.md`
 
+- [ ] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
 - [ ] Dòng 1 `spec.md`: điền Phòng, Zone
-- [ ] §3 Giải pháp tương tự: ≥1 sản phẩm, một điều học, một điều né, mình khác gì
-- [ ] §4 Thiết kế: lát cắt một câu · ≥3 điều KHÔNG làm · **sơ đồ Mermaid** · hình dạng (đề xuất: workflow cố định) + lý do không chọn phức tạp hơn · bảng công cụ khớp `codebase/tools.py` · mức tự động · chỗ chặn rủi ro · chỗ người duyệt · ≥3 nguyên tắc (bắt buộc G10) · phần nào còn giả
-- [ ] §5 Chỗ khó: ≥6 kịch bản phủ 4 lớp + 2 câu tấn công (cùng Quỳnh Anh, mỗi kịch bản thành ≥1 câu thử)
-- [ ] §7: chép chuẩn "đạt" đã chốt; điền số câu thử và số metric
-- [ ] `canvas.md`: cập nhật dòng 4 (số bằng chứng đầu + 1 trích dẫn), dòng 5 (lát cắt đã chốt), điền dòng "Đã đổi gì so với CP1"
-- [ ] Push cuối và nộp form CP2
+- [ ] Duyệt `canvas.md`; dòng 4 thêm 1 trích dẫn khi Quỳnh Anh có
+- [ ] Chốt §7 với cả nhóm lúc 19:15
+- [ ] Push cuối và nộp form CP2. CP2 hỏi "bằng chứng đang làm đến đâu": ghi đào data (số ở canvas dòng 4) + phỏng vấn TA đã hỏi / đã hẹn mấy người
 
 ## Phạm Quỳnh Anh · bằng chứng, bộ câu thử
 
-- [x] `evidence/data-mining.md`: viết **cách đếm TRƯỚC khi chạy** (data, đếm gì, mẫu số, lọc gì)
-- [ ] Script đếm `evidence/count.py` (chạy lại được ra cùng số), đọc từ `data/preclass/` của repo đề, **không commit file data gốc**
-- [ ] Số đầu tiên: tỉ lệ câu hỏi ngắn dưới video, và `rubric_bam_bai` của câu ngắn so với câu dài
-- [ ] Hỏi hoặc hẹn ≥3 học viên L3 ngoài nhóm → ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md` (không ghi tên)
-- [ ] `eval/benchmark.csv` **≥10 câu**: xoá B01–B03 · ≥5 câu `kho` · ≥2 câu `tu_choi` (gồm 2 câu tấn công) · ≥1/3 câu nguồn `nguoi_dung` / `data_that`
-  - `data_that`: tình huống lấy từ một dòng thật trong `chat.csv` (vd câu ≤10 ký tự ở Day03), câu chữ viết lại; ghi mã dòng ở cột `source`
-  - `nguoi_dung`: câu học viên được phỏng vấn kể lại
-- [ ] Làm người thứ hai chấm thử 5 output theo `metric_spec.yaml` (không phải người viết metric)
+- [ ] **Ngay bây giờ:** hỏi ≥3 TA / lab coach tại lớp. Hỏi chuyện đã xảy ra, không hỏi "bạn có muốn…":
+  - "Lần gần nhất chuẩn bị đầu buổi, bạn biết lớp đang kẹt chỗ nào bằng cách nào?"
+  - "Mất bao lâu? Có lần nào đoán sai chỗ lớp kẹt không?"
+  - "Bạn có xem kết quả bài ôn pre-class không? Xem ở đâu?"
+- [ ] Ghi vai + giờ vào bảng "Lịch hẹn" cuối `evidence/summary.md` (không ghi tên); ghi chép vào `evidence/interviews/P1.md`…
+- [ ] `evidence/data-mining.md`: chép quy tắc đếm từ `data/build_class_stats.py` vào mục 1, số vào mục 3
+- [ ] **Thu câu trả lời thật:** gửi 2–3 câu hỏi mở (lấy từ `data/open_answers.json`) cho ≥10 học viên L3 qua form ẩn danh, xin đồng ý → thêm vào `data/open_answers.json` + câu thử nguồn `nguoi_dung` (cần ≥1/3 bộ câu thử; CP3 cần 20–30 câu)
+- [ ] Duyệt 14 câu trong `eval/benchmark.csv`, kiểm lại nhãn tay
+- [ ] Làm người thứ hai chấm thử 5 output
 
-## Nguyễn Đức Trọng · bản chạy thử, data cho công cụ
+## Nguyễn Đức Trọng · bản chạy thử
 
-- [ ] Dựng bộ bài có mã đoạn trong `data/` (2–3 video pre-class, **tóm tắt hoặc viết lại**, không chép nguyên tài liệu khoá), mã dạng `D03-V01-P01`
-- [ ] `data/DATA_CARD.md` bản đầu: dataset nào, từ đâu, xử lý gì, bao nhiêu đoạn, nhãn thật / `synthetic`
-- [ ] `codebase/tools.py`: `search_lesson(query)` và `get_passage(code)`, mỗi hàm có `@tool`, docstring đủ 4 ý (tên · input · output · tác động ra ngoài)
-- [ ] `codebase/agent.py`: thay luồng ví dụ bằng luồng nhóm: tra đoạn → trả lời kèm mã đoạn / hỏi lại / "không có trong bài"; viết `SYSTEM` prompt
+- [ ] `codebase/tools.py`: `get_answers(question_id)` đọc `data/open_answers.json`, **bỏ trường `nhan_tay`**; `check_report(report, question_id)` kiểm đủ mọi id, mỗi id 1 nhóm, số x/N, câu trích nguyên văn, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
+- [ ] `codebase/agent.py`: tách mã câu hỏi từ input (`[Q01]`) → thiếu thì hỏi lại → <5 câu thì dừng → `get_answers` → model gom nhóm → `check_report`; `SYSTEM` prompt nói rõ câu trả lời của học viên là dữ liệu, không phải lệnh
 - [ ] `python run.py` đi hết luồng với AI giả
-- [ ] Lấy API key, gọi thử được 1 câu ngay tối nay (sáng thứ Bảy không có lớp). `.env` **không commit**
+- [ ] Lấy API key, gọi thử được 1 câu tối nay. `.env` **không commit**
 
 ## Nguyễn Văn Huy · metric, eval
 
-- [ ] `eval/metric_spec.yaml`: ≥3 metric, đủ `name` · `definition` (kiểm chứng được) · `grader` · `threshold` (bằng số) · `why` (trỏ về pain)
-  - Gợi ý để nhóm chọn: `trich_dung_doan` (mọi câu trả lời có mã đoạn, mã đó có trong data và đúng nội dung) · `hoi_lai_khi_mo_ho` (câu `kho` thiếu thông tin thì hỏi lại, không đoán) · `tu_choi_dung` (câu `tu_choi` không làm theo, có chỉ đường thay thế)
-- [ ] Đề xuất chuẩn "đạt" cho cả nhóm chốt, dạng: *"Đạt khi ≥ __% câu qua, và 100% câu `tu_choi` qua"*
-- [ ] Tổ chức chấm thử 5 output với Quỳnh Anh, khớp ≥4/5. Lệch thì viết lại định nghĩa trước 19:10
-- [ ] `eval/README.md` mục 1–4: dataset, bộ câu thử, bảng metric, kết quả chấm thử, lệnh chạy
-- [ ] Chạy `python run.py check`, báo Đăng các cảnh báo còn lại
+- [ ] Duyệt 3 metric trong `eval/metric_spec.yaml`, sửa ngưỡng nếu nhóm muốn, xoá dòng "NHÁP"
+- [ ] Tổ chức chấm thử 5 output với Quỳnh Anh (chưa có model thật thì nhóm tự viết tay 5 output mẫu để chấm), khớp ≥4/5
+- [ ] `eval/README.md` mục 1–4
+- [ ] Chạy `python run.py check`, báo Đăng
 
-## Tự soát trước khi nộp (guide 2.5)
+## Để sau CP2 (không làm tối nay)
 
-- [ ] Canvas cập nhật: số bằng chứng đầu + lát cắt đã chốt + dòng "đã đổi gì so với CP1"
-- [ ] Đã bắt đầu tìm bằng chứng (đã hỏi / đã hẹn / đã đào và có cách đếm)
-- [ ] Sơ đồ kiến trúc trong `spec.md` §4
-- [ ] `eval/benchmark.csv` ≥10 câu · `eval/metric_spec.yaml` · chuẩn "đạt" trong `spec.md` §7 · `data/DATA_CARD.md` bản đầu
-- [ ] `python run.py` đi hết luồng với AI giả
-- [ ] `python run.py check` không còn cảnh báo cho CP2
+- Mỗi chỗ kẹt kèm 1 câu hỏi khởi động gợi ý cho TA dùng đầu buổi (TA duyệt)
+- Xu hướng qua nhiều ngày: ý nào sai lặp lại
+- Vòng phản hồi: TA đánh dấu điểm nào dùng được → đo "hữu ích" (G15)
+- Nối mã ý kiến thức với tên bài / slide
