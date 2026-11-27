@@ -19,7 +19,7 @@
 
 | | |
 |---|---|
-| Dùng để làm gì | nguồn cho công cụ `class_stats` · đáp án kiểm được cho bộ câu thử (`data_that`) · đào bằng chứng |
+| Dùng để làm gì | **chỉ đào bằng chứng** (số ở `canvas.md` dòng 4, `evidence/data-mining.md`); bản chạy thử và bộ câu thử hiện **không** dùng file này |
 | Từ đâu | data BTC cấp `data/preclass/` trong repo đề: `answers.csv`, `chat.csv` (nhật ký thật, đã ẩn danh) |
 | Xử lý những bước gì | lọc bài ôn cuối ngày (`nguon = pre_post_post`, `lan_thu = 1`, có đúng/sai) · lọc câu hỏi dưới video (`channel = video_question`) · gom theo ngày học (từ `lesson_id` / `transcript`) và theo ý kiến thức (`kc_code`) · **chỉ giữ số đếm, bỏ mọi mã học viên** (script: `data/build_class_stats.py`) |
 | Số dòng / số đoạn | 13 ngày học (Day01–Day13) · nguồn: 1.968 lượt trả lời bài ôn lần đầu, 1.108 câu hỏi dưới video |
