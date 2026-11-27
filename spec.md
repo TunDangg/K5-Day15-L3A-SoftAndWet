@@ -11,23 +11,33 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/prec
 - Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể):
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI):
-- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:
-- Pain (KHÔNG chữ AI): ai — đang làm gì — vướng đâu — hậu quả gì:
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): __
+- Người dùng chính (một vai cụ thể): TA / lab coach lớp L3 khoá AI20K, tối trước buổi học khi chuẩn bị phần mở đầu buổi.
+- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI): Nắm được lớp đang hiểu sai kiểu gì ở bài pre-class tối trước buổi học để quyết định cần giảng lại gì trong 5–10 phút đầu buổi.
+- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ: Xem kết quả bài ôn trắc nghiệm trên trang pre-class (3/3 lab coach P1–P3 nói chỉ thấy đúng/sai, không biết học viên hiểu sai kiểu nào), rà thủ công Discord / chat (P2 mất 10–30 phút/buổi), hoặc lên lớp mới hỏi lại học viên; chưa bỏ vì sẵn có trên hệ thống và miễn phí, nhưng không thấy được phân bố cách hiểu sai của cả lớp.
+- Pain (KHÔNG chữ AI): TA / lab coach lớp L3 chuẩn bị mở đầu buổi học — chỉ thấy kết quả đúng/sai của bài ôn trắc nghiệm và không có bản tổng hợp câu trả lời mở của lớp — nên phải rà thủ công hoặc ôn lại theo cảm giác, dễ bỏ sót chỗ học viên hiểu nhầm thật (chỉ 3/17 học viên khảo sát thấy ôn đầu buổi trúng đúng chỗ mình hiểu nhầm).
+- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`):
+  - **Đào data (`evidence/data-mining.md`, `data/build_class_stats.py`):** bài ôn trắc nghiệm cuối ngày `399/1.968` lượt sai lần đầu (`20,3%`), `7/7` ngày đủ dữ liệu có ít nhất 1 ý sai `≥ 34%` (vd `Day05 · ai_product_canvas` `12/15` = `80,0%`), nhưng chỉ ghi đúng/sai; ô tự giải thích mới có `20` lượt (`answers.csv`, `nguon = giai_thich`).
+  - **Phỏng vấn `3/3` lab coach (`P1–P3`):** `3/3` không biết trước lớp hiểu sai chỗ nào / chỉ thấy đúng–sai; `P2` mất `10–30` phút/buổi rà thủ công; **ngược giả thuyết:** `2/3` (`P2`, `P3`) đọc hết câu tự viết nhanh do học viên viết rất ít, `0/3` kể được buổi cụ thể ôn trật.
+  - **Khảo sát học viên (`n = 17/20` phiếu hợp lệ, `evidence/survey/analyze.py`):** `14/17` (`82%`) mang chỗ mơ hồ lên lớp `≥ 3` lần/tháng (trung vị 3 lần), `14/17` (`82%`) mất `≥ 5` phút gỡ, chỉ `3/17` (`18%`) thấy ôn đầu buổi trúng đúng chỗ hiểu nhầm, và `8/17` (`47%`) nêu lý do ngại gõ ô tự giải thích (tốn thời gian, không biết diễn đạt khi mơ hồ, không có phản hồi).
+  - **Kết luận:** Giả thuyết 3 **phải đổi** — người dạy thiếu thông tin lớp hiểu sai kiểu gì là thật, nhưng nút thắt hiện nằm ở chỗ học viên viết quá ít; giải pháp chỉ có giá trị khi bài pre-class có câu hỏi mở ngắn đủ lượt nộp.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
+| Câu hỏi mở cuối bài → AI gom nhóm cách hiểu cho TA / lab coach | ~20 TA / lab coach *(tự ước tính: ~700 HV L3 ÷ ~35 HV/người)* | 12 buổi *(tự ước tính theo khoá 15 ngày; P2: nhiều buổi)* | 15 phút rà thủ công *(tự ước tính trung điểm 10–30 phút của P2)* | 3.600 phút (60 giờ TA/tháng) | Có | **Chọn** |
+| Báo cáo số đúng / sai bài ôn trắc nghiệm cho TA / lab coach | ~20 TA / lab coach *(tự ước tính)* | 12 buổi *(tự ước tính)* | 10 phút *(tự ước tính)* | 2.400 phút (40 giờ TA/tháng) | Có | Loại |
+| Trợ giảng xử lý câu hỏi ngắn dưới video cho học viên | ~115 HV *(tự ước tính: 700 HV × 16,5% câu ≤20 ký tự từ `evidence/data-mining.md`)* | 2 lần *(tự ước tính)* | 5 phút *(tự ước tính)* | ~1.150 phút (~19 giờ HV/tháng) | Có | Loại |
 
-- **Impact / tháng** của hướng chọn = __ người × __ lần × __ phút = __ — nguồn từng thừa số: __ (không có nguồn thì ghi rõ *(tự ước tính)*)
-- Hướng ĐÃ LOẠI + vì sao (giữ lại, đừng xoá):
-- Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
+- **Impact / tháng** của hướng chọn = **20 TA × 12 buổi × 15 phút = 3.600 phút (60 giờ TA / tháng)** — nguồn từng thừa số: số lượng TA `20` *(tự ước tính từ quy mô lớp L3 > 700 học viên trong README hackathon, mỗi lab coach ~35 học viên)*; số buổi `12` *(tự ước tính theo lịch học 15 ngày của khoá, khớp P2 "lặp lại nhiều buổi")*; thời gian `15` phút/lần *(tự ước tính lấy trung điểm từ phỏng vấn P2 "khoảng 10–30 phút rà thủ công Discord/chat/bài ôn")*. *(Tác động gián tiếp lên học viên khi TA ôn trúng chỗ hiểu nhầm: ~700 HV × 82% gặp pain × 3 lần/tháng × 5 phút ≈ 8.610 phút/tháng, nguồn khảo sát `14/17` mang chỗ mơ hồ ≥3 lần/tháng, trung vị 3 lần, `14/17` mất ≥5 phút.)*
+- **Điều kiện giá trị (từ `evidence/summary.md` mục 5):** Giá trị gom nhóm của giải pháp **chỉ có khi có đủ câu trả lời** (câu hỏi mở bắt buộc, ngắn 1 câu/bài ở quy mô lớp đông), vì hiện tại `2/3` lab coach (`P2`, `P3`) đọc hết câu tự viết nhanh do học viên viết quá ít (`20` lượt trong data).
+- **Hướng ĐÃ LOẠI + vì sao (giữ lại, đừng xoá):**
+  1. *Báo cáo số đúng / sai bài ôn trắc nghiệm cho TA:* chỉ cho biết sai bao nhiêu lượt mà không giải thích học viên hiểu nhầm theo kiểu nào (như `12/15` sai `ai_product_canvas`), đồng thời tính tổng hợp số thuần túy chỉ cần code thống kê, không cần AI.
+  2. *Trợ giảng xử lý câu hỏi ngắn dưới video cho học viên:* trùng với trợ giảng AI đang có sẵn trên `preclass-online.com` (nhóm đã thử trực tiếp thấy đã trả lời được câu ngắn).
+- **Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):**
+  - `ta_dung_it` (ít chuẩn bị trước hoặc chỉ xem buổi bài khó, như `P1`): `4` lần / tháng *(tự ước tính)* · `1` câu hỏi / phiên
+  - `ta_dung_vua` (chuẩn bị đều các buổi trọng tâm, như `P2`): `10` lần / tháng *(tự ước tính)* · `2` câu hỏi / phiên
+  - `ta_dung_nhieu` (kiểm tra gần như mọi buổi với nhiều câu hỏi mở): `15` lần / tháng *(tự ước tính theo 15 ngày học)* · `3` câu hỏi / phiên
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 - **Các chỗ học viên tự viết trên trang pre-class của khoá** (preclass-online.com, nhóm đang dùng) — số đếm từ data BTC `data/preclass/` (05–25/11):
