@@ -141,6 +141,10 @@ flowchart LR
 | 23:09 Thứ Sáu 27/11 | `codebase/ai.py`: tự thử lại khi API trả 429 / 5xx / timeout (tối đa 4 lần, đợi tăng dần), timeout 60 → 120 giây | Khi nối model thật, API bận / quá giờ làm lượt chạy dừng giữa chừng (Trọng) |
 | 23:35 Thứ Sáu 27/11 | Viết lại §3 cho khớp lát cắt câu hỏi mở (so với Sổ hiểu bài, ô tự giải thích, giám khảo AI trên trang pre-class) | §3 còn mô tả lát cắt cũ (trợ giảng câu hỏi ngắn: mã đoạn, mốc giờ), lệch với §4 |
 | 23:35 Thứ Sáu 27/11 | `eval/cham-thu-cp2.md`: thêm cột tham chiếu chạy bằng code cho metric `trich_dan_va_so_dem_that`; ghi chỗ định nghĩa còn mơ hồ. **Không sửa** `metric_spec.yaml`, §7, câu thử | Chấm thử người thứ hai chưa xong trước CP2; code cho thấy O2 trượt (câu trích không nguyên văn) và định nghĩa "câu trích" chưa nói rõ tên câu hỏi trong ngoặc kép có tính không |
+| 00:30 Thứ Bảy 28/11 | Thêm khảo sát học viên `evidence/survey/` (20 phiếu, 17 hợp lệ) + điền `evidence/summary.md` mục 1–5 | Bằng chứng phía học viên: 3/17 nói ôn đầu buổi trúng đúng chỗ hiểu nhầm; 8/17 ngại gõ ô tự giải thích → rủi ro cho giải pháp, ghi ở kết luận |
+| 00:35 Thứ Bảy 28/11 | `canvas.md` dòng 4: thêm số khảo sát học viên và 1 trích dẫn (S07) | CP2 yêu cầu "số đầu + 1 trích dẫn"; lúc CP2 dòng này còn ghi "chờ phỏng vấn" |
+| 00:40 Thứ Bảy 28/11 | Thêm `evidence/interviews/P1.md` (lab coach, phỏng vấn ~18:45 27/11) + cập nhật `evidence/summary.md` | Ghi lại buổi phỏng vấn thật đầu tiên; ghi chép nhớ lại sau 6 giờ, chỉ gồm ý người hỏi chắc chắn, không có trích nguyên văn |
+| 00:45 Thứ Bảy 28/11 | Thêm `CP3-PHAN-CONG.md` (thay `CP2-PHAN-CONG.md` đã hết hạn) | Chia việc CP3 theo tình trạng thật: chưa nối model, 0/14 câu thử từ nguồn thật, phỏng vấn 1/3 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
