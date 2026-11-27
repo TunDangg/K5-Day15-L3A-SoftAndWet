@@ -118,8 +118,9 @@ def call_provider(system, user):
 @model_call
 def call_model(system: str, user: str) -> dict:
     if MODEL_PROVIDER == "fake":
-        last = (user.strip().splitlines() or [""])[-1]
-        return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
+        # AI giả: không phân nhóm gì (JSON rỗng) để luồng chạy hết; code sẽ gom mọi câu vào nhóm "chưa xếp"
+        return {"text": json.dumps({"nhom": [], "ghi_chu": "[AI giả — chưa nối model, chưa phân nhóm]"}, ensure_ascii=False),
+                "model": "fake", "tokens_in": 0, "tokens_out": 0}
 
     if MODEL_PROVIDER == "openai":
         r = call_openai(system, user)

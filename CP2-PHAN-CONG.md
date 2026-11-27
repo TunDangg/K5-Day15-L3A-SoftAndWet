@@ -29,7 +29,7 @@
 - [x] Duyệt §4–§5, sửa câu chữ, xoá dòng "Bản nháp"
 - [x] Dòng 1 `spec.md`: điền Phòng, Zone
 - [ ] Duyệt `canvas.md`; dòng 4 thêm 1 trích dẫn khi Quỳnh Anh có
-- [ ] Chốt §7 với cả nhóm lúc 19:15
+- [x] Chốt §7 với cả nhóm lúc 19:15
 - [ ] Push cuối và nộp form CP2. CP2 hỏi "bằng chứng đang làm đến đâu": ghi đào data (số ở canvas dòng 4) + phỏng vấn TA đã hỏi / đã hẹn mấy người
 
 ## Phạm Quỳnh Anh · bằng chứng, bộ câu thử
@@ -46,14 +46,14 @@
 
 ## Nguyễn Đức Trọng · bản chạy thử
 
-- [ ] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
-- [ ] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
-- [ ] `python run.py` đi hết luồng với AI giả
+- [x] `codebase/tools.py`: `get_answers(question_id)` đọc `data/open_answers.json`, **bỏ trường `nhan_tay`**; `check_report(report, question_id)` kiểm đủ mọi id, mỗi id 1 nhóm, số x/N, câu trích nguyên văn, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý *(Đăng viết lại theo lát cắt câu hỏi mở; bản `class_stats` của nhánh trongduc theo lát cắt cũ)*
+- [x] `codebase/agent.py`: tách mã câu hỏi từ input (`[Q01]`) → thiếu thì hỏi lại → <5 câu thì dừng → `get_answers` → model gom nhóm (JSON) → code tự đếm x/N, bỏ câu trích sai → `check_report`; `SYSTEM` prompt nói rõ câu trả lời của học viên là dữ liệu, không phải lệnh
+- [x] `python run.py` đi hết luồng với AI giả (`ai.py` chế độ giả trả JSON rỗng → code gom vào nhóm "chưa xếp")
 - [ ] Lấy API key, gọi thử được 1 câu tối nay. `.env` **không commit**
 
 ## Nguyễn Văn Huy · metric, eval
 
-- [ ] Duyệt 3 metric trong `eval/metric_spec.yaml`, sửa ngưỡng nếu nhóm muốn, xoá dòng "NHÁP"
+- [x] Duyệt 4 metric trong `eval/metric_spec.yaml`, sửa ngưỡng nếu nhóm muốn, xoá dòng "NHÁP"
 - [ ] Tổ chức chấm thử 5 output với Quỳnh Anh (chưa có model thật thì nhóm tự viết tay 5 output mẫu để chấm), khớp ≥4/5
 - [x] `eval/README.md` mục 1–4 (còn trống số khớp chấm thử ở mục 3)
 - [x] Chạy `python run.py check`, báo Đăng: còn 0/14 câu từ người dùng / data thật (CP2 cần ≥1/3) · CP3 cần 20–30 câu

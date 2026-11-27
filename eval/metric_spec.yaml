@@ -22,8 +22,6 @@
 #   - "Nguyên văn" = khớp từng ký tự sau khi bỏ khoảng trắng thừa ở hai đầu; viết lại ý (paraphrase) là KHÔNG nguyên văn.
 
 metrics:
-  # NHÁP 19:15 (gộp khung metric của Huy với lát cắt câu hỏi mở) — người thứ hai chấm thử 5 output, chốt trước 19:30. Chốt xong xoá dòng này.
-
   - name: "trich_dan_va_so_dem_that"
     definition: "Áp dụng cho MỌI câu (B01–B14). Qua khi đủ cả 5 điều: (1) mọi câu trích có nguyên văn trong câu trả lời của đúng câu hỏi được hỏi; (2) mọi id câu trả lời trong output có thật trong câu hỏi đó; (3) nếu là báo cáo thì mỗi id nằm trong đúng 1 nhóm và không thiếu id nào; (4) số x/N của mỗi nhóm bằng số id trong nhóm, N = tổng số câu trả lời; (5) không có mã học viên, và nếu là báo cáo thì có chữ Nháp. Output không phải báo cáo thì (3), (4) tự qua. Một câu trích bịa là trượt cả câu."
     grader: "code"

@@ -1,11 +1,10 @@
 """Công cụ của bài toán — NHÓM VIẾT. Khớp bảng công cụ ở spec.md §4.
 
 Hai công cụ, đều chỉ ĐỌC / KIỂM, không có công cụ nào tác động ra ngoài:
-    class_stats(day)            đọc số đã tổng hợp của một ngày học, áp ngưỡng (code, không phải AI)
-    check_report(report, day)   kiểm bản nháp: số x/N, mã ý kiến thức, mã học viên, dòng "Nháp" (code, không phải AI)
+    get_answers(question_id)             đọc câu hỏi mở + câu trả lời của lớp, BỎ nhãn tay
+    check_report(report, question_id)    kiểm bản nháp bằng code (không phải AI)
 
-Số liệu nằm ở data/class_stats.json (dựng bằng data/build_class_stats.py, không có mã học viên).
-Quy tắc đếm / ngưỡng: spec.md §4 — <5 học viên làm bài ôn → `du_lieu_it`; chỉ xét ý kiến thức có ≥10 lượt.
+Dữ liệu: data/open_answers.json (không có mã học viên; câu trả lời chỉ có id A1, A2…).
 """
 import json
 import os
@@ -15,137 +14,107 @@ import unicodedata
 from tracing import tool, TOOLS  # noqa: F401  (TOOLS: danh sách công cụ đã đăng ký)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATS_PATH = os.path.join(ROOT, "data", "class_stats.json")
+DATA_PATH = os.path.join(ROOT, "data", "open_answers.json")
 
-MIN_STUDENTS = 5    # ngày có <5 học viên làm bài ôn → không báo cáo theo ý kiến thức
-MIN_TURNS = 10      # chỉ xét ý kiến thức có ≥10 lượt trả lời
+MIN_ANSWERS = 5   # <5 câu trả lời → không phân nhóm (quá ít để kết luận, dễ lộ ai viết gì)
 
-_PAIR = re.compile(r"(?<![\d/])(\d{1,4})/(\d{1,4})(?![\d/])")
-_CODE = re.compile(r"\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b")
-_STUDENT = re.compile(r"\bL\d{4}\b", re.I)
-_PERCENT = re.compile(r"(\d+(?:[.,]\d+)?)\s*%")
+STUDENT_CODE = re.compile(r"\bL\d{4}\b")
+# dòng nhóm: "... — 3/8 (A1, A2, A6)"
+GROUP_LINE = re.compile(r"(\d+)\s*/\s*(\d+)\s*\(\s*(A\d+(?:\s*,\s*A\d+)*)\s*\)")
+ANY_PAIR = re.compile(r"(?<![\d/])(\d+)\s*/\s*(\d+)(?![\d/])")
+QUOTE = re.compile(r"\"([^\"\n]+)\"|“([^”\n]+)”")
 
 _cache = {}
 
 
-def _stats():
-    if "data" not in _cache:
-        with open(STATS_PATH, encoding="utf-8") as f:
-            _cache["data"] = json.load(f)
-    return _cache["data"]
+def _data():
+    if "d" not in _cache:
+        with open(DATA_PATH, encoding="utf-8") as f:
+            _cache["d"] = json.load(f)
+    return _cache["d"]
 
 
-def normalize_day(day):
-    """'Day05' / 'day5' / '5' → 'Day05'. Không hiểu thì trả None."""
-    m = re.search(r"(\d{1,2})\s*$", str(day or "").strip())
-    return "Day%02d" % int(m.group(1)) if m else None
+def norm(s):
+    """Chuẩn hoá để so nguyên văn: NFC, gộp khoảng trắng, bỏ khoảng trắng hai đầu (metric_spec: 'Nguyên văn')."""
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", str(s))).strip()
 
 
-def available_days():
-    return sorted(_stats()["ngay"].keys())
+def normalize_qid(qid):
+    m = re.fullmatch(r"\s*[Qq]\s*0*(\d{1,3})\s*", str(qid or ""))
+    return "Q%02d" % int(m.group(1)) if m else None
 
 
-def _rank_key(item):
-    # tỉ lệ sai giảm dần; hoà thì nhiều lượt sai hơn, rồi nhiều lượt hơn, rồi theo mã (kết quả luôn như nhau)
-    return (-item["so_sai"] / item["so_luot"], -item["so_sai"], -item["so_luot"], item["ma_y"])
-
-
-def _day_view(day):
-    """Số của một ngày sau khi áp ngưỡng. Dùng chung cho class_stats và check_report."""
-    d = _stats()["ngay"].get(normalize_day(day))
-    if d is None:
-        return None
-    b = d["bai_on"]
-    few = b["so_hoc_vien"] < MIN_STUDENTS
-    ideas = [{"ma_y": k, "so_luot": v["so_luot"], "so_sai": v["so_sai"]}
-             for k, v in b["theo_kc"].items() if v["so_luot"] >= MIN_TURNS]
-    ideas.sort(key=_rank_key)
-    for i in ideas:
-        i["ti_le_sai"] = round(i["so_sai"] / i["so_luot"], 3)
-    v = d["cau_hoi_video"]
-    return {"so_hoc_vien": b["so_hoc_vien"], "so_luot": b["so_luot"], "so_sai": b["so_sai"],
-            "du_lieu_it": few, "ideas": [] if few else ideas,
-            "so_y_duoi_nguong": 0 if few else sum(1 for x in b["theo_kc"].values() if x["so_luot"] < MIN_TURNS),
-            "video": v, "all_codes": set(b["theo_kc"])}
+def available_questions():
+    return sorted(_data()["cau_hoi"].keys())
 
 
 @tool
-def class_stats(day: str) -> dict:
-    """class_stats — công cụ tra số liệu lớp đã tổng hợp.
-    Input: ngày học (str, vd "Day05"). Output: dict gồm co_du_lieu (bool); nếu có: so_hoc_vien làm bài ôn,
-    so_luot / so_sai lần trả lời đầu, du_lieu_it (True khi <5 học viên), y_kien_thuc = các ý ≥10 lượt xếp theo
-    tỉ lệ sai giảm dần [{ma_y, so_luot, so_sai, ti_le_sai}] (rỗng khi du_lieu_it), so_y_duoi_nguong,
-    cau_hoi_video {so_cau, so_cau_khong_bam_bai, so_cau_da_cham, so_cau_ngan}. Không có mã học viên.
-    Không tác động ra ngoài (chỉ đọc data/class_stats.json)."""
-    name = normalize_day(day)
-    view = _day_view(day)
-    if view is None:
-        return {"co_du_lieu": False, "day": name, "ngay_co_du_lieu": available_days()}
-    v = view["video"]
-    return {"co_du_lieu": True, "day": name, "so_hoc_vien": view["so_hoc_vien"], "so_luot": view["so_luot"],
-            "so_sai": view["so_sai"], "du_lieu_it": view["du_lieu_it"], "y_kien_thuc": view["ideas"],
-            "so_y_duoi_nguong": view["so_y_duoi_nguong"],
-            "cau_hoi_video": {"so_cau": v["so_cau"], "so_cau_khong_bam_bai": v["so_cau_khong_bam_bai"],
-                              "so_cau_da_cham": v["so_cau_da_cham"], "so_cau_ngan": v["so_cau_ngan_le_20_ky_tu"]}}
+def get_answers(question_id: str) -> dict:
+    """get_answers — đọc câu trả lời mở của lớp cho một câu hỏi.
+    Input: mã câu hỏi (str, vd "Q01").
+    Output: dict {co_cau_hoi (bool), question_id, cau_hoi, kc_code, so_cau_tra_loi,
+    cau_tra_loi: [{id, text}]}; không có câu hỏi thì co_cau_hoi=False kèm danh sách mã đang có.
+    KHÔNG trả nhãn tay (nhan_tay, nhom_nhan_tay) và không có mã học viên.
+    Không tác động ra ngoài (chỉ đọc data/open_answers.json)."""
+    qid = normalize_qid(question_id)
+    q = _data()["cau_hoi"].get(qid)
+    if q is None:
+        return {"co_cau_hoi": False, "question_id": qid, "cau_hoi_dang_co": available_questions()}
+    answers = [{"id": a["id"], "text": a["text"]} for a in q["cau_tra_loi"]]
+    return {"co_cau_hoi": True, "question_id": qid, "cau_hoi": q["cau_hoi"], "kc_code": q.get("kc_code"),
+            "so_cau_tra_loi": len(answers), "cau_tra_loi": answers}
 
 
-def _allowed(view):
-    """Các cặp (x, N) được phép xuất hiện, theo từng mã ý + cặp chung."""
-    if view is None or view["du_lieu_it"]:
-        return {}, set()
-    per_code = {i["ma_y"]: (i["so_sai"], i["so_luot"]) for i in view["ideas"]}
-    general = {(view["so_sai"], view["so_luot"])}
-    v = view["video"]
-    if v["so_cau_da_cham"]:
-        general.add((v["so_cau_khong_bam_bai"], v["so_cau_da_cham"]))
-    return per_code, general
-
-
-def lint_line(day, line):
-    """Lỗi của MỘT dòng (không tính dòng 'Nháp'). Trả danh sách chuỗi; rỗng = dòng đạt.
-    Không phải @tool: agent gọi từng dòng để bỏ riêng điểm sai mà không làm rối trace."""
-    view = _day_view(day)
-    per_code, general = _allowed(view)
-    errs = []
-    if _STUDENT.search(line):
-        errs.append("có mẫu mã học viên (L + 4 số)")
-    codes = [c for c in _CODE.findall(line)]
-    for c in codes:
-        if view is None or c not in view["all_codes"]:
-            errs.append("mã ý kiến thức %s không có trong class_stats %s" % (c, normalize_day(day)))
-        elif c not in per_code:
-            errs.append("ý %s có <%d lượt (hoặc ngày <%d học viên), không được nêu" % (c, MIN_TURNS, MIN_STUDENTS))
-    known = [c for c in codes if c in per_code]
-    # số x/N phải có trong class_stats; dòng nêu ý nào thì số phải đúng của ý đó
-    allowed_here = {per_code[c] for c in known} if known else (general | set(per_code.values()))
-    for a, b in _PAIR.findall(line):
-        if (int(a), int(b)) not in allowed_here:
-            errs.append("số %s/%s không khớp class_stats %s" % (a, b, normalize_day(day)))
-    # phần trăm (nếu có) phải ứng với một cặp được phép
-    ok_pct = {round(100 * x / n) for x, n in (general | set(per_code.values())) if n}
-    for p in _PERCENT.findall(line):
-        val = float(p.replace(",", "."))
-        if not any(abs(val - q) <= 1 for q in ok_pct):
-            errs.append("phần trăm %s%% không ứng với số nào trong class_stats %s" % (p, normalize_day(day)))
-    return errs
-
-
-def _has_draft_line(report):
-    text = unicodedata.normalize("NFC", report).lower()
-    return "nháp" in text
+def _raw_answers(qid):
+    q = _data()["cau_hoi"].get(normalize_qid(qid))
+    return {a["id"]: a["text"] for a in q["cau_tra_loi"]} if q else {}
 
 
 @tool
-def check_report(report: str, day: str) -> list:
+def check_report(report: str, question_id: str) -> list:
     """check_report — kiểm bản nháp báo cáo bằng code (không phải AI).
-    Input: bản nháp (str) + ngày học (str, vd "Day05"). Output: danh sách lỗi (list[str]), rỗng = đạt. Lỗi gồm:
-    số x/N hoặc phần trăm không có trong class_stats của ngày đó, mã ý kiến thức không có / <10 lượt,
-    nêu số theo ý kiến thức khi ngày <5 học viên, có mẫu mã học viên (L + 4 số), thiếu dòng "Nháp".
+    Input: bản nháp (str) + mã câu hỏi (str, vd "Q01").
+    Output: danh sách lỗi (list[str]), rỗng = đạt. Kiểm: (1) mọi câu trích trong ngoặc kép có nguyên văn trong
+    một câu trả lời của câu hỏi đó; (2) mọi id A.. có thật; (3) nếu là báo cáo (có dòng nhóm "x/N (A..)") thì mỗi
+    id đúng 1 nhóm, không thiếu id nào; (4) x = số id của nhóm, N = tổng số câu trả lời; (5) không có mẫu mã học
+    viên L + 4 số; báo cáo phải có chữ "Nháp".
     Không tác động ra ngoài."""
+    text = str(report)
+    answers = _raw_answers(question_id)
     errors = []
-    for n, line in enumerate(str(report).splitlines(), 1):
-        for e in lint_line(day, line):
-            errors.append("dòng %d: %s" % (n, e))
-    if not _has_draft_line(str(report)):
-        errors.append("thiếu dòng \"Nháp\"")
+    if STUDENT_CODE.search(text):
+        errors.append("có mẫu mã học viên (L + 4 số)")
+
+    q = _data()["cau_hoi"].get(normalize_qid(question_id))
+    q_text = norm(q["cau_hoi"]) if q else ""
+    sources = [norm(t) for t in answers.values()]
+    for m in QUOTE.finditer(text):
+        quote = norm(m.group(1) or m.group(2))
+        if quote and quote not in q_text and not any(quote in s for s in sources):
+            errors.append("câu trích không có nguyên văn trong dữ liệu: \"%s\"" % quote[:60])
+
+    for aid in set(re.findall(r"\bA\d+\b", text)):
+        if aid not in answers:
+            errors.append("id %s không có trong câu hỏi %s" % (aid, normalize_qid(question_id)))
+
+    groups = GROUP_LINE.findall(text)
+    if groups:
+        total = len(answers)
+        seen = {}
+        for x, n, ids in groups:
+            idlist = [i.strip() for i in ids.split(",")]
+            if int(x) != len(idlist):
+                errors.append("nhóm ghi %s/%s nhưng có %d id" % (x, n, len(idlist)))
+            if int(n) != total:
+                errors.append("mẫu số %s khác tổng số câu trả lời %d" % (n, total))
+            for i in idlist:
+                seen[i] = seen.get(i, 0) + 1
+        dup = sorted(i for i, c in seen.items() if c > 1)
+        missing = sorted(set(answers) - set(seen), key=lambda s: int(s[1:]))
+        if dup:
+            errors.append("id nằm ở hơn 1 nhóm: %s" % ", ".join(dup))
+        if missing:
+            errors.append("id chưa xếp nhóm: %s" % ", ".join(missing))
+        if "nháp" not in unicodedata.normalize("NFC", text).lower():
+            errors.append("thiếu dòng \"Nháp\"")
     return errors
