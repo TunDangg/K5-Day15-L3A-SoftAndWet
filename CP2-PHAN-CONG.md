@@ -45,9 +45,9 @@
 
 ## Nguyễn Đức Trọng · bản chạy thử
 
-- [ ] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
-- [ ] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
-- [ ] `python run.py` đi hết luồng với AI giả
+- [x] `codebase/tools.py`: `class_stats(day)` đọc `data/class_stats.json`, áp quy tắc: <5 học viên → `du_lieu_it`; chỉ trả ý ≥10 lượt, xếp theo tỉ lệ sai. `check_report(report, day)` kiểm số x/N, mã ý, mẫu `L` + 4 số, dòng "Nháp". Docstring đủ 4 ý
+- [x] `codebase/agent.py`: tách ngày từ input (`[DayNN]`) → thiếu thì hỏi lại → `class_stats` → model viết nháp → `check_report`; viết `SYSTEM` prompt
+- [x] `python run.py` đi hết luồng với AI giả
 - [ ] Lấy API key, gọi thử được 1 câu tối nay. `.env` **không commit**
 
 ## Nguyễn Văn Huy · metric, eval
