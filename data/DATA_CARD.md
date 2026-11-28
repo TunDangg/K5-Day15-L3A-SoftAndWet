@@ -23,7 +23,7 @@
 | Từ đâu | **học viên L3 thật**, ngoài nhóm, qua form / Discord, ẩn danh, đã đồng ý cho nhóm dùng để thử sản phẩm. Hai câu hỏi dùng lại đúng chữ Q01 (→ Q13) và Q05 (→ Q14) |
 | Xử lý những bước gì | chép nguyên văn câu trả lời, không có tên hay mã học viên, đánh id `A1…`; gắn `nhan_tay` dùng lại bộ nhóm của Q01 / Q05 |
 | Số dòng / số đoạn | 2 câu hỏi · 10 câu trả lời (5 + 5) |
-| Phiên bản / ngày lấy | v1, thu 28/11/2026 · người gắn nhãn: Huy · người kiểm nhãn: *chưa* |
+| Phiên bản / ngày lấy | v1, thu 28/11/2026 · người gắn nhãn: Huy · người kiểm nhãn: Phạm Quỳnh Anh (28/11: kiểm 10/10 nhãn, giữ dung cho Q13 A5 vì nêu "quy tắc rõ ràng, ít ngoại lệ" và Q14 A5 vì nêu rõ "tách biệt suy luận và thực thi") |
 | Nhãn | **thật** |
 | Giới hạn | ít câu (5 mỗi câu hỏi, vừa đủ ngưỡng phân nhóm) · cả 10 câu đều được gắn `dung`, nên chỉ kiểm được kịch bản "cả lớp đúng", chưa kiểm được việc tách nhóm hiểu sai trên câu thật · Q13 A5 ("bài toán đơn giản…") và Q14 A5 ("nền tảng đang vận hành mô hình…") là câu nghiêng, cần người kiểm nhãn xem lại |
 
