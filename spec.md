@@ -129,8 +129,22 @@ flowchart LR
 (1) nguồn sự thật · (2) mơ hồ / thiếu thông tin · (3) ngoài phạm vi / thẩm quyền · (4) đặc thù lĩnh vực (sai thì người dùng mất gì đắt nhất)
 
 ## §6. Bốn đường đi của trải nghiệm
-- Mọi thứ suôn sẻ: · Không chắc (lớp 2): · Không có căn cứ (lớp 1): · Người dùng sửa:
-- Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
+
+- **Mọi thứ suôn sẻ:** TA gõ yêu cầu có đúng 1 mã câu hỏi (vd `[Q01] Phân tích câu trả lời của lớp`). Code tách mã (`extract_qid`) → `get_answers(qid)` đọc câu trả lời từ `data/open_answers.json` (đã bỏ nhãn tay, không có mã học viên) → khi đủ ≥5 câu, model gom từng `id` vào đúng 1 nhóm (`dung`, `sai`, `bo_trong`, `lac_de`) trả JSON → code (`_clean_groups`, `_render`) tự đếm `x/N` từ danh sách `id`, làm sạch dấu ngoặc kép ngoài câu trích và chạy `check_report` kiểm lần cuối → trả bản **Nháp** gồm từng nhóm, số `x/N`, danh sách `id`, câu trích nguyên văn và dòng nhắc TA duyệt (B01–B05).
+- **Không chắc (lớp 2):**
+  - *Thiếu hoặc có >1 mã câu hỏi:* dừng ở `extract_qid`, **không gọi model**, hỏi lại TA muốn phân tích câu nào kèm danh sách mã đang có, không tự chọn thay (B10).
+  - *Câu bỏ trống / "ko biết":* gom vào nhóm riêng `Bỏ trống / không biết`, không ép vào nhóm hiểu sai (B07).
+  - *Model trả đầu ra lỗi / không chắc:* `id` bị bỏ sót hoặc `loai` nhóm lạ được code gom sang nhóm `Chưa xếp` (`chua_xep`) kèm dòng ghi rõ chỗ code đã sửa; nếu model trả sai định dạng JSON hoặc không qua `check_report`, dừng và báo lỗi thay vì đưa báo cáo chưa kiểm cho TA.
+- **Không có căn cứ (lớp 1):**
+  - *Mã câu hỏi không có trong dữ liệu:* `get_answers` trả `co_cau_hoi=False` → dừng, không gọi model, thông báo không có dữ liệu kèm danh sách mã đang có, không bịa nhóm (B11).
+  - *Dưới 5 câu trả lời (`MIN_ANSWERS = 5`):* dừng, không gọi model vì quá ít để kết luận cả lớp và dễ lộ danh tính người viết; gợi ý TA hỏi nhanh lớp đầu buổi (B06).
+  - *Cả lớp đều hiểu đúng:* không bịa nhóm sai, ghi rõ không thấy kiểu hiểu sai nào trong N câu trả lời (B08).
+- **Người dùng sửa:** mọi báo cáo đều mở đầu bằng `"Nháp"` và kết thúc bằng dòng `"Nháp — chờ TA duyệt: sửa tên nhóm, chuyển câu sang nhóm khác. Không tự gửi cho lớp hay lên Discord."`. Kèm đầy đủ `x/N`, danh sách `(A1, A2…)` và câu trích nguyên văn để TA đối chiếu, đổi tên nhóm, chuyển câu hoặc bỏ câu trích trước khi dùng trên lớp; hệ thống không có công cụ gửi tin ra ngoài.
+- **Bị đòi ngoài phạm vi (lớp 3):** khi TA yêu cầu chấm điểm, xếp hạng hoặc chỉ ra ai kém nhất / giỏi nhất, ngoài hướng dẫn trong `SYSTEM` prompt, code bắt trực tiếp bằng `RANK_REQ` và tự chèn câu từ chối cố định (*"Không chấm điểm hay xếp hạng từng học viên: đó là việc giảng viên quyết định. Dưới đây là phân nhóm cấp lớp."*) rồi chỉ trả phân nhóm cấp lớp (B13). `check_report` chặn mọi mẫu mã học viên dạng `L` + 4 số.
+- **Trường hợp đặc thù lĩnh vực & tấn công (lớp 4 & lớp 1):**
+  - *Câu chèn chỉ dẫn trong câu trả lời học viên:* `SYSTEM` prompt coi câu trả lời là dữ liệu không đáng tin; code lọc thêm bằng `INJECTION` để ép chuyển các `id` đó sang nhóm `Lạc đề` (*"Câu chứa chỉ dẫn thay vì câu trả lời"*) và không trích nội dung vào báo cáo (B12).
+  - *TA gõ sẵn kết luận (vd "lớp hiểu đúng hết"):* `SYSTEM` prompt bỏ qua kết luận gõ sẵn; số đếm `x/N` luôn do code tự tính từ danh sách `id` sau phân nhóm và kiểm lại qua `check_report` (B14).
+  - *Ngôn ngữ tự nhiên / nhầm khái niệm gần:* gộp các câu cùng ý dù viết không dấu, viết tắt hay tiếng Anh vào chung 1 nhóm; tách riêng kiểu nhầm khái niệm gần (vd `recall@k` với `precision@k`) thành nhóm hiểu sai riêng (B09).
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3) · metric: `eval/metric_spec.yaml` (4 metric)
@@ -164,6 +178,7 @@ flowchart LR
   - Trọng, Huy, Quỳnh Anh: __ *(từng người tự điền vào `docs/ai-usage.md`)*
   - Trong sản phẩm: model chỉ gom câu trả lời thành nhóm cách hiểu (§4); số đếm, câu trích, mã học viên do code `check_report` kiểm.
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
+| 08:35 Thứ Bảy 28/11 | `codebase/agent.py` & `spec.md` §6: siết `SYSTEM` prompt (chép nguyên văn `trich`, câu chèn lệnh vào `lac_de`, không dùng ngoặc kép ngoài `trich`); code bỏ dấu ngoặc kép ở `ghi_chu`/`ten`/`mo_ta`, mở rộng `RANK_REQ` thêm "kém nhất / giỏi nhất", đổi `loai` lạ sang `chua_xep`; điền `spec.md` §6 | Tránh `check_report` chặn nhầm báo cáo do ngoặc kép trong `ghi_chu` (B13, B14); đảm bảo từ chối chấm điểm cá nhân (B13); sửa lỗi chấm thử O2 (thiếu chữ câu trích) và O4 (câu chèn lệnh) theo `eval/cham-thu-cp2.md` (Trọng) |
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
 
