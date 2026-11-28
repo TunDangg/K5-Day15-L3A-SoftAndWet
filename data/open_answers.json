@@ -1,5 +1,5 @@
 {
- "nhan": "synthetic — nhóm tự viết lúc 19:10 27/11 để chạy thử; KHÔNG phải câu trả lời thật của học viên, KHÔNG phải bằng chứng pain. Công cụ get_answers không trả trường nhan_tay / nhom_nhan_tay (chỉ dùng để chấm).",
+ "nhan": "Q01–Q12: synthetic — nhóm tự viết lúc 19:10 27/11 để chạy thử; KHÔNG phải câu trả lời thật của học viên, KHÔNG phải bằng chứng pain. Q13–Q14: câu trả lời THẬT của học viên L3 (form / Discord, ẩn danh, có đồng ý, 28/11), xem trường nguon. Công cụ get_answers không trả trường nhan_tay / nhom_nhan_tay (chỉ dùng để chấm).",
  "cau_hoi": {
   "Q01": {
    "cau_hoi": "Khi nào nên dùng workflow cố định thay vì agent? Giải thích bằng lời của bạn.",
@@ -419,6 +419,81 @@
     {
      "id": "A6",
      "text": "tóm trên một trang: người dùng, vấn đề, giải pháp, số đo thành công",
+     "nhan_tay": "dung"
+    }
+   ]
+  },
+  "Q13": {
+   "cau_hoi": "Khi nào nên dùng workflow cố định thay vì agent? Giải thích bằng lời của bạn.",
+   "kc_code": "workflow_vs_agent_control",
+   "nguon": "câu trả lời thật, học viên L3, form / Discord, ẩn danh, có đồng ý, thu 28/11/2026",
+   "nhom_nhan_tay": {
+    "dung": "Chọn theo việc có đường đi cố định hay không",
+    "sai_agent_luon_tot": "Cho rằng agent luôn tốt hơn",
+    "sai_tieu_chi_so_buoc": "Lấy số bước làm tiêu chí",
+    "lac_de": "Không trả lời câu hỏi"
+   },
+   "cau_tra_loi": [
+    {
+     "id": "A1",
+     "text": "Nên dùng workflow cố định thay vì agent khi quy trình đã rõ ràng, ổn định và ít thay đổi. Trong trường hợp này, các bước thực hiện đã được xác định trước nên chỉ cần hệ thống làm tuần tự theo kịch bản có sẵn là đủ.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A2",
+     "text": "Workflow cố định phù hợp với những công việc lặp đi lặp lại như xử lý đơn hàng, gửi email tự động hoặc tạo báo cáo định kỳ. Vì luồng thực hiện luôn giống nhau nên không cần đến khả năng suy luận linh hoạt của agent. Điều này giúp tiết kiệm tài nguyên và thời gian.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A3",
+     "text": "Nếu bạn biết chính xác đầu vào sẽ được xử lý như thế nào và kết quả mong muốn là gì, workflow cố định thường là lựa chọn tốt hơn. Nó mang lại kết quả ổn định và dễ dự đoán hơn so với agent. Agent chỉ cần thiết khi có nhiều tình huống cần thích ứng.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A4",
+     "text": "Workflow cố định nên được sử dụng khi tính nhất quán và tuân thủ quy trình là ưu tiên hàng đầu. Mỗi bước đều được định nghĩa sẵn nên việc kiểm thử, giám sát và bảo trì cũng dễ dàng hơn. Đây là lựa chọn phù hợp cho các quy trình nghiệp vụ chuẩn hóa.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A5",
+     "text": "Hãy chọn workflow cố định khi bài toán đơn giản, có quy tắc rõ ràng và ít ngoại lệ. Trong trường hợp đó, việc dùng agent có thể làm tăng độ phức tạp không cần thiết. Workflow sẽ hiệu quả hơn về chi phí, tốc độ và độ tin cậy.",
+     "nhan_tay": "dung"
+    }
+   ]
+  },
+  "Q14": {
+   "cau_hoi": "Trong tool calling, ai thực sự chạy công cụ (ví dụ gọi API thời tiết)?",
+   "kc_code": "tool_calling_flow",
+   "nguon": "câu trả lời thật, học viên L3, form / Discord, ẩn danh, có đồng ý, thu 28/11/2026",
+   "nhom_nhan_tay": {
+    "dung": "Ứng dụng chạy công cụ, model chỉ đề xuất lời gọi",
+    "sai_model_tu_chay": "Cho rằng model tự chạy công cụ",
+    "lac_de": "Không trả lời câu hỏi"
+   },
+   "cau_tra_loi": [
+    {
+     "id": "A1",
+     "text": "Trong tool calling, công cụ không được chạy bởi LLM mà bởi hệ thống hoặc ứng dụng tích hợp với LLM. LLM chỉ quyết định nên gọi công cụ nào và truyền tham số gì. Sau đó, ứng dụng sẽ thực hiện lệnh gọi API và trả kết quả về cho LLM.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A2",
+     "text": "Người thực sự chạy công cụ là tầng thực thi (runtime) của ứng dụng. Khi LLM yêu cầu gọi API thời tiết, runtime sẽ gửi request đến dịch vụ thời tiết, nhận dữ liệu và chuyển lại cho LLM để tạo câu trả lời.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A3",
+     "text": "LLM giống như một người lập kế hoạch, còn hệ thống phía sau là người thực hiện công việc. Ví dụ, LLM đề xuất gọi API thời tiết ở Hà Nội, nhưng chính backend hoặc agent framework mới là thành phần gửi yêu cầu đến API đó.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A4",
+     "text": "Trong cơ chế tool calling, LLM không có quyền trực tiếp truy cập API. Nó chỉ trả về một lệnh gọi công cụ có cấu trúc. Ứng dụng chủ quản sẽ đọc lệnh này, thực thi công cụ tương ứng và gửi kết quả ngược lại cho LLM.",
+     "nhan_tay": "dung"
+    },
+    {
+     "id": "A5",
+     "text": "Khi sử dụng tool calling, việc gọi API thời tiết thực tế được thực hiện bởi chương trình hoặc nền tảng đang vận hành mô hình AI. LLM chỉ đóng vai trò xác định khi nào cần dùng công cụ và cách sử dụng công cụ đó. Điều này giúp tách biệt phần suy luận và phần thực thi.",
      "nhan_tay": "dung"
     }
    ]

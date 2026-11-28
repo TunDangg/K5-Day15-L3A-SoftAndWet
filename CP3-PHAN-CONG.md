@@ -30,7 +30,7 @@
 ## Link nộp (ai có thì điền thẳng vào đây)
 
 - Video 30 giây (Trọng): __
-- Run ID lượt 1 + x/N (Huy): __
+- Run ID lượt 1 + x/N (Huy): run-1@20261128-005348 · 8/14 (57%)
 - `evidence/summary.md`: https://github.com/TunDangg/K5-Day15-L3A-SoftAndWet/blob/main/evidence/summary.md
 - `spec.md`: https://github.com/TunDangg/K5-Day15-L3A-SoftAndWet/blob/main/spec.md
 
@@ -51,12 +51,12 @@
 ## Nguyễn Văn Huy · câu trả lời thật → câu thử → lượt 1 → kết quả *(một mạch, không chờ ai)*
 
 - [ ] **Ngay tối nay:** tự đăng 1–2 câu hỏi mở lên Discord / form ẩn danh (vd Q01 "Khi nào nên dùng workflow cố định thay vì agent?", Q05 "Trong tool calling, ai thực sự chạy công cụ?"), ghi rõ "nhóm dùng câu trả lời ẩn danh để thử sản phẩm, không ghi tên", xin ≥5–8 câu trả lời / câu hỏi
-- [ ] Chấm cột **Huy** trong `eval/cham-thu-cp2.md` (chấm riêng, không xem cột Quỳnh Anh; Quỳnh Anh chấm cột của mình bất cứ lúc nào — không cần ngồi cùng)
-- [ ] **Sáng:** đưa câu trả lời thật vào `data/open_answers.json` thành câu hỏi mới (`Q13`, `Q14`…): bỏ tên / mã, id `A1…`, gắn `nhan_tay`; ghi dataset mới vào `data/DATA_CARD.md` (nhãn **thật**, người gắn nhãn: Huy, người kiểm: *chưa* — Quỳnh Anh kiểm sau nếu kịp)
-- [ ] **Thêm** câu thử lên 20–24 câu, mục tiêu **≥7 câu nguồn `nguoi_dung`** (mỗi bộ câu trả lời thật làm 2–3 câu: phân tích · đòi chấm điểm cá nhân · kết luận gõ sẵn); không sửa B01–B14 → `python run.py check`
-- [ ] Ghi vào `eval/report.md` **trước khi chấm**: cách đọc "câu trích" thống nhất (tên câu hỏi trong ngoặc kép không tính là câu trích)
-- [ ] **08:15 đóng băng** → `python run.py eval` → điền cột `pass` theo `metric_spec.yaml` → `python run.py score eval/run-1.csv`
-- [ ] **Trước 09:00:** điền `eval/README.md` mục 5 (run ID, model, x/N) + dòng kết quả `spec.md` §7 (`git pull origin main` trước, **không đụng dòng chuẩn "đạt"**) + mục "Link nộp" ở trên; tóm lỗi chính vào `eval/report.md`
+- [x] Chấm cột **Huy** trong `eval/cham-thu-cp2.md` (chấm riêng, không xem cột Quỳnh Anh; Quỳnh Anh chấm cột của mình bất cứ lúc nào — không cần ngồi cùng)
+- [x] **Sáng:** đưa câu trả lời thật vào `data/open_answers.json` thành câu hỏi mới (`Q13`, `Q14`…): bỏ tên / mã, id `A1…`, gắn `nhan_tay`; ghi dataset mới vào `data/DATA_CARD.md` (nhãn **thật**, người gắn nhãn: Huy, người kiểm: *chưa* — Quỳnh Anh kiểm sau nếu kịp)
+- [x] **Thêm** câu thử lên 20–24 câu, mục tiêu **≥7 câu nguồn `nguoi_dung`** (mỗi bộ câu trả lời thật làm 2–3 câu: phân tích · đòi chấm điểm cá nhân · kết luận gõ sẵn); không sửa B01–B14 → `python run.py check`
+- [x] Ghi vào `eval/report.md` **trước khi chấm**: cách đọc "câu trích" thống nhất (tên câu hỏi trong ngoặc kép không tính là câu trích)
+- [x] **08:15 đóng băng** → `python run.py eval` → điền cột `pass` theo `metric_spec.yaml` → `python run.py score eval/run-1.csv`
+- [x] **Trước 09:00:** điền `eval/README.md` mục 5 (run ID, model, x/N) + dòng kết quả `spec.md` §7 (`git pull origin main` trước, **không đụng dòng chuẩn "đạt"**) + mục "Link nộp" ở trên; tóm lỗi chính vào `eval/report.md`
 - [ ] Push + merge trước 09:30
 
 ## Phạm Quỳnh Anh · bằng chứng *(một mạch, không chờ ai)*

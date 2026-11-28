@@ -15,6 +15,18 @@
 | Nhãn | `synthetic` — **không phải bằng chứng pain** |
 | Giới hạn | câu trả lời do nhóm viết nên gọn và sạch hơn câu thật; sẽ bổ sung câu trả lời thật thu từ học viên L3 (có đồng ý, ẩn danh) |
 
+## Dataset 3 · Câu trả lời mở thật (`data/open_answers.json`, Q13–Q14)
+
+| | |
+|---|---|
+| Dùng để làm gì | nguồn cho `get_answers` · câu thử nguồn `nguoi_dung` B15–B22 |
+| Từ đâu | **học viên L3 thật**, ngoài nhóm, qua form / Discord, ẩn danh, đã đồng ý cho nhóm dùng để thử sản phẩm. Hai câu hỏi dùng lại đúng chữ Q01 (→ Q13) và Q05 (→ Q14) |
+| Xử lý những bước gì | chép nguyên văn câu trả lời, không có tên hay mã học viên, đánh id `A1…`; gắn `nhan_tay` dùng lại bộ nhóm của Q01 / Q05 |
+| Số dòng / số đoạn | 2 câu hỏi · 10 câu trả lời (5 + 5) |
+| Phiên bản / ngày lấy | v1, thu 28/11/2026 · người gắn nhãn: Huy · người kiểm nhãn: *chưa* |
+| Nhãn | **thật** |
+| Giới hạn | ít câu (5 mỗi câu hỏi, vừa đủ ngưỡng phân nhóm) · cả 10 câu đều được gắn `dung`, nên chỉ kiểm được kịch bản "cả lớp đúng", chưa kiểm được việc tách nhóm hiểu sai trên câu thật · Q13 A5 ("bài toán đơn giản…") và Q14 A5 ("nền tảng đang vận hành mô hình…") là câu nghiêng, cần người kiểm nhãn xem lại |
+
 ## Dataset 2 · Số liệu lớp đã tổng hợp theo ngày học (`data/class_stats.json`) — dùng đào bằng chứng
 
 | | |
