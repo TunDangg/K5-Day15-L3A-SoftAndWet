@@ -1,0 +1,16 @@
+# Reflection — Nguyễn Đức Trọng
+
+1. Vai trò + phần mình làm (trỏ tới file / commit):
+- Phụ trách bản chạy thử, nối model thật, mô phỏng chi phí và quay video demo dự phòng cho lát cắt Track A · A1 (gom nhóm câu trả lời mở cho TA / lab coach).
+- **CP2–CP3:** xây dựng công cụ đọc/kiểm (`codebase/tools.py`) và luồng xử lý (`codebase/agent.py`); nối Gemini API (`gemini-3.5-flash-lite`) kèm cơ chế tự thử lại khi `429`/`5xx`/timeout trong `codebase/ai.py`; siết `SYSTEM` prompt và thêm 3 chốt chặn bằng code trong `codebase/agent.py` (lọc dấu ngoặc kép ở `ghi_chu`/`ten`/`mo_ta`, mở rộng `RANK_REQ` từ chối chấm điểm cá nhân, gán `loai` lạ về `chua_xep`); viết `spec.md` §6 và quay video demo 30 giây (`[<mã commit CP2/CP3>]`).
+- **CP4:** xây dựng 3 persona TA / lab coach và bảng giá 2 model trong `cost/personas.yaml`, chạy mô phỏng 50 phiên thật (`cost/simulate-1.csv`, `traces/simulate-1.jsonl` — 0 lỗi, $0.0017/task thành công ≈ 44 ₫ ở kịch bản cơ sở 30 TA), viết `cost/cost-estimate.md` và quay video demo dự phòng (`[<mã commit CP4>]`).
+
+2. AI hỗ trợ mình thế nào (việc gì, công cụ gì, chỗ nào phải sửa lại output AI):
+- Dùng **Gemini** để hỗ trợ gỡ lỗi kết nối API, viết script đo tốc độ phản hồi các model, gợi ý cơ chế retry/backoff cho `codebase/ai.py`, rà soát điều kiện chặn lỗi trong `codebase/agent.py` và lên khung cho `spec.md` §6, `cost/personas.yaml`, `cost/cost-estimate.md`.
+- **Chỗ phải tự kiểm tra và sửa lại output AI:** ban đầu AI gợi ý dùng `gemini-3.8-flash` / `gemini-3.5-flash` và tăng `timeout=120s`, nhưng chạy thực tế vẫn dính `HTTP 503` và `TimeoutError`; mình phải chạy script đo trực tiếp 5 model mới thấy dòng `gemini-2.5-*` báo `404` và chốt sang `gemini-3.5-flash-lite` (~1,1 giây/lượt).
+- Ngoài ra, khi chép sửa từng hàm trong `codebase/ai.py` từng bị định nghĩa lặp `call_gemini` (làm mất `responseMimeType: application/json`), phải rà lại toàn bộ file; ở bản nháp `cost/personas.yaml` và `cost/cost-estimate.md`, AI ước tính 30 TA (4/12/20 lần/tháng) hơi rộng hơn con số 20 TA (4/10/15 lần) nhóm chốt ở `spec.md` §2 nên mình phải đối chiếu lại `spec.md`, bổ sung ghi chú biên ước tính và điền đúng `run ID` cùng số impact thật (180 phút/TA/tháng).
+
+3. Một câu thử trượt của nhóm và mình học được gì từ nó:
+- **Câu thử trượt:** `B08` (lớp đều hiểu đúng nhưng ở lượt 1 `run-1@20261128-005348` model vẫn cố tạo thêm nhóm hiểu sai; cùng nhóm `B01, B03, B04, B05` bị tách một kiểu hiểu sai thành nhiều nhóm nhỏ khiến lượt 1 chỉ đạt 8/14 = 57%, nhóm câu `thuong` chỉ qua 1/5).
+- **Bài học 1 — Không tin vào cảm giác khi test tay vài câu:** chạy `eval --try` thấy bản nháp trông "hợp lý" vẫn che giấu thiên kiến cố tìm lỗi sai của LLM; chỉ khi chấm bằng bộ câu thử đủ 4 lớp và `metric_spec.yaml` mới thấy rõ lỗi lặp lại để sửa trúng đích (sau khi nhóm siết prompt và sửa chốt chặn code, lượt 2 `run-2@20261128-104820` tăng lên 18/22 = 82%).
+- **Bài học 2 — Tách rõ việc của model và việc của code:** giao model phần phân loại ngữ nghĩa, còn các ràng buộc cứng (đếm `x/N`, kiểm câu trích nguyên văn trong `check_report`, lọc dấu ngoặc kép ở `ghi_chu`, chặn câu chèn chỉ dẫn bằng `INJECTION`, từ chối chấm điểm cá nhân bằng `RANK_REQ`) phải khóa bằng code — đồng thời tỷ lệ đạt ảnh hưởng thẳng tới chi phí mỗi task thành công khi chạy mô phỏng.
