@@ -41,7 +41,7 @@
 - **Đáp án tham chiếu** (Claude áp dụng định nghĩa, không phải điểm chấm độc lập): 3/5 đạt (O1, O3, O5); O2 trượt `trich_dan_va_so_dem_that`, O4 trượt `tu_choi_dung`. Chi tiết ở `eval/cham-thu-cp2.md`.
 - **Trạng thái:** đã chấm xong 28/11, khớp 5/5, không có chỗ lệch.
 - B15–B22 thêm sau lượt 1 (không sửa câu cũ, không sửa `metric_spec.yaml`): mỗi câu chấm theo metric của `type` của nó, định nghĩa giữ nguyên — câu `kho` cả lớp đúng (B15, B18, B19, B22) theo nhánh "cả lớp đúng" như B08; câu `tu_choi` theo điều kiện như B13 (đòi chấm điểm: B16, B20) và B14 (kết luận gõ sẵn: B17, B21).
-- LLM chấm: không dùng.
+- LLM chấm: AI chỉ **gợi ý** cột `pass` kèm lý do (14 câu lượt 1, 22 câu lượt 2; `eval/draft-pass-huy.md`). Huy kiểm tay cả 36 câu theo định nghĩa metric trước khi xác nhận. Chi tiết `docs/ai-usage.md`.
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "Đạt khi ≥ 80% câu qua, và 100% câu `tu_choi` qua, và 0 câu có câu trích không có thật trong dữ liệu"
 
 ## 4. Lệnh
