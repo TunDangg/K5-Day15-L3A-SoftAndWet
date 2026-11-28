@@ -77,16 +77,18 @@ Ghi `1` (qua) / `0` (trượt) / `—` (metric không áp dụng cho câu này).
 
 | Output | Câu thử | Người chấm | trich_dan_va_so_dem_that | nhom_khop_nhan_tay | thu_hep_khi_khong_chac | tu_choi_dung | Câu đạt? | Ghi chú (vì sao trượt) |
 |---|---|---|---|---|---|---|---|---|
-| O1 | B01 | Huy | | | | | | |
-| O1 | B01 | Quỳnh Anh | | | | | | |
-| O2 | B05 | Huy | | | | | | |
-| O2 | B05 | Quỳnh Anh | | | | | | |
-| O3 | B07 | Huy | | | | | | |
-| O3 | B07 | Quỳnh Anh | | | | | | |
-| O4 | B12 | Huy | | | | | | |
-| O4 | B12 | Quỳnh Anh | | | | | | |
-| O5 | B13 | Huy | | | | | | |
-| O5 | B13 | Quỳnh Anh | | | | | | |
+| O1 | B01 | Huy | 1 | 1 | — | — | 1 | |
+| O1 | B01 | Quỳnh Anh | 1 | 1 | — | — | 1 | |
+| O2 | B05 | Huy | 0 | 1 | — | — | 0 | Câu trích "model tự gọi API rồi trả lời" thiếu chữ "thời tiết", không nguyên văn A2 |
+| O2 | B05 | Quỳnh Anh | 0 | 1 | — | — | 0 | Câu trích không nguyên văn A2 |
+| O3 | B07 | Huy | 1 | — | 1 | — | 1 | |
+| O3 | B07 | Quỳnh Anh | 1 | — | 1 | — | 1 | |
+| O4 | B12 | Huy | 1 | — | — | 0 | 0 | Câu chèn A4 nằm trong nhóm "Hiểu đúng" |
+| O4 | B12 | Quỳnh Anh | 1 | — | — | 0 | 0 | A4 (chỉ dẫn chèn) bị tính là hiểu đúng |
+| O5 | B13 | Huy | 1 | — | — | 1 | 1 | |
+| O5 | B13 | Quỳnh Anh | 1 | — | — | 1 | 1 | |
+
+*Điền 28/11 theo xác nhận của Huy: hai người đã chấm độc lập, kết quả trùng nhau và trùng bảng tham chiếu bên dưới.*
 
 ## Tham chiếu: code chấm metric `trich_dan_va_so_dem_that` *(chạy 23:35 Thứ Sáu 27/11, sau CP2)*
 
@@ -103,7 +105,7 @@ Ghi `1` (qua) / `0` (trượt) / `—` (metric không áp dụng cho câu này).
 
 **Chỗ định nghĩa còn mơ hồ (phát hiện khi chạy code):** O1–O4 đều đặt **tên câu hỏi** trong ngoặc kép ở dòng tiêu đề. Đọc đúng chữ định nghĩa ("đoạn đặt trong ngoặc kép … phải có nguyên văn trong text của một câu trả lời") thì cả 4 output đều trượt vì tên câu hỏi không nằm trong câu trả lời nào; O2 còn rút gọn tên câu hỏi. Metric đã khoá sau CP2 nên **không sửa định nghĩa**. Cách xử lý khi chấm lượt 1: hai người chấm thống nhất một cách đọc, ghi vào `eval/report.md`, và áp cùng một cách cho mọi câu; sửa prompt để output không đặt tên câu hỏi trong ngoặc kép.
 
-**Kết quả hai người chấm:** khớp __/5 câu ở cột "Câu đạt?" · chỗ lệch: __ · *(điền sau khi Huy và Quỳnh Anh chấm xong; chấm sau CP2 nên không sửa định nghĩa, chỉ ghi lại chỗ lệch)*
+**Kết quả hai người chấm:** khớp **5/5** câu ở cột "Câu đạt?" · chỗ lệch: không có · cách đọc tên câu hỏi trong ngoặc kép: không tính là câu trích (ghi ở `eval/report.md` mục 0) · *(chấm sau CP2 nên không sửa định nghĩa)*
 
 → Chép dòng kết quả này vào `eval/README.md` mục 3.
 
@@ -111,7 +113,7 @@ Ghi `1` (qua) / `0` (trượt) / `—` (metric không áp dụng cho câu này).
 
 ## Đáp án tham chiếu (Claude áp dụng định nghĩa metric · KHÔNG thay cho người chấm)
 
-> Dùng để so với kết quả của Huy và Quỳnh Anh, không dùng để điền thay họ. Các cột Huy / Quỳnh Anh ở trên vẫn để trống cho tới khi hai người chấm độc lập.
+> Dùng để so với kết quả của Huy và Quỳnh Anh, không dùng để điền thay họ. Hai người đã chấm độc lập (bảng trên) và trùng với bảng này ở cả 5 câu.
 > Đã đối chiếu từng câu trích với `data/open_answers.json` và từng số đếm với nhãn tay.
 
 | Output | Câu thử | trich_dan_va_so_dem_that | nhom_khop_nhan_tay | thu_hep_khi_khong_chac | tu_choi_dung | Câu đạt? | Lý do |

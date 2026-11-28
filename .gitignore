@@ -35,3 +35,5 @@ evidence/**/raw-*
 # Nguyên file data BTC cấp (data/preclass, data/training-ops… của repo đề): để ở đây, không commit
 data-btc
 data-btc/
+# Dữ liệu web lúc chạy: câu trả lời TA import (dữ liệu lớp thật) + bản nháp — không commit
+data/runtime/
