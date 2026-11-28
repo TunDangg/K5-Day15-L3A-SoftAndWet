@@ -67,7 +67,7 @@
 ## Số liệu nộp (ai có thì điền thẳng vào đây)
 
 - Lượt 1: run-1@20261128-005348 · 8/14 (57%) · gemini-3.5-flash-lite
-- Lượt 2 (Huy): __
+- Lượt 2 (Huy): run-2@20261128-104820 · gemini-3.5-flash-lite · **18/22 (82%)** · thuong 3/5 · kho 8/10 · tu_choi 7/7 · **chỉ 14 câu cũ: 10/14 (71%)**, lượt 1 là 8/14 (57%) · *(pass Huy xác nhận 28/11)*
 - Chi phí / task thành công, kịch bản cơ sở + model (Trọng): __
 - Bảng 3 kịch bản × 2 model (Trọng): xem `cost/cost-estimate.md`
 - Link video demo dự phòng (Trọng): __
@@ -75,12 +75,12 @@
 
 ## Nguyễn Văn Huy · lượt 2 *(một mạch: đọc lỗi → sửa → chạy → chấm → báo cáo)*
 
-- [ ] Từ `eval/report.md` (lượt 1), chọn **một nhóm lỗi đau nhất với TA**. Ứng viên: tách một kiểu hiểu sai thành nhiều nhóm (B01, B03, B04, B05) · tạo nhóm hiểu sai khi cả lớp đúng (B08)
-- [ ] Sửa `SYSTEM` prompt (và nếu cần chỗ nhỏ trong `agent.py`) **nhắm đúng nhóm lỗi đó**; kèm 3 chỗ còn treo từ CP3 nếu chưa ai làm: bỏ ngoặc kép trong `ghi_chu` · câu từ chối cố định khi bị đòi chấm điểm · `loai` lạ → `chua_xep`. **Không** chép ví dụ trong bộ câu thử vào prompt
+- [x] Từ `eval/report.md` (lượt 1), chọn **một nhóm lỗi đau nhất với TA** *(chọn nhóm A: tách nhóm, ghi ở `report.md` mục 3)*. Ứng viên: tách một kiểu hiểu sai thành nhiều nhóm (B01, B03, B04, B05) · tạo nhóm hiểu sai khi cả lớp đúng (B08)
+- [x] Sửa `SYSTEM` prompt (và nếu cần chỗ nhỏ trong `agent.py`) **nhắm đúng nhóm lỗi đó**; kèm 3 chỗ còn treo từ CP3 nếu chưa ai làm: bỏ ngoặc kép trong `ghi_chu` · câu từ chối cố định khi bị đòi chấm điểm · `loai` lạ → `chua_xep`. **Không** chép ví dụ trong bộ câu thử vào prompt
 - [ ] Thử bằng `python run.py eval --try` → merge **trước 11:00**
-- [ ] **11:00–11:30:** `python run.py eval` (đủ 22 câu) → `eval/run-2.csv` + `traces/run-2.jsonl`
-- [ ] Chấm cột `pass` theo `metric_spec.yaml` (quy ước "câu trích" ở `eval/report.md` mục 0) → `python run.py score eval/run-2.csv` → **dán x/N + theo type vào "Số liệu nộp" trước 12:00**
-- [ ] `eval/report.md` **trước 12:45**: bảng lượt 1 và lượt 2 so với chuẩn "đạt" · **≥3 lỗi** (input · output · vì sao sai) · đã sửa gì · lỗi còn lại · ghi rõ lượt 1 chạy 14 câu, lượt 2 chạy 22 câu
+- [x] **11:00–11:30:** `python run.py eval` (đủ 22 câu) → `eval/run-2.csv` + `traces/run-2.jsonl`
+- [x] Chấm cột `pass` theo `metric_spec.yaml` (quy ước "câu trích" ở `eval/report.md` mục 0) → `python run.py score eval/run-2.csv` → **dán x/N + theo type vào "Số liệu nộp" trước 12:00**
+- [x] `eval/report.md` **trước 12:45**: bảng lượt 1 và lượt 2 so với chuẩn "đạt" · **≥3 lỗi** (input · output · vì sao sai) · đã sửa gì · lỗi còn lại · ghi rõ lượt 1 chạy 14 câu, lượt 2 chạy 22 câu
 - [ ] Nhắn Đăng dòng §10 · push + merge
 
 ## Nguyễn Đức Trọng · chi phí + video *(một mạch: persona → mô phỏng → bảng → video)*
