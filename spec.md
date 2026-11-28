@@ -1,4 +1,4 @@
-# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng H210 · Zone 5
+# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng H210 · Zone 4
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
@@ -13,7 +13,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/prec
   3. **Học viên tự gỡ hoặc bỏ qua:** lần gần nhất, hỏi trợ giảng AI / ChatGPT bên ngoài 7/17 · xem đáp án rồi bấm qua 6/17 · hỏi bạn / Discord 3/17 · bỏ qua đợi lên lớp 1/17 (khảo sát, n = 17). 14/17 mang chỗ mơ hồ lên lớp ≥3 lần trong 1 tháng qua.
   4. **TA / lab coach chuẩn bị đầu buổi** chỉ thấy đúng / sai của bài ôn, không biết trước lớp hiểu sai chỗ nào (3/3 lab coach, P1–P3); P2 rà thủ công Discord / chat / bài ôn khoảng 10–30 phút, lặp lại nhiều buổi.
   5. **Lên lớp, ôn đầu buổi theo slide:** "Lên lớp đầu giờ thì giảng viên hay điểm lại các ý chính trong slide, ít khi nhắc tới mấy câu hỏi bẫy hoặc các khái niệm dễ nhầm trong phần quiz cuối bài." (khảo sát S07) → chỉ 3/17 học viên nói phần ôn đầu buổi trúng đúng chỗ mình hiểu nhầm.
-  - Ảnh chụp (tài khoản Đăng, đã che thông tin): `docs/img/s0-bai-on.png` — *chưa chụp, Đăng bổ sung*
+  - Ảnh chụp: `docs/img/s0-bai-on.png` 
 - Công cụ / AI đang được dùng cho việc này + nguồn:
   - **Phía học viên:** *Sổ hiểu bài* có AI nhận xét từng ý (`so_hieu_bai_reviewed` 56 lượt / 9 học viên) · *giám khảo AI* chấm câu học viên nhắn theo 3 tiêu chí, thang 0–2 (1.223 lượt) — `data/preclass/`, chi tiết §3 · trợ giảng AI / ChatGPT bên ngoài (7/17 phiếu khảo sát).
   - **Phía TA / lab coach:** không có công cụ gom câu trả lời theo lớp; đang rà thủ công Discord / chat / bài ôn (P2), dựa vào câu hỏi học viên đăng trên Discord (P3) — `evidence/interviews/`.
@@ -196,6 +196,7 @@ flowchart LR
 | 28/11 | `codebase/ai.py`: xoá bản `call_gemini` cũ bị định nghĩa lặp (đè mất bản mới có `responseMimeType: application/json`, bỏ phần suy nghĩ); khôi phục `call_openai` bị xoá nhầm | Bản Gemini ép JSON không được dùng → model dễ trả sai định dạng (agent dừng ở "không trả đúng định dạng"); `MODEL_PROVIDER=openai` báo NameError |
 | 09:20 Thứ Bảy 28/11 | Web demo cho TA: `codebase/web.py` (API `/api/analyze`, `/api/questions`, `/api/import`, `/api/drafts`, `/api/stats`) + `codebase/web_store.py` (SQLite ở `data/runtime/`, đã .gitignore) + giao diện React `frontend/` (Phân tích TA · Tổng quan lớp · Nhập dữ liệu lớp) + `Dockerfile` + 35 test (`tests/`). Gọi thẳng `answer()`, **không sửa** `agent.py` / `tools.py` / `ai.py`; không có nút gửi; TA đổi tên nhóm / chuyển câu trên màn hình (G9) | CP4 demo trực tiếp: giám khảo gõ câu lạ tại chỗ (1 thường + 1 khó); TA cần thấy nhóm, `x/N`, câu trích, guardrail và sửa được bản nháp (§4 G9, G11, G2). Import chỉ giữ chữ câu trả lời, tự ẩn email / SĐT / mã học viên (§9) |
 | 09:20 Thứ Bảy 28/11 | Web: lỗi model phân loại theo mã HTTP (429 / 503 / timeout / sai key) → thông báo rõ cho TA; file import không phải UTF-8 báo đúng lỗi bảng mã | Thử nghiệm: 503 bị báo nhầm là "hết lượt" (dò chữ `rate` khớp `generateContent`); CSV Latin-1 bị đọc nhầm UTF-16 → báo sai "thiếu cột" |
+| 10:06 Thứ Bảy 28/11 | Dòng 1 `spec.md`: Zone 5 → Zone 4 | BTC đổi zone demo |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
