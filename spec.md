@@ -13,7 +13,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/prec
   3. **Học viên tự gỡ hoặc bỏ qua:** lần gần nhất, hỏi trợ giảng AI / ChatGPT bên ngoài 7/17 · xem đáp án rồi bấm qua 6/17 · hỏi bạn / Discord 3/17 · bỏ qua đợi lên lớp 1/17 (khảo sát, n = 17). 14/17 mang chỗ mơ hồ lên lớp ≥3 lần trong 1 tháng qua.
   4. **TA / lab coach chuẩn bị đầu buổi** chỉ thấy đúng / sai của bài ôn, không biết trước lớp hiểu sai chỗ nào (3/3 lab coach, P1–P3); P2 rà thủ công Discord / chat / bài ôn khoảng 10–30 phút, lặp lại nhiều buổi.
   5. **Lên lớp, ôn đầu buổi theo slide:** "Lên lớp đầu giờ thì giảng viên hay điểm lại các ý chính trong slide, ít khi nhắc tới mấy câu hỏi bẫy hoặc các khái niệm dễ nhầm trong phần quiz cuối bài." (khảo sát S07) → chỉ 3/17 học viên nói phần ôn đầu buổi trúng đúng chỗ mình hiểu nhầm.
-  - Ảnh chụp (tài khoản Đăng, đã che thông tin): `docs/img/s0-bai-on.png` — *chưa chụp, Đăng bổ sung*
+  - Ảnh chụp: `docs/img/s0-bai-on.png` 
 - Công cụ / AI đang được dùng cho việc này + nguồn:
   - **Phía học viên:** *Sổ hiểu bài* có AI nhận xét từng ý (`so_hieu_bai_reviewed` 56 lượt / 9 học viên) · *giám khảo AI* chấm câu học viên nhắn theo 3 tiêu chí, thang 0–2 (1.223 lượt) — `data/preclass/`, chi tiết §3 · trợ giảng AI / ChatGPT bên ngoài (7/17 phiếu khảo sát).
   - **Phía TA / lab coach:** không có công cụ gom câu trả lời theo lớp; đang rà thủ công Discord / chat / bài ôn (P2), dựa vào câu hỏi học viên đăng trên Discord (P3) — `evidence/interviews/`.
