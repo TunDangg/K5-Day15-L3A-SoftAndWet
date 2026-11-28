@@ -1,0 +1,29 @@
+# Danh sách CHO PHÉP: chặn hết, chỉ mở thứ image cần. Tránh lỡ đóng gói .env, data BTC gốc (data-btc/),
+# dữ liệu lớp TA import (data/runtime/), evidence, eval, traces… vào image.
+*
+
+!requirements.txt
+!codebase/
+!data/open_answers.json
+!data/class_stats.json
+!frontend/
+
+# Bỏ qua bên trong các thư mục đã mở
+node_modules
+**/node_modules
+frontend/dist
+.venv
+**/.venv
+venv
+.git
+**/.git
+.env
+.env.*
+**/.env
+**/.env.*
+__pycache__
+**/__pycache__
+**/*.pyc
+**/.DS_Store
+data/runtime
+frontend/*.local
