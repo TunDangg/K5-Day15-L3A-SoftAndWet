@@ -149,3 +149,42 @@ ____
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
 | 7 | Slide + demo + video dự phòng | slide trong repo (PDF, PPTX, HTML…) hoặc link slide ở form CP4 · link video: ____ |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
+
+## Web demo cho TA
+
+```
+python codebase/web.py              # mở http://127.0.0.1:8000
+python codebase/web.py --port 8001  # đổi cổng nếu 8000 đang bận
+python -m unittest discover -s tests -v    # smoke test + test API (model giả, dữ liệu tạm, không cần mạng / pip)
+```
+
+- Backend bọc `agent.answer(text)`: mọi kết quả phân tích do agent tạo, không sửa `agent.py` / `tools.py` / `ai.py` / `tracing.py`.
+- Giao diện: có `frontend/dist` (React + Vite build) thì phục vụ SPA; chưa có thì phục vụ trang cũ (`codebase/web_static/legacy.html`, luôn có ở `/legacy`).
+- Frontend (`frontend/`, React + TypeScript + Tailwind + lucide-react, không CDN — font Inter cũng bundle local):
+
+  ```
+  cd frontend && npm install
+  npm run dev     # http://localhost:5173, /api proxy sang 127.0.0.1:8000 (chạy backend trước)
+  npm run build   # → frontend/dist, rồi mở http://127.0.0.1:8000
+  ```
+
+  3 màn hình: **Phân tích TA** (`/`) · **Tổng quan lớp** (`/dashboard`, từ `data/class_stats.json`) · **Nhập dữ liệu lớp** (`/import`).
+- API (JSON): `GET /api/health` · `GET /api/questions` · `GET /api/answers?qid=` · `POST /api/analyze` · `GET /api/stats` · `POST /api/import` · `GET|POST /api/drafts` · `GET|DELETE /api/drafts/<id>`. CORS mở cho `http://localhost:5173` (Vite dev).
+- `POST /api/import` nhận `.csv` (cột câu trả lời: `cau_tra_loi` / `text` / `answer`…, cột `cau_hoi` tuỳ chọn) hoặc `.json`. Chỉ giữ chữ câu trả lời, bỏ mọi cột khác, tự ẩn email / số điện thoại / mã học viên. Câu hỏi mới có mã từ `Q101`, phân tích được ngay trên web (không có trong `run.py eval`).
+- Câu hỏi import + bản nháp lưu ở `data/runtime/app.db` (SQLite, **đã .gitignore** — dữ liệu lớp thật, không commit). Đổi chỗ lưu bằng `WEB_RUNTIME_DIR`.
+- Dùng model trong `.env`. Không có `.env` (hoặc `MODEL_PROVIDER=fake`) thì chạy model giả.
+- Chỉ thư viện chuẩn. Local mặc định nghe `127.0.0.1`, không cần đăng nhập. Không có endpoint gửi đi đâu.
+
+### Deploy (Docker · Railway · Render)
+
+```
+docker build -t ta-tro-ly .
+docker run -p 8000:8000 -e APP_PASSWORD=<chuỗi dài ngẫu nhiên> \
+  -e MODEL_PROVIDER=gemini -e MODEL_NAME=<model> -e API_KEY=<key> \
+  -v ta-data:/app/data/runtime ta-tro-ly          # mở http://127.0.0.1:8000, đăng nhập ta / <APP_PASSWORD>
+```
+
+- `Dockerfile` 2 stage: `node:20-alpine` build `frontend/` → `python:3.11-slim` chạy `codebase/web.py` (nghe `0.0.0.0:$PORT`, mặc định 8000). Image chỉ chứa mã backend, `frontend/dist`, `data/open_answers.json`, `data/class_stats.json` (`.dockerignore` dạng danh sách cho phép — không đóng gói `.env`, data BTC gốc, `data/runtime/`).
+- Railway / Render: trỏ vào repo, nền tảng tự dùng `Dockerfile` và cấp `$PORT`. Điền trên dashboard: `MODEL_PROVIDER`, `MODEL_NAME`, `API_KEY`, **`APP_PASSWORD`** (bắt buộc — thiếu thì server từ chối khởi động khi nghe `0.0.0.0`), `APP_USER` (tuỳ chọn). Health check: `/api/health` (không cần đăng nhập). Xem `.env.example`.
+- Dữ liệu import + bản nháp (SQLite) mất khi redeploy nếu không gắn volume vào `/app/data/runtime` (Railway: Volume, lỗi quyền ghi thì thêm `RAILWAY_RUN_UID=0`; Render: Disk).
+- Server xử lý 1 lượt phân tích tại một thời điểm (lượt sau nhận 409) — đủ cho một nhóm TA, không phải cho nhiều lớp cùng lúc.

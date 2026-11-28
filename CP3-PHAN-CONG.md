@@ -75,9 +75,9 @@
 > Web **không phải phần chấm của CP3** (CP3 chấm bản chạy thử gọi AI thật — Trọng quay video bằng `python run.py`). Web phục vụ **demo CP4 lúc 14:30**: giám khảo gõ câu lạ tại chỗ, 1 câu thường + 1 câu khó. Làm song song vì các phần CP3 khác đã có người ôm trọn.
 
 **Tối nay**
-- [ ] `spec.md` §0: luồng hiện tại 3–5 bước (học viên làm bài ôn trắc nghiệm → chỉ thấy đúng / sai → hỏi AI / bạn hoặc bấm qua → TA / lab coach ôn đầu buổi theo slide, không biết trước lớp hiểu sai gì), ảnh chụp từ tài khoản mình (che thông tin)
-- [ ] `spec.md` §10: điền "Phân công có tên" (theo file này), "Dùng AI vào việc gì"
-- [ ] **Web demo bản 1, chế độ model giả** (chưa có `.env` hoặc `MODEL_PROVIDER=fake` → không tốn quota, không ảnh hưởng ai):
+- [ ] `spec.md` §0: luồng hiện tại 3–5 bước (học viên làm bài ôn trắc nghiệm → chỉ thấy đúng / sai → hỏi AI / bạn hoặc bấm qua → TA / lab coach ôn đầu buổi theo slide, không biết trước lớp hiểu sai gì), ảnh chụp từ tài khoản mình (che thông tin) — *đã viết luồng 5 bước + công cụ đang dùng; **còn thiếu ảnh chụp** `docs/img/s0-bai-on.png`*
+- [x] `spec.md` §10: điền "Phân công có tên" (theo file này), "Dùng AI vào việc gì"
+- [x] **Web demo bản 1, chế độ model giả** (chưa có `.env` hoặc `MODEL_PROVIDER=fake` → không tốn quota, không ảnh hưởng ai):
   - `codebase/web.py`: chỉ thư viện chuẩn (`http.server`), chạy `python codebase/web.py` → mở `http://localhost:8000`
   - Gọi thẳng `answer()` trong `agent.py` — **không viết lại logic, không sửa `agent.py`** (Trọng đang sửa); gọi `tracing.begin("web")` / `tracing.end()` như `codebase/app.py`
   - Ô nhập yêu cầu (vd `[Q01] Phân tích câu trả lời của lớp`) + danh sách câu hỏi đang có (`tools.available_questions()`) để bấm nhanh
@@ -85,16 +85,16 @@
   - Nhãn "Nháp — chờ TA duyệt", **không có nút gửi**; hiện dòng `model: …` để thấy đang chạy model thật hay giả
   - **Không sửa `run.py`** (khung — `AGENTS.md`); thêm 2 dòng cách chạy web vào `README.md`
   - Commit riêng, PR riêng, merge sớm
-- [ ] Tạo `.env` theo tin nhắn riêng của Trọng (không commit)
+- [x] Tạo `.env` theo tin nhắn riêng của Trọng (không commit)
 
 **Sáng (07:00 → 10:00)**
-- [ ] `git pull origin main` → thử web với `agent.py` mới của Trọng (sau 08:00), vẫn chế độ model giả
-- [ ] **Không gọi model thật 08:15–08:45** (Huy chạy eval). Sau 08:45: thử web bằng model thật với 1 câu thường (`[Q01]`) + 1 câu khó (`[Q12]` câu chèn chỉ dẫn, hoặc `[Q06]` <5 câu) + 1 câu lạ
-- [ ] **09:30:** `git pull origin main` → thêm các dòng §10 cho mọi thay đổi sau CP2 (theo tin nhắn Trọng, Huy, Quỳnh Anh + `git log`) → `python run.py check`
+- [x] `git pull origin main` → thử web với `agent.py` mới của Trọng (sau 08:00), vẫn chế độ model giả — *09:20: đã gộp main (Q13, Q14 của Huy chạy được trên web); `agent.py` mới của Trọng chưa có trên main*
+- [ ] **Không gọi model thật 08:15–08:45** (Huy chạy eval). Sau 08:45: thử web bằng model thật với 1 câu thường (`[Q01]`) + 1 câu khó (`[Q12]` câu chèn chỉ dẫn, hoặc `[Q06]` <5 câu) + 1 câu lạ — *đã thử Gemini: Q01, Q12, Bị ép; còn thiếu 1 câu lạ bằng model thật*
+- [ ] **09:30:** `git pull origin main` → thêm các dòng §10 cho mọi thay đổi sau CP2 (theo tin nhắn Trọng, Huy, Quỳnh Anh + `git log`) → `python run.py check` — *đã thêm dòng §10 cho web + `run.py check` sạch; **chưa có dòng của Trọng / Huy / Quỳnh Anh***
 - [ ] **09:45:** mở repo + link video (mục "Link nộp") bằng cửa sổ ẩn danh → nộp form CP3 (mã `2A202603618`), khai thật phần chưa xong
 
 **Sau CP3 (10:00 → 14:30) — chuẩn bị demo CP4**
-- [ ] *(nếu kịp)* TA chuyển 1 câu sang nhóm khác trên trang (G9 ở §4) — chỉ đổi trên màn hình, không ghi đi đâu
+- [x] *(nếu kịp)* TA chuyển 1 câu sang nhóm khác trên trang (G9 ở §4) — chỉ đổi trên màn hình, không ghi đi đâu
 - [ ] Thử lại 1 câu thường + 1 câu khó + 1 câu lạ bằng model thật
 - [ ] **Trước 14:00:** quay video demo dự phòng trên bản web (thao tác thật, AI thật), mở thử bằng cửa sổ ẩn danh
-- [ ] Ghi 1 dòng §10 cho web
+- [x] Ghi 1 dòng §10 cho web

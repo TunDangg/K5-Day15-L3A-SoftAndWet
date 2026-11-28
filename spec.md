@@ -7,8 +7,17 @@ Track: [x] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: A1 (tính năng
 Data BTC cấp đã dùng (nếu có — không commit nguyên file): `data/preclass/` (`answers.csv`, `chat.csv`) — chỉ để đào bằng chứng; chỉ commit số đã tổng hợp `data/class_stats.json`
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
-- Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
+- Luồng hiện tại trong khoá (trang pre-class preclass-online.com → buổi học trên lớp):
+  1. **Học viên làm bài ôn cuối ngày** trên trang pre-class. Bài ôn là trắc nghiệm, chỉ ghi đúng / sai: 399/1.968 lượt sai lần đầu (20,3%) — `data/preclass/`, 05–25/11. Ô tự giải thích có nhưng ít dùng: 20 lượt (`answers.csv`, `nguon = giai_thich`).
+  2. **Chọn sai thì chỉ thấy đáp án đúng**, không biết vì sao mình sai: "khi chọn sai mình thường chỉ thấy báo đáp án đúng mà chưa được giải thích rõ vì sao lựa chọn của mình lại sai" (khảo sát S05).
+  3. **Học viên tự gỡ hoặc bỏ qua:** lần gần nhất, hỏi trợ giảng AI / ChatGPT bên ngoài 7/17 · xem đáp án rồi bấm qua 6/17 · hỏi bạn / Discord 3/17 · bỏ qua đợi lên lớp 1/17 (khảo sát, n = 17). 14/17 mang chỗ mơ hồ lên lớp ≥3 lần trong 1 tháng qua.
+  4. **TA / lab coach chuẩn bị đầu buổi** chỉ thấy đúng / sai của bài ôn, không biết trước lớp hiểu sai chỗ nào (3/3 lab coach, P1–P3); P2 rà thủ công Discord / chat / bài ôn khoảng 10–30 phút, lặp lại nhiều buổi.
+  5. **Lên lớp, ôn đầu buổi theo slide:** "Lên lớp đầu giờ thì giảng viên hay điểm lại các ý chính trong slide, ít khi nhắc tới mấy câu hỏi bẫy hoặc các khái niệm dễ nhầm trong phần quiz cuối bài." (khảo sát S07) → chỉ 3/17 học viên nói phần ôn đầu buổi trúng đúng chỗ mình hiểu nhầm.
+  - Ảnh chụp (tài khoản Đăng, đã che thông tin): `docs/img/s0-bai-on.png` — *chưa chụp, Đăng bổ sung*
+- Công cụ / AI đang được dùng cho việc này + nguồn:
+  - **Phía học viên:** *Sổ hiểu bài* có AI nhận xét từng ý (`so_hieu_bai_reviewed` 56 lượt / 9 học viên) · *giám khảo AI* chấm câu học viên nhắn theo 3 tiêu chí, thang 0–2 (1.223 lượt) — `data/preclass/`, chi tiết §3 · trợ giảng AI / ChatGPT bên ngoài (7/17 phiếu khảo sát).
+  - **Phía TA / lab coach:** không có công cụ gom câu trả lời theo lớp; đang rà thủ công Discord / chat / bài ôn (P2), dựa vào câu hỏi học viên đăng trên Discord (P3) — `evidence/interviews/`.
+  - Giao diện của TA / giảng viên trên trang pre-class có bản tổng hợp cấp lớp không: **chưa kiểm**.
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 - Người dùng chính (một vai cụ thể):
@@ -130,8 +139,20 @@ flowchart LR
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
+- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"; chi tiết `CP3-PHAN-CONG.md`):
+
+  | Chặng | Trần Tuấn Đăng (đội trưởng) | Phạm Quỳnh Anh | Nguyễn Đức Trọng | Nguyễn Văn Huy |
+  |---|---|---|---|---|
+  | CP1 | canvas, giả thuyết, chọn Track A1, thông tin nhóm | __ | __ | __ |
+  | CP2 | `spec.md` §3–§5, đổi lát cắt sang câu hỏi mở, gộp nhánh, nộp | đào data (`evidence/data-mining.md`, `count.py`), duyệt 14 câu thử + 63 nhãn tay | `codebase/tools.py`, `agent.py`, bản chạy thử với AI giả | `eval/metric_spec.yaml`, `eval/README.md` |
+  | CP3 | `spec.md` §0, §10 · web demo `codebase/web.py` · nộp | bằng chứng (`evidence/`: khảo sát, phỏng vấn P1–P3) · `spec.md` §1, §2 | nối model thật · sửa prompt + `agent.py` · video 30 giây · `spec.md` §6 | câu trả lời thật → câu thử 20–24 · lượt eval 1 · kết quả §7 |
+  | CP4 | web demo cho giám khảo, video demo dự phòng | __ | __ | __ |
+
+  - **Chia cặp:** Huy + Quỳnh Anh chấm thử độc lập (`eval/cham-thu-cp2.md`, mỗi người một cột) · Trọng (luồng `agent.py`) + Đăng (web gọi `answer()`, không sửa `agent.py`) · Đăng ghi §10 theo tin nhắn của từng người.
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
+  - Đăng: dùng coding agent (Claude Code) để rà và soạn nháp các mục `spec.md`, file phân công, commit / push; Đăng đọc lại, sửa và chịu trách nhiệm từng dòng. Số liệu chỉ chép từ `evidence/` và `data/`, không để AI tự tạo số hay trích dẫn.
+  - Trọng, Huy, Quỳnh Anh: __ *(từng người tự điền vào `docs/ai-usage.md`)*
+  - Trong sản phẩm: model chỉ gom câu trả lời thành nhóm cách hiểu (§4); số đếm, câu trích, mã học viên do code `check_report` kiểm.
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
@@ -148,6 +169,8 @@ flowchart LR
 | 00:48 Thứ Bảy 28/11 | `data/DATA_CARD.md`: cập nhật tên người kiểm nhãn (`Phạm Quỳnh Anh`) | Khớp việc Quỳnh Anh đã rà 63/63 nhãn tay lúc 19:15 27/11 (đã tick ở `CP2-PHAN-CONG.md`) |
 | 01:05 Thứ Bảy 28/11 | Thêm `evidence/interviews/P2.md`, `P3.md`; bổ sung câu 2, câu 4 vào `P1.md`; cập nhật `summary.md` mục 1–2, 4–5 và canvas dòng 4 | Ghi kết quả phỏng vấn 3 lab coach (chiều 27/11): 3/3 không biết trước lớp hiểu sai chỗ nào; 2/3 đọc hết câu tự viết nhanh → giả thuyết 3 "phải đổi" |
 | 28/11 | `codebase/ai.py`: xoá bản `call_gemini` cũ bị định nghĩa lặp (đè mất bản mới có `responseMimeType: application/json`, bỏ phần suy nghĩ); khôi phục `call_openai` bị xoá nhầm | Bản Gemini ép JSON không được dùng → model dễ trả sai định dạng (agent dừng ở "không trả đúng định dạng"); `MODEL_PROVIDER=openai` báo NameError |
+| 09:20 Thứ Bảy 28/11 | Web demo cho TA: `codebase/web.py` (API `/api/analyze`, `/api/questions`, `/api/import`, `/api/drafts`, `/api/stats`) + `codebase/web_store.py` (SQLite ở `data/runtime/`, đã .gitignore) + giao diện React `frontend/` (Phân tích TA · Tổng quan lớp · Nhập dữ liệu lớp) + `Dockerfile` + 35 test (`tests/`). Gọi thẳng `answer()`, **không sửa** `agent.py` / `tools.py` / `ai.py`; không có nút gửi; TA đổi tên nhóm / chuyển câu trên màn hình (G9) | CP4 demo trực tiếp: giám khảo gõ câu lạ tại chỗ (1 thường + 1 khó); TA cần thấy nhóm, `x/N`, câu trích, guardrail và sửa được bản nháp (§4 G9, G11, G2). Import chỉ giữ chữ câu trả lời, tự ẩn email / SĐT / mã học viên (§9) |
+| 09:20 Thứ Bảy 28/11 | Web: lỗi model phân loại theo mã HTTP (429 / 503 / timeout / sai key) → thông báo rõ cho TA; file import không phải UTF-8 báo đúng lỗi bảng mã | Thử nghiệm: 503 bị báo nhầm là "hết lượt" (dò chữ `rate` khớp `generateContent`); CSV Latin-1 bị đọc nhầm UTF-16 → báo sai "thiếu cột" |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
