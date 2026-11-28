@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Check, ChevronDown, Code2, Cpu, Info, ListTree } from "lucide-react";
 import type { AnalyzeResp } from "../lib/api";
 
@@ -8,6 +8,7 @@ const TAG = { code: "code", tool: "công cụ", model: "model", note: "ghi chú"
 
 export function TraceDrawer({ data, defaultOpen = false }: { data: AnalyzeResp; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
+  const uid = useId();
   const steps = data.trace?.steps ?? [];
   const s = data.trace?.summary;
   const m = data.meta;
@@ -18,12 +19,12 @@ export function TraceDrawer({ data, defaultOpen = false }: { data: AnalyzeResp; 
   return (
     <section className="card" aria-label="Chi tiết kỹ thuật">
       <div className="p-2">
-        <button type="button" className="btn btn-ghost" aria-expanded={open} aria-controls="trace-panel" onClick={() => setOpen(!open)}>
+        <button type="button" className="btn btn-ghost" aria-expanded={open} aria-controls={`${uid}-trace`} onClick={() => setOpen(!open)}>
           <ListTree className="size-4" aria-hidden /> Xem Trace & Kiểm chứng Code
           <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />
         </button>
       </div>
-      <div id="trace-panel" hidden={!open} className="grid gap-4 border-t border-line p-5">
+      <div id={`${uid}-trace`} data-trace-panel hidden={!open} className="grid gap-4 border-t border-line p-5">
         <div className="flex flex-wrap gap-2">
           {stats.map(([k, v]) => <span key={k} className="rounded-full bg-off-soft px-2.5 py-0.5 text-[12.5px] text-ink-2">{k}: <b className="font-mono font-semibold text-ink">{v}</b></span>)}
         </div>

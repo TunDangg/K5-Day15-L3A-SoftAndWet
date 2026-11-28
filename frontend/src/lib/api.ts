@@ -126,7 +126,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
     res = await fetch(path, init);
-  } catch {
+  } catch (e) {
+    if ((e as { name?: string })?.name === "AbortError") throw new ApiError(0, { code: "aborted", title: "Đã huỷ" }, null);
     throw new ApiError(0, { code: "network", title: "Không kết nối được tới backend",
       hint: "Kiểm tra lệnh python codebase/web.py còn chạy không." }, null);
   }
@@ -257,7 +258,7 @@ export const api = {
     const r = await request<Partial<AnswersResp>>("/api/answers?qid=" + encodeURIComponent(qid));
     return { ...r, cau_tra_loi: arr(r.cau_tra_loi).filter(isObj).map((a) => ({ id: str(a.id), text: str(a.text) })) } as AnswersResp;
   },
-  analyze: async (text: string) => normAnalyze(await request<unknown>("/api/analyze", json({ text }))),
+  analyze: async (text: string, signal?: AbortSignal) => normAnalyze(await request<unknown>("/api/analyze", { ...json({ text }), signal })),
   stats: async () => normStats(await request<unknown>("/api/stats")),
   importFile: (file: File, fields: { cau_hoi?: string; kc_code?: string }) => {
     const fd = new FormData();

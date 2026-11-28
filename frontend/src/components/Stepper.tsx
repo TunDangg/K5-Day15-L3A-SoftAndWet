@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, Database, Minus, ShieldCheck, Sparkles, X } from "lucide-react";
+import { Check, Database, Minus, ShieldCheck, Sparkles, Square, X } from "lucide-react";
 import type { AnalyzeResp } from "../lib/api";
 
 export type StepState = "pending" | "active" | "done" | "skip" | "fail";
@@ -22,7 +22,9 @@ export function finalStates(d: AnalyzeResp | null): { states: StepState[]; subs:
   };
 }
 
-export function Stepper({ qid, finished }: { qid: string | null; finished: { states: StepState[]; subs: (string | null)[] } | null }) {
+export function Stepper({ qid, finished, onCancel, compact = false }: {
+  qid: string | null; finished: { states: StepState[]; subs: (string | null)[] } | null; onCancel?: () => void; compact?: boolean;
+}) {
   const [t0] = useState(() => Date.now());
   const [now, setNow] = useState(t0);
   const [phase, setPhase] = useState(0);
@@ -38,7 +40,12 @@ export function Stepper({ qid, finished }: { qid: string | null; finished: { sta
       <section className="card animate-fade-up p-5" role="status" aria-label="Đang phân tích">
         <div className="mb-4 flex items-center justify-between gap-3">
           <b className="flex items-center gap-2 text-base">Đang chạy pipeline {qid && <>cho <span className="code-badge">{qid}</span></>}</b>
-          <span className="font-mono text-[13px] text-ink-3">{((now - t0) / 1000).toFixed(1)}s</span>
+          <span className="flex items-center gap-2">
+            <span className="font-mono text-[13px] text-ink-3">{((now - t0) / 1000).toFixed(1)}s</span>
+            {onCancel && !finished && (
+              <button type="button" className="btn btn-sm" onClick={onCancel} aria-label="Huỷ lượt phân tích đang chạy"><Square className="size-3.5" aria-hidden />Huỷ</button>
+            )}
+          </span>
         </div>
         <ol className="grid gap-3 md:grid-cols-3">
           {STEPS.map(({ Icon, title, sub }, i) => {
@@ -61,9 +68,9 @@ export function Stepper({ qid, finished }: { qid: string | null; finished: { sta
           })}
         </ol>
       </section>
-      <div className="grid gap-3" aria-hidden>
+      {!compact && <div className="grid gap-3" aria-hidden>
         {[92, 92, 92].map((h, i) => <div key={i} className="skeleton animate-shimmer rounded-2xl border border-line" style={{ height: h, opacity: 1 - i * 0.25 }} />)}
-      </div>
+      </div>}
     </div>
   );
 }
