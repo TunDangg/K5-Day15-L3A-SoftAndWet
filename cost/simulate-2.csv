@@ -1,0 +1,58 @@
+﻿run_id,session,persona,turns,inputs,model,model_calls,tool_calls,tokens_in,tokens_out,latency_s,error,tokens_by_model
+simulate-2@20261128-123517,S001,dung_vua,2,[Q01] Phân tích câu trả lời của lớp ‖ [Q13] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2623,535,3.929,,"{""gemini-3.5-flash-lite"": {""in"": 2623, ""out"": 535}}"
+simulate-2@20261128-123517,S002,dung_it,1,[Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1213,435,8.349,,"{""gemini-3.5-flash-lite"": {""in"": 1213, ""out"": 435}}"
+simulate-2@20261128-123517,S003,dung_it,1,[Q02] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1230,346,1.759,,"{""gemini-3.5-flash-lite"": {""in"": 1230, ""out"": 346}}"
+simulate-2@20261128-123517,S004,dung_vua,2,[Q14] tóm giúp lớp hiểu sai gì ‖ [Q09] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2559,432,2.89,,"{""gemini-3.5-flash-lite"": {""in"": 2559, ""out"": 432}}"
+simulate-2@20261128-123517,S005,dung_it,1,[Q07] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1134,369,1.739,,"{""gemini-3.5-flash-lite"": {""in"": 1134, ""out"": 369}}"
+simulate-2@20261128-123517,S006,dung_it,1,[Q02] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1230,287,1.516,,"{""gemini-3.5-flash-lite"": {""in"": 1230, ""out"": 287}}"
+simulate-2@20261128-123517,S007,dung_it,1,[Q09] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1172,264,1.631,,"{""gemini-3.5-flash-lite"": {""in"": 1172, ""out"": 264}}"
+simulate-2@20261128-123517,S008,dung_vua,2,[Q09] Phân tích câu trả lời của lớp ‖ [Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2385,630,9.327,,"{""gemini-3.5-flash-lite"": {""in"": 2385, ""out"": 630}}"
+simulate-2@20261128-123517,S009,dung_vua,2,[Q13] Phân tích câu trả lời của lớp ‖ [Q09] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2566,437,3.001,,"{""gemini-3.5-flash-lite"": {""in"": 2566, ""out"": 437}}"
+simulate-2@20261128-123517,S010,dung_vua,2,[Q08] Phân tích câu trả lời của lớp ‖ Phân tích câu trả lời của lớp giúp mình,gemini-3.5-flash-lite,1,2,1174,349,1.72,,"{""gemini-3.5-flash-lite"": {""in"": 1174, ""out"": 349}}"
+simulate-2@20261128-123517,S011,dung_it,1,[Q14] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1388,171,1.275,,"{""gemini-3.5-flash-lite"": {""in"": 1388, ""out"": 171}}"
+simulate-2@20261128-123517,S012,dung_it,1,[Q13] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1393,173,37.466,,"{""gemini-3.5-flash-lite"": {""in"": 1393, ""out"": 173}}"
+simulate-2@20261128-123517,S013,dung_it,1,[Q07] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1134,379,2.036,,"{""gemini-3.5-flash-lite"": {""in"": 1134, ""out"": 379}}"
+simulate-2@20261128-123517,S014,dung_it,1,[Q03] Lớp hiểu system prompt thế nào?,gemini-3.5-flash-lite,1,2,1203,481,1.972,,"{""gemini-3.5-flash-lite"": {""in"": 1203, ""out"": 481}}"
+simulate-2@20261128-123517,S015,dung_it,1,[Q13] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1393,169,39.625,,"{""gemini-3.5-flash-lite"": {""in"": 1393, ""out"": 169}}"
+simulate-2@20261128-123517,S016,dung_it,1,[Q02] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1230,390,8.283,,"{""gemini-3.5-flash-lite"": {""in"": 1230, ""out"": 390}}"
+simulate-2@20261128-123517,S017,dung_it,1,[Q06] Phân tích câu trả lời của lớp,,0,1,0,0,0.0,,{}
+simulate-2@20261128-123517,S018,dung_nhieu,3,Phân tích câu trả lời của lớp giúp mình ‖ [Q05] tóm giúp lớp hiểu sai gì ‖ [Q13] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,2,4,2586,502,9.276,,"{""gemini-3.5-flash-lite"": {""in"": 2586, ""out"": 502}}"
+simulate-2@20261128-123517,S019,dung_it,1,[Q08] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1174,267,1.64,,"{""gemini-3.5-flash-lite"": {""in"": 1174, ""out"": 267}}"
+simulate-2@20261128-123517,S020,dung_vua,2,[Q14] tóm giúp lớp hiểu sai gì ‖ [Q07] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2521,452,3.471,,"{""gemini-3.5-flash-lite"": {""in"": 2521, ""out"": 452}}"
+simulate-2@20261128-123517,S021,dung_it,1,[Q05] tóm giúp lớp hiểu sai gì,,1,1,0,0,39.734,"T1 RuntimeError: HTTP 503: {
+  ""error"": {
+    ""code"": 503,
+    ""message"": ""This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."",
+    ""status"": ""UNAVAILABLE""
+  }
+}
+",{}
+simulate-2@20261128-123517,S022,dung_nhieu,3,Phân tích câu trả lời của lớp giúp mình ‖ [Q14] tóm giúp lớp hiểu sai gì ‖ [Q14] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2775,313,8.31,,"{""gemini-3.5-flash-lite"": {""in"": 2775, ""out"": 313}}"
+simulate-2@20261128-123517,S023,dung_it,1,[Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1213,439,1.997,,"{""gemini-3.5-flash-lite"": {""in"": 1213, ""out"": 439}}"
+simulate-2@20261128-123517,S024,dung_vua,2,[Q01] Phân tích câu trả lời của lớp ‖ [Q99] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,3,1229,582,2.264,,"{""gemini-3.5-flash-lite"": {""in"": 1229, ""out"": 582}}"
+simulate-2@20261128-123517,S025,dung_it,1,[Q05] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1193,329,8.097,,"{""gemini-3.5-flash-lite"": {""in"": 1193, ""out"": 329}}"
+simulate-2@20261128-123517,S026,dung_nhieu,3,[Q14] Phân tích câu trả lời của lớp ‖ [Q04] Phân tích câu trả lời của lớp ‖ [Q14] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,3,6,3989,755,10.945,,"{""gemini-3.5-flash-lite"": {""in"": 3989, ""out"": 755}}"
+simulate-2@20261128-123517,S027,dung_it,1,[Q05] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1193,358,1.611,,"{""gemini-3.5-flash-lite"": {""in"": 1193, ""out"": 358}}"
+simulate-2@20261128-123517,S028,dung_vua,2,[Q14] Phân tích câu trả lời của lớp ‖ [Q06] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,3,1388,161,1.615,,"{""gemini-3.5-flash-lite"": {""in"": 1388, ""out"": 161}}"
+simulate-2@20261128-123517,S029,dung_it,1,[Q06] Phân tích câu trả lời của lớp,,0,1,0,0,0.0,,{}
+simulate-2@20261128-123517,S030,dung_it,1,[Q05] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1193,354,7.206,,"{""gemini-3.5-flash-lite"": {""in"": 1193, ""out"": 354}}"
+simulate-2@20261128-123517,S031,dung_vua,2,[Q99] Phân tích câu trả lời của lớp ‖ [Q99] Phân tích câu trả lời của lớp,,0,2,0,0,0.0,,{}
+simulate-2@20261128-123517,S032,dung_it,1,[Q99] Phân tích câu trả lời của lớp,,0,1,0,0,0.0,,{}
+simulate-2@20261128-123517,S033,dung_it,1,[Q13] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1394,175,1.63,,"{""gemini-3.5-flash-lite"": {""in"": 1394, ""out"": 175}}"
+simulate-2@20261128-123517,S034,dung_it,1,[Q08] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1174,343,7.235,,"{""gemini-3.5-flash-lite"": {""in"": 1174, ""out"": 343}}"
+simulate-2@20261128-123517,S035,dung_it,1,[Q14] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,1,2,1387,146,1.248,,"{""gemini-3.5-flash-lite"": {""in"": 1387, ""out"": 146}}"
+simulate-2@20261128-123517,S036,dung_vua,2,[Q09] Phân tích câu trả lời của lớp ‖ [Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2385,734,19.202,,"{""gemini-3.5-flash-lite"": {""in"": 2385, ""out"": 734}}"
+simulate-2@20261128-123517,S037,dung_vua,2,[Q14] Phân tích câu trả lời của lớp ‖ [Q13] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,2,4,2781,339,8.964,,"{""gemini-3.5-flash-lite"": {""in"": 2781, ""out"": 339}}"
+simulate-2@20261128-123517,S038,dung_vua,2,[Q04] Phân tích câu trả lời của lớp ‖ [Q14] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2601,618,3.366,,"{""gemini-3.5-flash-lite"": {""in"": 2601, ""out"": 618}}"
+simulate-2@20261128-123517,S039,dung_it,1,[Q06] Phân tích câu trả lời của lớp,,0,1,0,0,0.0,,{}
+simulate-2@20261128-123517,S040,dung_vua,2,[Q02] Phân tích câu trả lời của lớp ‖ [Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2443,679,10.602,,"{""gemini-3.5-flash-lite"": {""in"": 2443, ""out"": 679}}"
+simulate-2@20261128-123517,S041,dung_nhieu,3,Phân tích câu trả lời của lớp giúp mình ‖ [Q14] tóm giúp lớp hiểu sai gì ‖ [Q13] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2781,344,19.242,,"{""gemini-3.5-flash-lite"": {""in"": 2781, ""out"": 344}}"
+simulate-2@20261128-123517,S042,dung_it,1,[Q99] Phân tích câu trả lời của lớp,,0,1,0,0,0.0,,{}
+simulate-2@20261128-123517,S043,dung_vua,2,[Q14] tóm giúp lớp hiểu sai gì ‖ [Q14] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,2,4,2774,302,18.031,,"{""gemini-3.5-flash-lite"": {""in"": 2774, ""out"": 302}}"
+simulate-2@20261128-123517,S044,dung_vua,2,[Q03] Lớp hiểu system prompt thế nào? ‖ [Q05] tóm giúp lớp hiểu sai gì,gemini-3.5-flash-lite,2,4,2396,804,11.115,,"{""gemini-3.5-flash-lite"": {""in"": 2396, ""out"": 804}}"
+simulate-2@20261128-123517,S045,dung_it,1,[Q13] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1394,153,1.371,,"{""gemini-3.5-flash-lite"": {""in"": 1394, ""out"": 153}}"
+simulate-2@20261128-123517,S046,dung_vua,2,[Q05] tóm giúp lớp hiểu sai gì ‖ [Q13] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,2,4,2587,593,3.224,,"{""gemini-3.5-flash-lite"": {""in"": 2587, ""out"": 593}}"
+simulate-2@20261128-123517,S047,dung_vua,2,[Q14] tóm giúp lớp hiểu sai gì ‖ Phân tích câu trả lời của lớp giúp mình,gemini-3.5-flash-lite,1,2,1387,152,1.391,,"{""gemini-3.5-flash-lite"": {""in"": 1387, ""out"": 152}}"
+simulate-2@20261128-123517,S048,dung_it,1,[Q04] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1213,444,1.981,,"{""gemini-3.5-flash-lite"": {""in"": 1213, ""out"": 444}}"
+simulate-2@20261128-123517,S049,dung_nhieu,3,[Q03] Lớp hiểu system prompt thế nào? ‖ [Q09] Phân tích câu trả lời của lớp ‖ [Q08] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,3,6,3549,1039,39.287,,"{""gemini-3.5-flash-lite"": {""in"": 3549, ""out"": 1039}}"
+simulate-2@20261128-123517,S050,dung_it,1,[Q01] Phân tích câu trả lời của lớp,gemini-3.5-flash-lite,1,2,1229,523,2.63,,"{""gemini-3.5-flash-lite"": {""in"": 1229, ""out"": 523}}"
