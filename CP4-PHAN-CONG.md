@@ -98,15 +98,15 @@
 ## Phạm Quỳnh Anh · toàn bộ slide *(một mạch: khung → trang 1–4 → trang 5–8 → PDF)*
 
 **10:30–12:45 (không cần ai)**
-- [ ] **10:30:** tạo bản Google Slides 8 trang theo `slides/outline.md` / guide 5.1. Mỗi trang ≥1 con số / trích dẫn có nguồn / kết quả đo
-- [ ] Trang 1 "Người dùng & pain": số từ `evidence/summary.md` (data 399/1.968 sai lần đầu · khảo sát 3/17 nói ôn đầu buổi trúng đúng chỗ hiểu nhầm · 3/3 lab coach không biết trước lớp hiểu sai gì) + 1 trích dẫn (vd khảo sát S07)
-- [ ] Trang 2 "Vì sao chọn bài này": bảng impact rút gọn từ `spec.md` §2 + hướng bị loại (trợ giảng câu hỏi ngắn, báo cáo số đúng / sai)
-- [ ] Trang 3 "Giải pháp": lát cắt một câu · sơ đồ `spec.md` §4 · AI tự làm đến đâu, vì sao (AI soạn nháp, TA duyệt; code đếm số và kiểm câu trích)
-- [ ] Trang 4 "Demo live": 1 câu thường `[Q01]` + 1 câu khó `[Q12]` (câu chèn chỉ dẫn) / `[Q06]` (<5 câu) — ảnh chụp màn hình web (chụp sau 12:00 khi web đã lên `main`)
-- [ ] **Viết khung** trang 5–8 (tiêu đề + chỗ để số), để chèn số ở giờ chốt
+- [x] **10:30:** tạo bản Google Slides 8 trang theo `slides/outline.md` / guide 5.1. Mỗi trang ≥1 con số / trích dẫn có nguồn / kết quả đo *(đã hoàn thiện `slides/deck.html` giao diện 16:9 sẵn sàng in PDF + `slides/outline.md` đồng bộ)*
+- [x] Trang 1 "Người dùng & pain": số từ `evidence/summary.md` (data 399/1.968 sai lần đầu · khảo sát 3/17 nói ôn đầu buổi trúng đúng chỗ hiểu nhầm · 3/3 lab coach không biết trước lớp hiểu sai gì) + 1 trích dẫn (vd khảo sát S07)
+- [x] Trang 2 "Vì sao chọn bài này": bảng impact rút gọn từ `spec.md` §2 + hướng bị loại (trợ giảng câu hỏi ngắn, báo cáo số đúng / sai)
+- [x] Trang 3 "Giải pháp": lát cắt một câu · sơ đồ `spec.md` §4 · AI tự làm đến đâu, vì sao (AI soạn nháp, TA duyệt; code đếm số và kiểm câu trích)
+- [x] Trang 4 "Demo live": 1 câu thường `[Q01]` + 1 câu khó `[Q12]` (câu chèn chỉ dẫn) / `[Q06]` (<5 câu) — đã nhúng trực tiếp preview output thật `B01` từ `run-2@20261128-104820` (chờ chèn thêm link video lúc 13:00)
+- [x] **Viết khung** trang 5–8 (tiêu đề + chỗ để số), để chèn số ở giờ chốt
 
 **12:00–13:40 (nhận số ở giờ chốt)**
-- [ ] **12:45:** trang 5 "Đánh giá thế nào" — từ `eval/README.md` (Đăng) + `eval/report.md` (Huy): dataset · 22 câu (8/22 nguồn thật) · metric · lượt 1 → lượt 2 so với chuẩn "đạt" · lỗi chính · giới hạn (data thật đều "hiểu đúng")
+- [x] **12:45:** trang 5 "Đánh giá thế nào" — từ `eval/README.md` (Đăng) + `eval/report.md` (Huy): dataset · 22 câu (8/22 nguồn thật) · metric · lượt 1 → lượt 2 so với chuẩn "đạt" (`18/22 = 82%` và `10/14 = 71%` trên 14 câu gốc) · lỗi chính · giới hạn (data thật đều "hiểu đúng")
 - [ ] **13:00:** trang 6 "Chi phí khi dùng thật" — từ `cost/cost-estimate.md` (Trọng): chi phí / task thành công · 3 kịch bản · so với impact
 - [ ] Trang 7 "Kết luận" go / iterate / stop dẫn số trang 1, 5, 6 (gợi ý: có điều kiện — "giá trị chỉ có khi đủ câu trả lời; 2/3 lab coach đọc hết nhanh vì học viên viết ít") · trang 8 "Nếu có thêm 1 tuần" (2–3 việc trỏ về lỗi còn lại / kết quả người dùng thử ở `validation/log.md`)
 - [ ] **13:40** slide xong · `slides/outline.md` chép tóm tắt 8 trang (bản chữ trong repo)
