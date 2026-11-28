@@ -62,12 +62,12 @@
 ## Phạm Quỳnh Anh · bằng chứng *(một mạch, không chờ ai)*
 
 - [ ] **Tối nay:** xin thêm ≥3 phiếu khảo sát hợp lệ (form cũ, nhắn lại trên Discord) để đạt ≥20 phiếu hợp lệ
-- [ ] Chấm cột **Quỳnh Anh** trong `eval/cham-thu-cp2.md` (chấm riêng); nếu cột Huy đã có thì điền dòng "Kết quả hai người chấm" + chép sang `eval/README.md` mục 3
-- [ ] Điền `TV_` (ai hỏi / ai ghi) ở dòng đầu `evidence/interviews/P1.md`, `P2.md`, `P3.md`; điền bảng "Lịch hẹn" cuối `evidence/summary.md` (3 dòng lab coach · chiều 27/11 · đã xong)
-- [ ] `evidence/data-mining.md`: ghi rõ script nào là nguồn chính (`data/build_class_stats.py` hay `evidence/count.py`), kiểm hai script ra cùng số
-- [ ] **Sáng (trước 08:45):** xuất lại CSV khảo sát → bỏ cột giờ gửi như `evidence/survey/results.csv` (mã `S21…` nối tiếp) → `python evidence/survey/analyze.py` (nếu phiếu mới cần loại thì thêm vào `LOAI` kèm lý do) → cập nhật số ở `evidence/summary.md` mục 1–2 · không có phiếu mới thì giữ 17/20
-- [ ] *(nếu Huy đã push `Q13`…)* kiểm nhãn tay câu trả lời thật, ghi tên vào `data/DATA_CARD.md` — không có thì bỏ qua
-- [ ] **`spec.md` §1** (người dùng, việc cần làm, pain, bằng chứng — tóm từ `evidence/summary.md`) và **§2** (bảng impact ≥3 hướng: câu hỏi mở cho TA · báo cáo số đúng / sai · trợ giảng câu hỏi ngắn — hướng đã loại, giữ lý do; ghi **điều kiện**: giá trị chỉ có khi đủ câu trả lời, vì 2/3 lab coach đọc hết nhanh do học viên viết ít; số không có nguồn ghi *(tự ước tính)*; số lần / tháng cho persona §8)
+- [x] Chấm cột **Quỳnh Anh** trong `eval/cham-thu-cp2.md` (chấm riêng); nếu cột Huy đã có thì điền dòng "Kết quả hai người chấm" + chép sang `eval/README.md` mục 3
+- [x] Điền `TV_` (ai hỏi / ai ghi) ở dòng đầu `evidence/interviews/P1.md`, `P2.md`, `P3.md`; điền bảng "Lịch hẹn" cuối `evidence/summary.md` (3 dòng lab coach · chiều 27/11 · đã xong)
+- [x] `evidence/data-mining.md`: ghi rõ script nào là nguồn chính (`data/build_class_stats.py` hay `evidence/count.py`), kiểm hai script ra cùng số
+- [x] **Sáng (trước 08:45):** xuất lại CSV khảo sát → bỏ cột giờ gửi như `evidence/survey/results.csv` (mã `S21…` nối tiếp) → `python evidence/survey/analyze.py` (nếu phiếu mới cần loại thì thêm vào `LOAI` kèm lý do) → cập nhật số ở `evidence/summary.md` mục 1–2 · không có phiếu mới thì giữ 17/20 *(giữ 17/20)*
+- [x] *(nếu Huy đã push `Q13`…)* kiểm nhãn tay câu trả lời thật, ghi tên vào `data/DATA_CARD.md` — không có thì bỏ qua
+- [x] **`spec.md` §1** (người dùng, việc cần làm, pain, bằng chứng — tóm từ `evidence/summary.md`) và **§2** (bảng impact ≥3 hướng: câu hỏi mở cho TA · báo cáo số đúng / sai · trợ giảng câu hỏi ngắn — hướng đã loại, giữ lý do; ghi **điều kiện**: giá trị chỉ có khi đủ câu trả lời, vì 2/3 lab coach đọc hết nhanh do học viên viết ít; số không có nguồn ghi *(tự ước tính)*; số lần / tháng cho persona §8)
 - [ ] Gửi Đăng 1–2 dòng "đã đổi gì trong `evidence/` và `spec.md` §1–§2" để ghi §10 · push + merge trước 09:30
 
 ## Trần Tuấn Đăng · `spec.md` §0 → web demo → nộp *(một mạch, không chờ ai)*

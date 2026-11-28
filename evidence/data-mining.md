@@ -17,7 +17,9 @@
   - Tỉ lệ câu hỏi ngắn dưới video: `N = 1.108` câu `channel = video_question`.
   - Tỉ lệ câu hỏi không bám bài: `N = 1.075` câu `video_question` đã được chấm (`trang_thai_cham = da_cham`).
   - Tỉ lệ ngày dữ liệu ít: `N = 13` ngày học (`Day01–Day13`).
-- **Script / công thức:** `python data/build_class_stats.py <đường-dẫn-tới>/data/preclass` → sinh `data/class_stats.json`.
+- **Script / công thức:**
+  - **Nguồn chính:** `data/build_class_stats.py` (`python data/build_class_stats.py <đường-dẫn-tới>/data/preclass` → sinh `data/class_stats.json`, nguồn duy nhất cho toàn bộ số liệu ở Mục 3 và Mục 4).
+  - **Script phụ cũ (`evidence/count.py`):** viết ở chặng đầu cho lát cắt câu hỏi ngắn (chỉ đếm tập `channel = video_question` trong `chat.csv` theo cùng điều kiện `do_dai_cau_hoi <= 20`, không đếm bài ôn `pre_post_post`, và cần truyền `--join-key` khi nối `answers.csv` qua `ref`). Mọi số liệu đối chiếu chính thức của bài đều dùng `data/build_class_stats.py` → `data/class_stats.json`.
 
 ## 2. Đọc trước, đếm sau
 
