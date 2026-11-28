@@ -509,6 +509,11 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         sys.stdout.write("[web] %s\n" % (fmt % args))
 
+    def log_error(self, fmt, *args):
+        if fmt.startswith("Request timed out"):
+            return  # kết nối keep-alive rảnh bị đóng sau `timeout` giây — bình thường, không cần in
+        super().log_error(fmt, *args)
+
     # ---- trả lời
     def _cors(self):
         origin = (self.headers.get("Origin") or "").rstrip("/")

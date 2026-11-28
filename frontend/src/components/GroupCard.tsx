@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRightLeft, Eye, Pencil, Quote, X } from "lucide-react";
 import { KIND_LABEL, quoteHere, type EditGroup } from "../lib/draft";
 
@@ -7,6 +7,7 @@ export function GroupCard({ g, n, all, answers, edited, open, onOpen, onRename, 
   open: string | null; onOpen: (aid: string | null) => void; onRename: (name: string) => void;
   onMove: (aid: string, toKey: string) => void; focusChip: string | null;
 }) {
+  const uid = useId();      // id riêng mỗi thẻ: nhiều lượt chat cùng hiện không trùng id
   const [editing, setEditing] = useState(false);
   const [drop, setDrop] = useState(false);
   const nameBtn = useRef<HTMLButtonElement>(null);
@@ -62,7 +63,7 @@ export function GroupCard({ g, n, all, answers, edited, open, onOpen, onRename, 
           return (
             <button key={aid} ref={(el) => { chipRefs.current[aid] = el; }} type="button" draggable
               onDragStart={(e) => { e.dataTransfer.setData("text/plain", aid); e.dataTransfer.effectAllowed = "move"; }}
-              onClick={() => onOpen(isOpen ? null : aid)} aria-expanded={isOpen} aria-controls={isOpen ? `detail-${g.key}` : undefined}
+              onClick={() => onOpen(isOpen ? null : aid)} aria-expanded={isOpen} aria-controls={isOpen ? `${uid}-detail` : undefined}
               aria-label={`Câu ${aid}${moved ? " (TA đã chuyển vào)" : ""} — xem nguyên văn`}
               className={`inline-flex h-7.5 min-w-[46px] items-center justify-center gap-1 rounded-lg border px-2 font-mono text-[13px] font-semibold transition-colors
                 ${isOpen ? "border-brand bg-brand text-on-brand" : moved ? "border-dashed border-todo bg-surface hover:bg-brand-soft" : "border-line-strong bg-surface hover:border-brand hover:bg-brand-soft hover:text-brand-ink"}`}>
@@ -72,7 +73,7 @@ export function GroupCard({ g, n, all, answers, edited, open, onOpen, onRename, 
         })}
       </div>
       {open && g.ids.includes(open) && (
-        <div id={`detail-${g.key}`} role="region" aria-label={`Nguyên văn câu ${open}`} className="grid animate-fade-up gap-3 rounded-xl border border-line-strong bg-surface-2 px-4 py-3">
+        <div id={`${uid}-detail`} role="region" aria-label={`Nguyên văn câu ${open}`} className="grid animate-fade-up gap-3 rounded-xl border border-line-strong bg-surface-2 px-4 py-3">
           <div className="flex items-center justify-between gap-2">
             <span className="flex items-center gap-1.5 text-[12.5px] font-semibold text-ink-3"><Eye className="size-3.5" aria-hidden />Nguyên văn {open} · dữ liệu học viên, hiện dạng chữ</span>
             <button type="button" onClick={() => onOpen(null)} aria-label="Đóng (Esc)" title="Đóng (Esc)" className="grid size-7.5 place-items-center rounded-lg text-ink-3 hover:bg-surface"><X className="size-4" /></button>
@@ -80,8 +81,8 @@ export function GroupCard({ g, n, all, answers, edited, open, onOpen, onRename, 
           <p className="text-base whitespace-pre-wrap [overflow-wrap:anywhere]">{answers ? (answers[open] ?? "(không thấy câu này)") || "(bỏ trống)" : "Đang tải…"}</p>
           {others.length > 0 && (
             <div className="flex flex-wrap items-center gap-2">
-              <label htmlFor={`mv-${g.key}`} className="flex items-center gap-1.5 text-[13.5px] font-semibold text-ink-2"><ArrowRightLeft className="size-3.5" aria-hidden />Chuyển sang nhóm…</label>
-              <select id={`mv-${g.key}`} value={target} onChange={(e) => setTarget(e.target.value)} className="field h-8.5 max-w-full px-2 text-sm">
+              <label htmlFor={`${uid}-mv`} className="flex items-center gap-1.5 text-[13.5px] font-semibold text-ink-2"><ArrowRightLeft className="size-3.5" aria-hidden />Chuyển sang nhóm…</label>
+              <select id={`${uid}-mv`} value={target} onChange={(e) => setTarget(e.target.value)} className="field h-8.5 max-w-full px-2 text-sm">
                 {others.map((o) => <option key={o.key} value={o.key}>{KIND_LABEL[o.kind] || "Nhóm"} · {o.name}</option>)}
               </select>
               <button type="button" className="btn btn-sm" onClick={() => target && onMove(open, target)} aria-label={`Chuyển ${open} sang nhóm đã chọn`}>Chuyển</button>

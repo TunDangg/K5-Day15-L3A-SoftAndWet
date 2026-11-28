@@ -1,16 +1,21 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Check, Clock, Download, FileText, History, Lock, MessageSquare, Pencil, RotateCcw, Save, Trash2 } from "lucide-react";
 import { api, ApiError, type DraftSummary } from "../lib/api";
 import { copyText, DISCORD_LIMIT, downloadFile, stamp, toDiscord, toMarkdown } from "../lib/draft";
 import { useToast } from "./Toast";
 
 /** Trình chỉnh sửa bản nháp TA: soạn (lưu / copy Discord / tải .md) + lịch sử bản nháp đã lưu (SQLite cục bộ). */
-export function DraftEditor({ qid, question, generated, groups, model }: {
+export function DraftEditor({ qid, question, generated, groups, model, initialManual = null, onManualChange }: {
   qid: string; question: string; generated: string; groups: unknown[]; model?: string;
+  /** Bản TA đã sửa tay của lượt chat này (khôi phục sau F5 / đổi tab); null = theo các thẻ. */
+  initialManual?: string | null; onManualChange?: (manual: string | null) => void;
 }) {
   const toast = useToast();
+  const uid = useId();
   const [tab, setTab] = useState<"edit" | "history">("edit");
-  const [manual, setManual] = useState<string | null>(null);       // null = theo các thẻ; chuỗi = TA đã sửa tay
+  const [manual, setManualState] = useState<string | null>(initialManual);   // null = theo các thẻ; chuỗi = TA đã sửa tay
+  const setManual = useCallback((m: string | null) => { setManualState(m); onManualChange?.(m); }, [onManualChange]);
+  const prevQid = useRef(qid);
   const [title, setTitle] = useState("");
   const [saving, setSaving] = useState(false);
   const savingRef = useRef(false);     // chống bấm đúp "Lưu bản nháp" trong cùng 1 nhịp
@@ -24,7 +29,11 @@ export function DraftEditor({ qid, question, generated, groups, model }: {
     setHistErr(null);
     api.drafts(qid).then((r) => setHistory(r.drafts)).catch((e: ApiError) => setHistErr(e.info.title));
   }, [qid]);
-  useEffect(() => { setHistory(null); setManual(null); setTitle(""); }, [qid]);
+  useEffect(() => {                    // chỉ reset khi ĐỔI câu hỏi, không reset lúc mới mở (giữ bản sửa tay đã lưu)
+    if (prevQid.current === qid) return;
+    prevQid.current = qid;
+    setHistory(null); setManual(null); setTitle("");
+  }, [qid, setManual]);
   useEffect(() => { if (tab === "history") loadHistory(); }, [tab, loadHistory]);
 
   const save = async () => {
@@ -67,13 +76,13 @@ export function DraftEditor({ qid, question, generated, groups, model }: {
   };
 
   return (
-    <section className="card animate-fade-up" aria-labelledby="draft-h">
+    <section className="card min-w-0 animate-fade-up" aria-labelledby={`${uid}-h`}>
       <div className="flex flex-wrap items-center gap-3 border-b border-line px-5 py-3">
-        <h3 id="draft-h" className="flex items-center gap-2 text-[15px] font-semibold"><FileText className="size-4" aria-hidden />Bản nháp cho TA</h3>
+        <h3 id={`${uid}-h`} className="flex items-center gap-2 text-[15px] font-semibold"><FileText className="size-4" aria-hidden />Bản nháp cho TA</h3>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-off-soft px-2.5 py-0.5 text-xs font-semibold text-ink-2"><Lock className="size-3" aria-hidden />Lưu cục bộ · không tự gửi</span>
         <div role="tablist" aria-label="Bản nháp" className="ml-auto flex gap-1 rounded-lg bg-surface-2 p-0.5 ring-1 ring-line">
           {([["edit", "Soạn", FileText], ["history", "Lịch sử đã lưu", History]] as const).map(([k, label, Icon]) => (
-            <button key={k} role="tab" type="button" aria-selected={tab === k} aria-controls={`draft-${k}`} onClick={() => setTab(k)}
+            <button key={k} role="tab" type="button" aria-selected={tab === k} aria-controls={`${uid}-${k}`} data-tab={k} onClick={() => setTab(k)}
               className={`inline-flex h-7.5 items-center gap-1.5 rounded-md px-2.5 text-[13px] font-medium ${tab === k ? "bg-surface text-brand-ink shadow-card" : "text-ink-2 hover:text-ink"}`}>
               <Icon className="size-3.5" aria-hidden />{label}
             </button>
@@ -81,7 +90,7 @@ export function DraftEditor({ qid, question, generated, groups, model }: {
         </div>
       </div>
 
-      <div id="draft-edit" role="tabpanel" hidden={tab !== "edit"}>
+      <div id={`${uid}-edit`} data-panel="edit" role="tabpanel" hidden={tab !== "edit"}>
         {manual !== null && (
           <div className="flex flex-wrap items-center gap-2 border-b border-warn-line bg-warn-soft px-5 py-2 text-[13px] text-warn-ink">
             <Pencil className="size-3.5" aria-hidden />Bạn đang sửa tay bản nháp — thay đổi trên các thẻ sẽ không ghi đè ô này.
@@ -110,22 +119,22 @@ export function DraftEditor({ qid, question, generated, groups, model }: {
         </div>
       </div>
 
-      <div id="draft-history" role="tabpanel" hidden={tab !== "history"} className="p-5">
+      <div id={`${uid}-history`} data-panel="history" role="tabpanel" hidden={tab !== "history"} className="p-5">
         {histErr && <p className="text-sm text-bad-ink">{histErr}</p>}
         {!history && !histErr && <div className="grid gap-2">{[0, 1].map((i) => <div key={i} className="skeleton h-16 animate-shimmer rounded-xl border border-line" />)}</div>}
         {history && !history.length && (
           <p className="flex items-center gap-2 text-sm text-ink-3"><History className="size-4" aria-hidden />Chưa có bản nháp nào cho {qid}. Bấm “Lưu bản nháp” ở tab Soạn.</p>
         )}
         {history && history.length > 0 && (
-          <ul className="grid gap-2">
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-2">
             {history.map((d) => (
-              <li key={d.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface-2 p-3">
+              <li key={d.id} className="flex min-w-0 flex-wrap items-center gap-3 rounded-xl border border-line bg-surface-2 p-3">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
                     <span className="font-mono text-ink-3">#{d.id}</span>{d.title || "Bản nháp không tên"}
                     <span className="inline-flex items-center gap-1 text-xs font-normal text-ink-3"><Clock className="size-3" aria-hidden />{d.created_at ? new Date(d.created_at * 1000).toLocaleString("vi-VN") : "—"} · {d.chars} ký tự</span>
                   </div>
-                  {d.preview && <p className="mt-0.5 truncate font-mono text-xs text-ink-3">{d.preview.replace(/\n/g, " ⏎ ")}</p>}
+                  {d.preview && <p className="mt-0.5 line-clamp-2 font-mono text-xs break-all text-ink-3">{d.preview.replace(/\n/g, " ⏎ ")}</p>}
                 </div>
                 <button type="button" className="btn btn-sm" onClick={() => restore(d.id)}><RotateCcw className="size-3.5" aria-hidden />Mở lại</button>
                 <button type="button" className="btn btn-sm btn-ghost text-bad-ink" onClick={() => remove(d.id)} aria-label={`Xoá bản nháp #${d.id}`}><Trash2 className="size-3.5" aria-hidden /></button>

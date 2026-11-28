@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { AlertTriangle, Clock, FileText, Hash, Info, LayoutGrid, Lock, Pencil, RotateCcw, Shield, ShieldCheck, Users } from "lucide-react";
 import { api, type AnalyzeResp, type ParsedReport, type Question } from "../lib/api";
 import { cardEdited, draftText, isEdited, KIND_LABEL, RANK_PREFIX, toEditGroups, type EditGroup, idNum } from "../lib/draft";
@@ -14,12 +14,41 @@ const GUARD_TITLE: Record<string, string> = {
   injection_isolated: "Guardrail: cô lập câu trả lời chứa chỉ dẫn chèn",
 };
 
-export function ReportView({ data, questions }: { data: AnalyzeResp; questions: Question[] }) {
+/** State TA chỉnh trên một lượt chat — lưu theo turn.id, mỗi lượt độc lập. */
+export interface TurnEdits { groups: EditGroup[]; manual: string | null }
+
+/** Bản lưu chỉ dùng lại khi khớp đúng các nhóm + id của kết quả này (tránh áp nhầm dữ liệu cũ / hỏng). */
+function validSaved(saved: TurnEdits | undefined, original: EditGroup[]): EditGroup[] | null {
+  const g = saved?.groups;
+  if (!Array.isArray(g) || g.length !== original.length) return null;
+  const ids = (xs: EditGroup[]) => xs.flatMap((x) => (Array.isArray(x?.ids) ? x.ids : [])).sort().join();
+  if (!g.every((x, i) => x && x.key === original[i].key && typeof x.name === "string") || ids(g) !== ids(original)) return null;
+  return g;
+}
+
+export function ReportView({ data, questions, saved, onEdits }: {
+  data: AnalyzeResp; questions: Question[]; saved?: TurnEdits; onEdits?: (e: TurnEdits) => void;
+}) {
   const toast = useToast();
+  const uid = useId();
   const p = data.result!.parsed as ParsedReport;
   const N = p.n;
   const original = useMemo(() => toEditGroups(p.groups), [p]);
-  const [groups, setGroups] = useState<EditGroup[]>(original);
+  const [groups, setGroups] = useState<EditGroup[]>(() => validSaved(saved, original) ?? original);
+  const manualRef = useRef<string | null>(saved && typeof saved.manual === "string" ? saved.manual : null);
+  const onEditsRef = useRef(onEdits);
+  onEditsRef.current = onEdits;
+  const first = useRef(true);
+  useEffect(() => {                    // báo lên lượt chat mỗi khi nhóm đổi (bỏ lần render đầu)
+    if (first.current) { first.current = false; return; }
+    onEditsRef.current?.({ groups, manual: manualRef.current });
+  }, [groups]);
+  const onManualChange = useCallback((m: string | null) => {
+    manualRef.current = m;
+    onEditsRef.current?.({ groups: groupsRef.current, manual: m });
+  }, []);
+  const groupsRef = useRef(groups);
+  groupsRef.current = groups;
   const [open, setOpen] = useState<{ key: string; aid: string } | null>(null);
   const [focus, setFocus] = useState<{ key: string; aid: string } | null>(null);
   const [answers, setAnswers] = useState<Record<string, string> | null>(answersCache[p.qid] ?? null);
@@ -70,7 +99,7 @@ export function ReportView({ data, questions }: { data: AnalyzeResp; questions: 
   ];
 
   return (
-    <div className="grid gap-5">
+    <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-5">
       <section className="grid animate-fade-up gap-3" aria-label="Bản nháp">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-brand bg-brand-soft px-2.5 py-0.5 text-xs font-bold tracking-wider text-brand-ink uppercase"><FileText className="size-3.5" aria-hidden />Nháp — chờ TA duyệt</span>
@@ -126,8 +155,8 @@ export function ReportView({ data, questions }: { data: AnalyzeResp; questions: 
         ))}
       </div>
 
-      <section className="card animate-fade-up" aria-labelledby="facts-h">
-        <h3 id="facts-h" className="flex items-center gap-2 border-b border-line px-5 py-3 text-[15px] font-semibold"><Info className="size-4" aria-hidden />Làm tốt đến đâu</h3>
+      <section className="card animate-fade-up" aria-labelledby={`${uid}-facts`}>
+        <h3 id={`${uid}-facts`} className="flex items-center gap-2 border-b border-line px-5 py-3 text-[15px] font-semibold"><Info className="size-4" aria-hidden />Làm tốt đến đâu</h3>
         <div className="p-5">
           <dl className="grid gap-x-5 gap-y-2 text-[14.5px] sm:grid-cols-[max-content_1fr]">
             {facts.map(([k, v], i) => <div key={i} className="contents"><dt className="font-semibold text-ink-3">{k}</dt><dd className="mb-2 sm:mb-0">{v}</dd></div>)}
@@ -137,7 +166,7 @@ export function ReportView({ data, questions }: { data: AnalyzeResp; questions: 
       </section>
 
       <DraftEditor qid={p.qid} question={p.cau_hoi} generated={generated} model={m?.models_called[0]}
-        groups={groups.filter((g) => g.ids.length).map((g) => ({ kind: g.kind, name: g.name, ids: g.ids }))} />
+        groups={groups.filter((g) => g.ids.length).map((g) => ({ kind: g.kind, name: g.name, ids: g.ids }))}  initialManual={manualRef.current} onManualChange={onManualChange}/>
 
       <TraceDrawer data={data} />
     </div>
