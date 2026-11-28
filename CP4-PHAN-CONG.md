@@ -68,7 +68,7 @@
 
 - Lượt 1: run-1@20261128-005348 · 8/14 (57%) · gemini-3.5-flash-lite
 - Lượt 2 (Huy): run-2@20261128-104820 · gemini-3.5-flash-lite · **18/22 (82%)** · thuong 3/5 · kho 8/10 · tu_choi 7/7 · **chỉ 14 câu cũ: 10/14 (71%)**, lượt 1 là 8/14 (57%) · *(pass Huy xác nhận 28/11)*
-- Chi phí / task thành công, kịch bản cơ sở + model (Trọng): __
+- Chi phí / task thành công, kịch bản cơ sở + model (Trọng): **$0,0017 ≈ 44 ₫** (`gemini-3.5-flash-lite`) · $0,0032 ≈ 81 ₫ (`gemini-3.8-flash`) · cơ sở 30 TA: $0,60 / tháng ≈ 512 ₫ / TA / tháng *(chép từ `cost/cost-estimate.md`)*
 - Bảng 3 kịch bản × 2 model (Trọng): xem `cost/cost-estimate.md`
 - Link video demo dự phòng (Trọng): __
 - `demo-slides.pdf` (Quỳnh Anh): https://github.com/TunDangg/K5-Day15-L3A-SoftAndWet/blob/main/demo-slides.pdf
@@ -117,17 +117,17 @@
 ## Trần Tuấn Đăng · web → hồ sơ đánh giá → spec → người dùng thử → nộp *(một mạch)*
 
 **10:15–12:00 (không cần ai)**
-- [ ] Hoàn thiện web (model giả): chạy được 1 câu thường + 1 câu khó + câu lạ không chết; `README.md` ghi cách chạy web → **merge lên `main` trước 12:00**
-- [ ] `eval/README.md` phần tĩnh (hồ sơ đánh giá một trang): mục 1 dataset (`open_answers.json` Q01–Q12 synthetic + Q13–Q14 thật) · mục 2 bộ câu thử **22 câu** (thuong 5 · kho 10 · tu_choi 7 · 8/22 nguồn người dùng), lưới input, câu kho / tu_choi theo 4 lớp · mục 3 metric + kết quả chấm thử · mục 4 lệnh
-- [ ] `docs/ai-usage.md`: điền bảng (AI làm gì · ai kiểm · ai phụ trách) — mỗi người nhắn 1 dòng phần mình; `AGENTS.md` mục "Quy ước của nhóm" (3 dòng còn `__`)
-- [ ] `spec.md` §9 Rủi ro & an toàn (đã ẩn danh gì · không thu gì · AI không được làm gì kể cả khi bị yêu cầu · ai có thể bị hại và chặn thế nào — từ §4 "chỗ chặn rủi ro")
+- [x] Hoàn thiện web (model giả): chạy được 1 câu thường + 1 câu khó + câu lạ không chết; `README.md` ghi cách chạy web → **merge lên `main` trước 12:00**
+- [x] `eval/README.md` phần tĩnh (hồ sơ đánh giá một trang): mục 1 dataset (`open_answers.json` Q01–Q12 synthetic + Q13–Q14 thật) · mục 2 bộ câu thử **22 câu** (thuong 5 · kho 10 · tu_choi 7 · 8/22 nguồn người dùng), lưới input, câu kho / tu_choi theo 4 lớp · mục 3 metric + kết quả chấm thử · mục 4 lệnh
+- [x] *(Đăng xong phần mình + khung; Trọng, Huy, Quỳnh Anh tự điền dòng `__ (… điền)`)* `docs/ai-usage.md`: điền bảng (AI làm gì · ai kiểm · ai phụ trách) — mỗi người nhắn 1 dòng phần mình; `AGENTS.md` mục "Quy ước của nhóm" (3 dòng còn `__`)
+- [x] `spec.md` §9 Rủi ro & an toàn (đã ẩn danh gì · không thu gì · AI không được làm gì kể cả khi bị yêu cầu · ai có thể bị hại và chặn thế nào — từ §4 "chỗ chặn rủi ro")
 
 **12:00–13:40 (nhận số ở giờ chốt, trước đó vẫn có việc)**
-- [ ] **12:00:** lấy số lượt 2 từ "Số liệu nộp" → `eval/README.md` mục 5 (bảng các lượt) · `spec.md` §7 dòng kết quả (**không đụng dòng chuẩn "đạt"**)
-- [ ] **12:45:** lấy "lỗi chính" từ `eval/report.md` → `eval/README.md` mục 6 → nhắn Quỳnh Anh "hồ sơ đánh giá xong" (cho trang 5)
+- [x] **12:00:** lấy số lượt 2 từ "Số liệu nộp" → `eval/README.md` mục 5 (bảng các lượt) · `spec.md` §7 dòng kết quả (**không đụng dòng chuẩn "đạt"**)
+- [x] **12:45:** lấy "lỗi chính" từ `eval/report.md` → `eval/README.md` mục 6 → nhắn Quỳnh Anh "hồ sơ đánh giá xong" (cho trang 5)
 - [ ] *(Bonus)* **12:45–13:30 người dùng thử** (model thật, web trên `main`): 2–3 người ngoài nhóm đúng vai (ưu tiên TA / lab coach, hoặc học viên đóng vai TA), 10 phút / người, 5 nhịp guide 4.3: làm quen → bối cảnh ("lần gần nhất chuẩn bị đầu buổi…") → giao việc theo kết quả ("dùng cái này để biết lớp hiểu sai gì ở Q01") → **im lặng quan sát** → hỏi sau (khó hiểu nhất? có tin kết quả không? "mai không được dùng nữa: rất tiếc / hơi tiếc / không sao?")
   - `validation/log.md`: mỗi người 1 dòng (vai · việc giao · quan sát · trích nguyên văn · mức nghiêm trọng) + 4 dòng tổng hợp · ghi **ngay trong lúc quan sát** · nhắn Quỳnh Anh 1–2 ý cho trang 8
-- [ ] **13:00 → 13:40:** từ `cost/cost-estimate.md` → `spec.md` §8 (persona · chi phí / task thành công · 3 kịch bản · so với impact)
+- [x] **13:00 → 13:40:** từ `cost/cost-estimate.md` → `spec.md` §8 (persona · chi phí / task thành công · 3 kịch bản · so với impact)
 
 **13:45 → 14:30**
 - [ ] **13:45–14:00 (model thật):** thử lại web `[Q01]` + `[Q12]` để chắc demo chạy

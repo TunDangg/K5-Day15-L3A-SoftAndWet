@@ -149,28 +149,45 @@ flowchart LR
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 5 · kho 6 · tu_choi 3) · metric: `eval/metric_spec.yaml` (4 metric)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu `tu_choi` qua, và 0 câu có câu trích không có thật trong dữ liệu" — **đã chốt 27/11, trước 19:30**
-- Kết quả: lượt 1 8/14 (57%; thuong 1/5 · kho 4/6 · tu_choi 3/3 — chưa đạt chuẩn) · lượt 2 __/__ (__%) — run ID: run-1@20261128-005348 / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 8/14 (57%; thuong 1/5 · kho 4/6 · tu_choi 3/3 — chưa đạt chuẩn) · lượt 2 18/22 (82%; thuong 3/5 · kho 8/10 · tu_choi 7/7 — đạt chuẩn trên 22 câu); **so cùng 14 câu cũ: 8/14 → 10/14 (57% → 71%), vẫn chưa đạt** — 82% có phần lớn nhờ 8 câu mới B15–B22 (đạt 8/8) — run ID: run-1@20261128-005348 / run-2@20261128-104820 → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- Persona + giá: `cost/personas.yaml` — 3 kiểu TA / lab coach: `dung_it` 40% (4 phiên/tháng × 1 lượt) · `dung_vua` 40% (12 × 2) · `dung_nhieu` 20% (20 × 3) *(tự ước tính từ phỏng vấn P1–P3)*; giá `gemini-3.5-flash-lite` 0,30 / 2,50 USD và `gemini-3.8-flash` 0,75 / 3,75 USD mỗi 1 triệu token vào / ra (ngày xem 25/11/2026) · lượt mô phỏng: `cost/simulate-1.csv` (50 phiên, seed 42, 0 phiên lỗi; token đo thật trên `gemini-3.5-flash-lite`) — theo `cost/cost-estimate.md`; có thêm lượt `simulate-2@20261128-123517`
+- Chi phí / task thành công (= chi phí trung bình / phiên ÷ tỉ lệ đạt lượt 2 là 82%): **$0,0017 ≈ 44 ₫** (model `gemini-3.5-flash-lite`) · **$0,0032 ≈ 81 ₫** (model `gemini-3.8-flash`)
+- Chi phí / tháng ở quy mô thật (`gemini-3.5-flash-lite`; người dùng thấp 15 · cơ sở 30 · cao 60 TA / lab coach *(tự ước tính)*): thấp **$0,30** · cơ sở **$0,60** · cao **$1,20** (`gemini-3.8-flash`: $0,56 · $1,12 · $2,24) → chi tiết `cost/cost-estimate.md`
+- So với impact / người / tháng (§2): đáng làm không, vì sao: **đáng làm về chi phí API** — khoảng **$0,02 ≈ 512 ₫ / TA / tháng** (cơ sở, `gemini-3.5-flash-lite`) so với impact §2 là tiết kiệm **~3 giờ rà thủ công / TA / tháng** (12 buổi × 15 phút *(tự ước tính)*). **Điều kiện:** chỉ có giá trị khi lớp có đủ câu trả lời mở (≥5 câu / câu hỏi / buổi) — 2/3 lab coach nói đọc hết nhanh vì học viên viết ít (§1). Bộ thử hiện 5–8 câu trả lời / câu hỏi; lớp thật đông hơn thì token tăng, `cost-estimate.md` ước tính vẫn dưới ~3.000 ₫ / TA / tháng.
 
 ## §9. Rủi ro & an toàn
-- Dữ liệu: đã ẩn danh gì, không thu gì, không đưa gì vào model gói miễn phí:
-- AI **không được** làm gì kể cả khi người dùng yêu cầu:
-- Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
+- **Dữ liệu — đã ẩn danh gì, không thu gì, không đưa gì vào model:**
+  - Data BTC (`data/preclass/`: `answers.csv`, `chat.csv`) chỉ dùng để đào bằng chứng, **không commit** (`.gitignore`: `data-btc/`); repo chỉ có số đã tổng hợp `data/class_stats.json`, không có mã học viên.
+  - `data/open_answers.json`: Q01–Q09, Q12 do nhóm tự viết (`synthetic`); Q13–Q14 là câu trả lời thật của học viên L3, **có đồng ý, ẩn danh** (chỉ giữ chữ câu trả lời). Khảo sát chỉ commit bản đã ẩn danh (`.gitignore`: `evidence/**/raw-*`).
+  - **Model chỉ nhận** chữ câu hỏi + chữ câu trả lời kèm id `A1…`; **không** nhận mã học viên, tên, nhãn tay (`get_answers` bỏ `nhan_tay`). Dưới 5 câu trả lời thì code dừng, không gửi gì cho model (`MIN_ANSWERS = 5`).
+  - Web: file TA import chỉ giữ cột câu trả lời, bỏ mọi cột khác (họ tên, email…), tự ẩn email / số điện thoại / mã `L` + 4 số trước khi lưu (`codebase/web_store.py`); câu trả lời import + bản nháp lưu cục bộ ở `data/runtime/` (đã `.gitignore`). Mở web ra ngoài localhost bắt buộc đặt mật khẩu (`APP_PASSWORD`), không thì server từ chối khởi động.
+  - Không thu: tên, email, SĐT, điểm số, lịch sử học của học viên. API key chỉ để trong `.env` (không commit).
+  - Khi dùng thật với câu trả lời của lớp: dùng **gói trả phí không lấy dữ liệu để huấn luyện**, không dùng gói miễn phí — vì vậy §8 tính theo giá gói trả phí.
+- **AI không được làm, kể cả khi người dùng yêu cầu:**
+  1. Chấm điểm, xếp hạng, chỉ ra học viên nào giỏi / kém — code bắt bằng `RANK_REQ`, chèn câu từ chối cố định, chỉ trả phân nhóm cấp lớp (B13, B16, B20).
+  2. Nêu tên / mã học viên hoặc đoán ai viết câu nào — `check_report` chặn mẫu `L` + 4 số; lớp <5 câu không phân nhóm (B06).
+  3. Viết báo cáo theo kết luận TA gõ sẵn hoặc theo chỉ dẫn chèn trong câu trả lời — số `x/N` do code đếm từ id; câu chứa chỉ dẫn (`INJECTION`) bị code chuyển sang "Lạc đề" và không được trích (B12, B14, B17, B21).
+  4. Bịa nhóm, bịa câu trích, bịa số — `check_report` kiểm câu trích nguyên văn, id có thật, số đếm khớp; không qua thì báo lỗi, không đưa bản chưa kiểm cho TA.
+  5. Gửi báo cáo cho lớp / Discord / email — không có công cụ hay endpoint gửi; mọi output là **bản nháp** chờ TA duyệt.
+- **Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:**
+
+  | Ai | Hại thế nào nếu AI sai | Chặn bằng gì |
+  |---|---|---|
+  | Cả lớp học viên | TA giảng lại một kiểu hiểu sai không ai có (nhóm / câu trích bịa) hoặc bỏ sót kiểu hiểu sai thật → mất giờ học, hiểu sai tiếp | `check_report` (câu trích nguyên văn, id thật, số khớp) · mỗi nhóm kèm id để TA mở đọc (G11) · dòng "Nháp — chờ TA duyệt" · cả lớp đúng thì không bịa nhóm sai (B08) |
+  | Học viên viết câu trả lời | Bị lộ ai viết gì (lớp ít người) hoặc bị đánh giá cá nhân qua câu trả lời mở | Không gửi mã học viên cho model · <5 câu không phân nhóm · từ chối chấm / xếp hạng · import tự ẩn email / SĐT / mã · dữ liệu lớp không commit |
+  | TA / lab coach | Tin nhầm báo cáo rồi nói sai trước lớp; bị một câu trả lời "chèn lệnh" dắt kết luận | TA quyết định cuối, sửa được tên nhóm / chuyển câu (G9) · câu chèn chỉ dẫn vào "Lạc đề" · báo cáo ghi rõ chỉ dựa trên N câu đã nộp (G2) |
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"; chi tiết `CP3-PHAN-CONG.md`):
+- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"; chi tiết `CP4-PHAN-CONG.md`):
 
   | Chặng | Trần Tuấn Đăng (đội trưởng) | Phạm Quỳnh Anh | Nguyễn Đức Trọng | Nguyễn Văn Huy |
   |---|---|---|---|---|
   | CP1 | canvas, giả thuyết, chọn Track A1, thông tin nhóm | __ | __ | __ |
   | CP2 | `spec.md` §3–§5, đổi lát cắt sang câu hỏi mở, gộp nhánh, nộp | đào data (`evidence/data-mining.md`, `count.py`), duyệt 14 câu thử + 63 nhãn tay | `codebase/tools.py`, `agent.py`, bản chạy thử với AI giả | `eval/metric_spec.yaml`, `eval/README.md` |
   | CP3 | `spec.md` §0, §10 · web demo `codebase/web.py` · nộp | bằng chứng (`evidence/`: khảo sát, phỏng vấn P1–P3) · `spec.md` §1, §2 | nối model thật · sửa prompt + `agent.py` · video 30 giây · `spec.md` §6 | câu trả lời thật → câu thử 20–24 · lượt eval 1 · kết quả §7 |
-  | CP4 | web demo cho giám khảo, video demo dự phòng | __ | __ | __ |
+  | CP4 | web demo (chat thread, import, tổng quan lớp) · `eval/README.md` · `spec.md` §7–§10 · `docs/ai-usage.md`, `AGENTS.md` · nộp | toàn bộ slide 8 trang (`slides/deck.html`, `slides/outline.md`) · `demo-slides.pdf` | persona + giá → mô phỏng 50 phiên → `cost/cost-estimate.md` · video demo dự phòng | sửa prompt nhắm nhóm lỗi A → lượt 2 (22 câu) → chấm `pass` → `eval/report.md` |
 
   - **Chia cặp:** Huy + Quỳnh Anh chấm thử độc lập (`eval/cham-thu-cp2.md`, mỗi người một cột) · Trọng (luồng `agent.py`) + Đăng (web gọi `answer()`, không sửa `agent.py`) · Đăng ghi §10 theo tin nhắn của từng người.
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
@@ -197,6 +214,13 @@ flowchart LR
 | 09:20 Thứ Bảy 28/11 | Web demo cho TA: `codebase/web.py` (API `/api/analyze`, `/api/questions`, `/api/import`, `/api/drafts`, `/api/stats`) + `codebase/web_store.py` (SQLite ở `data/runtime/`, đã .gitignore) + giao diện React `frontend/` (Phân tích TA · Tổng quan lớp · Nhập dữ liệu lớp) + `Dockerfile` + 35 test (`tests/`). Gọi thẳng `answer()`, **không sửa** `agent.py` / `tools.py` / `ai.py`; không có nút gửi; TA đổi tên nhóm / chuyển câu trên màn hình (G9) | CP4 demo trực tiếp: giám khảo gõ câu lạ tại chỗ (1 thường + 1 khó); TA cần thấy nhóm, `x/N`, câu trích, guardrail và sửa được bản nháp (§4 G9, G11, G2). Import chỉ giữ chữ câu trả lời, tự ẩn email / SĐT / mã học viên (§9) |
 | 09:20 Thứ Bảy 28/11 | Web: lỗi model phân loại theo mã HTTP (429 / 503 / timeout / sai key) → thông báo rõ cho TA; file import không phải UTF-8 báo đúng lỗi bảng mã | Thử nghiệm: 503 bị báo nhầm là "hết lượt" (dò chữ `rate` khớp `generateContent`); CSV Latin-1 bị đọc nhầm UTF-16 → báo sai "thiếu cột" |
 | 10:06 Thứ Bảy 28/11 | Dòng 1 `spec.md`: Zone 5 → Zone 4 | BTC đổi zone demo |
+| 28/11 (CP4) | `spec.md` §9 điền đủ (dữ liệu · AI không được làm · ai bị hại + chặn) · `eval/README.md` mục 1 thêm Q13–Q14 thật, mục 3 ghi B15–B22 chấm theo metric của `type` · `AGENTS.md` quy ước nhóm · `docs/ai-usage.md` khung bảng. **Không sửa** `metric_spec.yaml`, chuẩn "đạt", câu thử | CP4 cần đủ §0–§10; mục 1 hồ sơ đánh giá còn ghi 10 câu hỏi / 63 câu, thiếu 10 câu trả lời thật dùng cho B15–B22 (Đăng) |
+| 28/11 (CP4, sau lượt 2) | `spec.md` §7 dòng kết quả + `eval/README.md` mục 5 (bảng lượt 2, thêm dòng "chỉ 14 câu cũ") và mục 6 (lỗi chính lượt 1 → lượt 2). **Không sửa** dòng chuẩn "đạt", `run-2.csv` | Số lấy từ `python run.py score eval/run-2.csv` (18/22) và `eval/report.md` của Huy; ghi thêm 10/14 để so cùng bộ câu với lượt 1, tránh hiểu 82% là cải tiến thật (Đăng) |
+| 10:56 Thứ Bảy 28/11 | `codebase/agent.py`: chỉ sửa `SYSTEM` prompt — gộp nhóm theo "niềm tin sai phía sau", bỏ câu "không gộp hai kiểu khác nhau", thêm bước tự kiểm, ví dụ ngoài bộ câu thử, tên nhóm tiếng Việt có dấu → chạy **lượt 2** `run-2@20261128-104820` (22 câu) (Huy) | Nhóm lỗi A ở lượt 1 (tách một kiểu hiểu sai thành nhiều nhóm: B01, B03, B04, B05) đau nhất với TA; kết quả: nhóm A 0/4 → 2/4, cùng 14 câu 57% → 71%, cả bộ 18/22 (82%), không câu nào tệ đi (`eval/report.md` mục 3) |
+| 12:13 Thứ Bảy 28/11 | `cost/personas.yaml` (3 persona TA / lab coach, 2 mức giá model) → mô phỏng 50 phiên `cost/simulate-1.csv`; 12:42 thêm `simulate-2` và sửa `cost/cost-estimate.md` (Trọng) | Tính chi phí / task thành công khi dùng thật: $0,0017 (`gemini-3.5-flash-lite`) · $0,0032 (`gemini-3.8-flash`); điền §8 |
+| 12:53 Thứ Bảy 28/11 | `slides/deck.html` 8 trang + `slides/outline.md` cập nhật số lượt 2 (Quỳnh Anh) | Slide CP4 theo guide 5.1, số lấy từ `eval/README.md`, `eval/report.md`, `cost/cost-estimate.md` |
+| 13:07 Thứ Bảy 28/11 | Web: tab Phân tích TA thành luồng hội thoại — mỗi lần hỏi thành 1 lượt, không đè kết quả cũ; chỉnh sửa riêng từng lượt; lưu phiên trên trình duyệt; nút Huỷ (Đăng) | Demo CP4 cần gửi liên tiếp 1 câu thường + 1 câu khó + câu lạ của giám khảo mà vẫn xem lại được kết quả trước |
+| 13:20 Thứ Bảy 28/11 | `spec.md` §8 điền từ `cost/cost-estimate.md`; §10 thêm dòng phân công CP4 | §8 còn trống sau khi có kết quả mô phỏng |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
