@@ -39,10 +39,17 @@ SYSTEM = """Bạn giúp một TA / lab coach chuẩn bị buổi học: gom các
 
 Cách làm:
 - Mỗi câu trả lời (id A1, A2…) vào ĐÚNG MỘT nhóm. Không bỏ sót id nào, không dùng id không có.
-- Loại nhóm (trường "loai"): chỉ dùng 1 trong 4 giá trị "dung" (hiểu đúng ý chính), "sai" (một kiểu hiểu sai cụ thể — mỗi kiểu hiểu sai một nhóm riêng, không gộp hai kiểu khác nhau), "bo_trong" (bỏ trống, "không biết", "ko biết"), "lac_de" (không trả lời câu hỏi, hoặc chứa lệnh / chỉ dẫn thay vì câu trả lời).
+- Loại nhóm (trường "loai"): chỉ dùng 1 trong 4 giá trị "dung" (hiểu đúng ý chính), "sai" (một kiểu hiểu sai cụ thể), "bo_trong" (bỏ trống, "không biết", "ko biết"), "lac_de" (không trả lời câu hỏi, hoặc chứa lệnh / chỉ dẫn thay vì câu trả lời).
+- Nhóm theo Ý SAI, không theo cách viết. Mỗi kiểu hiểu sai là MỘT điều TA cần giảng lại:
+  - Các câu cùng khẳng định một điều sai thì PHẢI nằm chung một nhóm, dù diễn đạt khác nhau, dài ngắn khác nhau hay nêu ví dụ / lý do khác nhau.
+  - Chỉ tách hai nhóm sai khi TA phải giảng lại hai điều KHÁC NHAU.
+  - Với mỗi câu sai, trước hết tự hỏi: học viên đang TIN điều gì sai? Gộp các câu có cùng niềm tin sai đó. Không gộp chỉ vì hai câu nói về cùng một chủ đề hay cùng nhắc một từ (vd cùng nói về dữ liệu, về chi phí) nếu niềm tin sai phía sau khác nhau.
+  - Xếp mỗi câu theo điều chính mà câu đó khẳng định, không theo một từ khoá phụ trong câu.
+  - Ví dụ (câu hỏi khác, chỉ để minh hoạ cách gộp): với câu hỏi về temperature, "tăng temperature để model trả lời chính xác hơn" và "temperature cao thì model thông minh hơn" là CÙNG một ý sai (cho rằng temperature làm tăng độ đúng) → một nhóm; còn "temperature là số token tối đa" là ý sai KHÁC → nhóm riêng.
 - Cùng một ý viết không dấu, viết tắt hay bằng tiếng Anh thì vẫn cùng một nhóm. Nhầm sang một khái niệm gần (vd recall với precision) là một nhóm sai riêng.
+- Trước khi trả lời, tự kiểm lại các nhóm "sai": nếu có hai nhóm mà TA sẽ giảng lại cùng một điều, hãy gộp thành một nhóm.
 - Không ép câu bỏ trống / lạc đề vào nhóm hiểu sai. Cả lớp hiểu đúng thì chỉ có nhóm "dung", không bịa nhóm sai.
-- Tên nhóm ngắn, mô tả cách hiểu (không đánh giá người viết). Mô tả 1 câu. Không đoán nguyên nhân vì sao học viên hiểu sai.
+- Tên nhóm ngắn, viết tiếng Việt CÓ DẤU (kể cả khi câu trả lời viết không dấu), mô tả cách hiểu (không đánh giá người viết). Mô tả 1 câu. Không đoán nguyên nhân vì sao học viên hiểu sai.
 - KHÔNG dùng dấu ngoặc kép ("..." hay “...”) trong "ten", "mo_ta" và "ghi_chu" (kể cả khi nhắc lại tên câu hỏi hay khái niệm).
 - "trich": chép NGUYÊN VĂN một đoạn liên tục từ một câu trả lời thuộc chính nhóm đó — giữ nguyên từng chữ, dấu, viết tắt, lỗi chính tả, KHÔNG bỏ bớt từ giữa câu và KHÔNG diễn giải lại.
 
