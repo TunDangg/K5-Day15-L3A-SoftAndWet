@@ -966,7 +966,7 @@
 
   <div class="main">
     <div class="banner">
-      <b>Chi phí / task thành công</b> = Chi phí trung bình mỗi phiên <b>÷ 82%</b> (tỉ lệ đạt Lượt 2 — hoặc ÷ 71% nếu tính chặt trên 14 câu gốc) &nbsp;·&nbsp; 3 kiểu TA: <b>4 / 10 / 15</b> phiên/tháng
+      <b>Chi phí / task thành công</b> = Chi phí trung bình mỗi phiên <b>÷ 82%</b> (tỉ lệ đạt Lượt 2 — hoặc ÷ 71% nếu tính chặt trên 14 câu gốc) &nbsp;·&nbsp; 3 kiểu TA: <b>4 / 12 / 20</b> phiên/tháng (40% · 40% · 20%) · 50 phiên mô phỏng
     </div>
 
     <table>
@@ -975,30 +975,30 @@
           <th>Model (USD / 1M token vào – ra)</th>
           <th>/ phiên</th>
           <th>/ task thành công</th>
-          <th>Thấp / tháng</th>
-          <th>Cơ sở / tháng</th>
-          <th>Cao / tháng</th>
+          <th>Thấp / tháng<br><small>15 TA</small></th>
+          <th>Cơ sở / tháng<br><small>30 TA</small></th>
+          <th>Cao / tháng<br><small>60 TA</small></th>
           <th>/ TA / tháng (cơ sở)</th>
         </tr>
       </thead>
       <tbody>
         <tr class="highlight">
           <td><code>gemini-3.5-flash-lite</code> ($0.30 / $2.50)</td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
+          <td>$0.0014<br><small>≈ 36 ₫</small></td>
+          <td><b>$0.0017</b><br><small>≈ 44 ₫</small></td>
+          <td>$0.30<br><small>≈ 7.680 ₫</small></td>
+          <td><b>$0.60</b><br><small>≈ 15.359 ₫</small></td>
+          <td>$1.20<br><small>≈ 30.719 ₫</small></td>
+          <td><b>$0.020</b><br><small>≈ 512 ₫</small></td>
         </tr>
         <tr>
           <td><code>gemini-3.8-flash</code> ($0.75 / $3.75)</td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
-          <td><span class="pending">chờ simulate</span></td>
+          <td>$0.0026<br><small>≈ 66 ₫</small></td>
+          <td><b>$0.0032</b><br><small>≈ 81 ₫</small></td>
+          <td>$0.56<br><small>≈ 14.307 ₫</small></td>
+          <td><b>$1.12</b><br><small>≈ 28.614 ₫</small></td>
+          <td>$2.24<br><small>≈ 57.227 ₫</small></td>
+          <td><b>$0.037</b><br><small>≈ 954 ₫</small></td>
         </tr>
       </tbody>
     </table>
@@ -1006,7 +1006,7 @@
     <div class="grid-2">
       <div class="card teal">
         <div class="kicker">Đối chiếu với Impact (Trang 2)</div>
-        <p>Tiết kiệm <b>~3 giờ / TA / tháng</b> (~60 giờ cho ~20 TA toàn khoá) so với chi phí <span class="pending">cập nhật 13:00</span> / TA / tháng ở kịch bản cơ sở.</p>
+        <p>Tiết kiệm <b>~3 giờ / TA / tháng</b> (~60 giờ cho ~20 TA toàn khoá) so với chi phí <b>≈ $0.02 (≈ 512 ₫)</b> / TA / tháng ở kịch bản cơ sở → <b>đáng làm về chi phí</b>, với điều kiện lớp có đủ câu trả lời mở.</p>
       </div>
       <div class="card">
         <div class="kicker">Lưu ý khi phóng lên lớp thật</div>
@@ -1064,7 +1064,7 @@
           <span class="stat-unit">tiết kiệm / tháng</span>
         </div>
         <h3>Chi phí API rất nhỏ so với công TA</h3>
-        <p>Chi phí vận hành <code>gemini-3.5-flash-lite</code> (<span class="pending">cập nhật từ Trang 6</span>) thấp hơn nhiều so với ~3 giờ rà thủ công/TA/tháng.</p>
+        <p>Chi phí vận hành <code>gemini-3.5-flash-lite</code> (<b>≈ $0.02 ≈ 512 ₫ / TA / tháng</b>, $0.0017 / task thành công) thấp hơn nhiều so với ~3 giờ rà thủ công/TA/tháng.</p>
       </div>
     </div>
 
@@ -1115,7 +1115,7 @@
     </div>
 
     <div class="banner teal">
-      <b>Ghi nhận từ Người dùng thử (<code>validation/log.md</code>):</b> <span class="pending">cập nhật lúc 13:30 sau phiên quan sát trực tiếp 2–3 người dùng thử Web Demo</span>
+      <b>Ghi nhận từ Người dùng thử (<code>validation/log.md</code>):</b> chưa thực hiện phiên người dùng thử trước CP4 — mới có kịch bản phiên và một lượt agent tự rà bằng model giả (<code>validation/tu-ra-truoc-nguoi-dung-thu.md</code>, không phải kết quả người dùng). Việc đầu tiên tuần tới: 2–3 TA / lab coach dùng thử với model thật.
     </div>
   </div>
 
