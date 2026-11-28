@@ -40,6 +40,6 @@ Khung chỉ dùng thư viện chuẩn của Python. Thêm thư viện thì ghi v
 
 ## Quy ước của nhóm
 
-- Ngôn ngữ trả lời người dùng: __
-- Phong cách code / đặt tên: __
-- Ai duyệt thay đổi do agent tạo trước khi commit: __
+- Ngôn ngữ trả lời người dùng: tiếng Việt có dấu (output cho TA, thông báo web, tài liệu repo); mã câu hỏi, tên hàm, tên trường giữ nguyên dạng trong code (`Q01`, `get_answers`, `nhan_tay`).
+- Phong cách code / đặt tên: Python chỉ dùng thư viện chuẩn (backend web cũng vậy); hàm / biến `snake_case`, tên trường dữ liệu tiếng Việt không dấu (`cau_hoi`, `cau_tra_loi`, `loai`, `trich`); hằng số `UPPER_CASE` (`MIN_ANSWERS`, `RANK_REQ`). Frontend React + TypeScript ở `frontend/` — sửa `frontend/src` thì `npm run build` và commit kèm `frontend/dist`. Mỗi người chỉ sửa vùng file của mình (xem `CP4-PHAN-CONG.md`).
+- Ai duyệt thay đổi do agent tạo trước khi commit: người phụ trách vùng file đó đọc lại toàn bộ diff và chạy `python run.py check` (sửa code thì chạy thêm `python -m unittest discover -s tests`) trước khi commit; Trần Tuấn Đăng (đội trưởng) duyệt PR trước khi merge vào `main`. Agent không tự commit / push nếu người phụ trách chưa yêu cầu.
