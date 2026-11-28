@@ -62,12 +62,12 @@
 ## Phạm Quỳnh Anh · bằng chứng *(một mạch, không chờ ai)*
 
 - [ ] **Tối nay:** xin thêm ≥3 phiếu khảo sát hợp lệ (form cũ, nhắn lại trên Discord) để đạt ≥20 phiếu hợp lệ
-- [ ] Chấm cột **Quỳnh Anh** trong `eval/cham-thu-cp2.md` (chấm riêng); nếu cột Huy đã có thì điền dòng "Kết quả hai người chấm" + chép sang `eval/README.md` mục 3
-- [ ] Điền `TV_` (ai hỏi / ai ghi) ở dòng đầu `evidence/interviews/P1.md`, `P2.md`, `P3.md`; điền bảng "Lịch hẹn" cuối `evidence/summary.md` (3 dòng lab coach · chiều 27/11 · đã xong)
-- [ ] `evidence/data-mining.md`: ghi rõ script nào là nguồn chính (`data/build_class_stats.py` hay `evidence/count.py`), kiểm hai script ra cùng số
-- [ ] **Sáng (trước 08:45):** xuất lại CSV khảo sát → bỏ cột giờ gửi như `evidence/survey/results.csv` (mã `S21…` nối tiếp) → `python evidence/survey/analyze.py` (nếu phiếu mới cần loại thì thêm vào `LOAI` kèm lý do) → cập nhật số ở `evidence/summary.md` mục 1–2 · không có phiếu mới thì giữ 17/20
-- [ ] *(nếu Huy đã push `Q13`…)* kiểm nhãn tay câu trả lời thật, ghi tên vào `data/DATA_CARD.md` — không có thì bỏ qua
-- [ ] **`spec.md` §1** (người dùng, việc cần làm, pain, bằng chứng — tóm từ `evidence/summary.md`) và **§2** (bảng impact ≥3 hướng: câu hỏi mở cho TA · báo cáo số đúng / sai · trợ giảng câu hỏi ngắn — hướng đã loại, giữ lý do; ghi **điều kiện**: giá trị chỉ có khi đủ câu trả lời, vì 2/3 lab coach đọc hết nhanh do học viên viết ít; số không có nguồn ghi *(tự ước tính)*; số lần / tháng cho persona §8)
+- [x] Chấm cột **Quỳnh Anh** trong `eval/cham-thu-cp2.md` (chấm riêng); nếu cột Huy đã có thì điền dòng "Kết quả hai người chấm" + chép sang `eval/README.md` mục 3
+- [x] Điền `TV_` (ai hỏi / ai ghi) ở dòng đầu `evidence/interviews/P1.md`, `P2.md`, `P3.md`; điền bảng "Lịch hẹn" cuối `evidence/summary.md` (3 dòng lab coach · chiều 27/11 · đã xong)
+- [x] `evidence/data-mining.md`: ghi rõ script nào là nguồn chính (`data/build_class_stats.py` hay `evidence/count.py`), kiểm hai script ra cùng số
+- [x] **Sáng (trước 08:45):** xuất lại CSV khảo sát → bỏ cột giờ gửi như `evidence/survey/results.csv` (mã `S21…` nối tiếp) → `python evidence/survey/analyze.py` (nếu phiếu mới cần loại thì thêm vào `LOAI` kèm lý do) → cập nhật số ở `evidence/summary.md` mục 1–2 · không có phiếu mới thì giữ 17/20 *(giữ 17/20)*
+- [x] *(nếu Huy đã push `Q13`…)* kiểm nhãn tay câu trả lời thật, ghi tên vào `data/DATA_CARD.md` — không có thì bỏ qua
+- [x] **`spec.md` §1** (người dùng, việc cần làm, pain, bằng chứng — tóm từ `evidence/summary.md`) và **§2** (bảng impact ≥3 hướng: câu hỏi mở cho TA · báo cáo số đúng / sai · trợ giảng câu hỏi ngắn — hướng đã loại, giữ lý do; ghi **điều kiện**: giá trị chỉ có khi đủ câu trả lời, vì 2/3 lab coach đọc hết nhanh do học viên viết ít; số không có nguồn ghi *(tự ước tính)*; số lần / tháng cho persona §8)
 - [ ] Gửi Đăng 1–2 dòng "đã đổi gì trong `evidence/` và `spec.md` §1–§2" để ghi §10 · push + merge trước 09:30
 
 ## Trần Tuấn Đăng · `spec.md` §0 → web demo → nộp *(một mạch, không chờ ai)*
@@ -75,9 +75,9 @@
 > Web **không phải phần chấm của CP3** (CP3 chấm bản chạy thử gọi AI thật — Trọng quay video bằng `python run.py`). Web phục vụ **demo CP4 lúc 14:30**: giám khảo gõ câu lạ tại chỗ, 1 câu thường + 1 câu khó. Làm song song vì các phần CP3 khác đã có người ôm trọn.
 
 **Tối nay**
-- [ ] `spec.md` §0: luồng hiện tại 3–5 bước (học viên làm bài ôn trắc nghiệm → chỉ thấy đúng / sai → hỏi AI / bạn hoặc bấm qua → TA / lab coach ôn đầu buổi theo slide, không biết trước lớp hiểu sai gì), ảnh chụp từ tài khoản mình (che thông tin)
-- [ ] `spec.md` §10: điền "Phân công có tên" (theo file này), "Dùng AI vào việc gì"
-- [ ] **Web demo bản 1, chế độ model giả** (chưa có `.env` hoặc `MODEL_PROVIDER=fake` → không tốn quota, không ảnh hưởng ai):
+- [ ] `spec.md` §0: luồng hiện tại 3–5 bước (học viên làm bài ôn trắc nghiệm → chỉ thấy đúng / sai → hỏi AI / bạn hoặc bấm qua → TA / lab coach ôn đầu buổi theo slide, không biết trước lớp hiểu sai gì), ảnh chụp từ tài khoản mình (che thông tin) — *đã viết luồng 5 bước + công cụ đang dùng; **còn thiếu ảnh chụp** `docs/img/s0-bai-on.png`*
+- [x] `spec.md` §10: điền "Phân công có tên" (theo file này), "Dùng AI vào việc gì"
+- [x] **Web demo bản 1, chế độ model giả** (chưa có `.env` hoặc `MODEL_PROVIDER=fake` → không tốn quota, không ảnh hưởng ai):
   - `codebase/web.py`: chỉ thư viện chuẩn (`http.server`), chạy `python codebase/web.py` → mở `http://localhost:8000`
   - Gọi thẳng `answer()` trong `agent.py` — **không viết lại logic, không sửa `agent.py`** (Trọng đang sửa); gọi `tracing.begin("web")` / `tracing.end()` như `codebase/app.py`
   - Ô nhập yêu cầu (vd `[Q01] Phân tích câu trả lời của lớp`) + danh sách câu hỏi đang có (`tools.available_questions()`) để bấm nhanh
@@ -85,16 +85,16 @@
   - Nhãn "Nháp — chờ TA duyệt", **không có nút gửi**; hiện dòng `model: …` để thấy đang chạy model thật hay giả
   - **Không sửa `run.py`** (khung — `AGENTS.md`); thêm 2 dòng cách chạy web vào `README.md`
   - Commit riêng, PR riêng, merge sớm
-- [ ] Tạo `.env` theo tin nhắn riêng của Trọng (không commit)
+- [x] Tạo `.env` theo tin nhắn riêng của Trọng (không commit)
 
 **Sáng (07:00 → 10:00)**
-- [ ] `git pull origin main` → thử web với `agent.py` mới của Trọng (sau 08:00), vẫn chế độ model giả
-- [ ] **Không gọi model thật 08:15–08:45** (Huy chạy eval). Sau 08:45: thử web bằng model thật với 1 câu thường (`[Q01]`) + 1 câu khó (`[Q12]` câu chèn chỉ dẫn, hoặc `[Q06]` <5 câu) + 1 câu lạ
-- [ ] **09:30:** `git pull origin main` → thêm các dòng §10 cho mọi thay đổi sau CP2 (theo tin nhắn Trọng, Huy, Quỳnh Anh + `git log`) → `python run.py check`
+- [x] `git pull origin main` → thử web với `agent.py` mới của Trọng (sau 08:00), vẫn chế độ model giả — *09:20: đã gộp main (Q13, Q14 của Huy chạy được trên web); `agent.py` mới của Trọng chưa có trên main*
+- [ ] **Không gọi model thật 08:15–08:45** (Huy chạy eval). Sau 08:45: thử web bằng model thật với 1 câu thường (`[Q01]`) + 1 câu khó (`[Q12]` câu chèn chỉ dẫn, hoặc `[Q06]` <5 câu) + 1 câu lạ — *đã thử Gemini: Q01, Q12, Bị ép; còn thiếu 1 câu lạ bằng model thật*
+- [ ] **09:30:** `git pull origin main` → thêm các dòng §10 cho mọi thay đổi sau CP2 (theo tin nhắn Trọng, Huy, Quỳnh Anh + `git log`) → `python run.py check` — *đã thêm dòng §10 cho web + `run.py check` sạch; **chưa có dòng của Trọng / Huy / Quỳnh Anh***
 - [ ] **09:45:** mở repo + link video (mục "Link nộp") bằng cửa sổ ẩn danh → nộp form CP3 (mã `2A202603618`), khai thật phần chưa xong
 
 **Sau CP3 (10:00 → 14:30) — chuẩn bị demo CP4**
-- [ ] *(nếu kịp)* TA chuyển 1 câu sang nhóm khác trên trang (G9 ở §4) — chỉ đổi trên màn hình, không ghi đi đâu
+- [x] *(nếu kịp)* TA chuyển 1 câu sang nhóm khác trên trang (G9 ở §4) — chỉ đổi trên màn hình, không ghi đi đâu
 - [ ] Thử lại 1 câu thường + 1 câu khó + 1 câu lạ bằng model thật
 - [ ] **Trước 14:00:** quay video demo dự phòng trên bản web (thao tác thật, AI thật), mở thử bằng cửa sổ ẩn danh
-- [ ] Ghi 1 dòng §10 cho web
+- [x] Ghi 1 dòng §10 cho web

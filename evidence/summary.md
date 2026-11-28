@@ -63,4 +63,6 @@ Giả thuyết 3 (`evidence/hypothesis.md`): **phải đổi**.
 
 | Vai | Giờ hẹn | Đã xong? |
 |---|---|---|
-| | | |
+| Lab coach (P1) | ~18:45 chiều 27/11 | Đã xong |
+| Lab coach (P2) | chiều 27/11 | Đã xong |
+| Lab coach (P3) | chiều 27/11 | Đã xong |
