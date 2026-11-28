@@ -77,11 +77,11 @@
 
 - [x] Từ `eval/report.md` (lượt 1), chọn **một nhóm lỗi đau nhất với TA** *(chọn nhóm A: tách nhóm, ghi ở `report.md` mục 3)*. Ứng viên: tách một kiểu hiểu sai thành nhiều nhóm (B01, B03, B04, B05) · tạo nhóm hiểu sai khi cả lớp đúng (B08)
 - [x] Sửa `SYSTEM` prompt (và nếu cần chỗ nhỏ trong `agent.py`) **nhắm đúng nhóm lỗi đó**; kèm 3 chỗ còn treo từ CP3 nếu chưa ai làm: bỏ ngoặc kép trong `ghi_chu` · câu từ chối cố định khi bị đòi chấm điểm · `loai` lạ → `chua_xep`. **Không** chép ví dụ trong bộ câu thử vào prompt
-- [ ] Thử bằng `python run.py eval --try` → merge **trước 11:00**
+- [x] Thử bằng `python run.py eval --try` → merge **trước 11:00** *(PR #16 merge 10:57)*
 - [x] **11:00–11:30:** `python run.py eval` (đủ 22 câu) → `eval/run-2.csv` + `traces/run-2.jsonl`
 - [x] Chấm cột `pass` theo `metric_spec.yaml` (quy ước "câu trích" ở `eval/report.md` mục 0) → `python run.py score eval/run-2.csv` → **dán x/N + theo type vào "Số liệu nộp" trước 12:00**
 - [x] `eval/report.md` **trước 12:45**: bảng lượt 1 và lượt 2 so với chuẩn "đạt" · **≥3 lỗi** (input · output · vì sao sai) · đã sửa gì · lỗi còn lại · ghi rõ lượt 1 chạy 14 câu, lượt 2 chạy 22 câu
-- [ ] Nhắn Đăng dòng §10 · push + merge
+- [x] Nhắn Đăng dòng §10 · push + merge *(§10 đã có dòng của Huy, commit `2187542`)*
 
 ## Nguyễn Đức Trọng · chi phí + video *(một mạch: persona → mô phỏng → bảng → video)*
 
