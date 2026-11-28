@@ -1,4 +1,4 @@
-# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng H210 · Zone 5
+# AI SPEC — Phân tích câu trả lời mở của lớp cho TA / lab coach trước buổi · Nhóm SoftAndWet · Phòng H210 · Zone 4
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
@@ -196,6 +196,7 @@ flowchart LR
 | 28/11 | `codebase/ai.py`: xoá bản `call_gemini` cũ bị định nghĩa lặp (đè mất bản mới có `responseMimeType: application/json`, bỏ phần suy nghĩ); khôi phục `call_openai` bị xoá nhầm | Bản Gemini ép JSON không được dùng → model dễ trả sai định dạng (agent dừng ở "không trả đúng định dạng"); `MODEL_PROVIDER=openai` báo NameError |
 | 09:20 Thứ Bảy 28/11 | Web demo cho TA: `codebase/web.py` (API `/api/analyze`, `/api/questions`, `/api/import`, `/api/drafts`, `/api/stats`) + `codebase/web_store.py` (SQLite ở `data/runtime/`, đã .gitignore) + giao diện React `frontend/` (Phân tích TA · Tổng quan lớp · Nhập dữ liệu lớp) + `Dockerfile` + 35 test (`tests/`). Gọi thẳng `answer()`, **không sửa** `agent.py` / `tools.py` / `ai.py`; không có nút gửi; TA đổi tên nhóm / chuyển câu trên màn hình (G9) | CP4 demo trực tiếp: giám khảo gõ câu lạ tại chỗ (1 thường + 1 khó); TA cần thấy nhóm, `x/N`, câu trích, guardrail và sửa được bản nháp (§4 G9, G11, G2). Import chỉ giữ chữ câu trả lời, tự ẩn email / SĐT / mã học viên (§9) |
 | 09:20 Thứ Bảy 28/11 | Web: lỗi model phân loại theo mã HTTP (429 / 503 / timeout / sai key) → thông báo rõ cho TA; file import không phải UTF-8 báo đúng lỗi bảng mã | Thử nghiệm: 503 bị báo nhầm là "hết lượt" (dò chữ `rate` khớp `generateContent`); CSV Latin-1 bị đọc nhầm UTF-16 → báo sai "thiếu cột" |
+| 10:06 Thứ Bảy 28/11 | Dòng 1 `spec.md`: Zone 5 → Zone 4 | BTC đổi zone demo |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
